@@ -10,18 +10,12 @@ const Layout = ({ children }) => {
 
 function App() {
   // Redirect to basename if not
-  // window.location.pathname === '/' && (window.location.href = '/newspaper');
+  window.location.pathname === '/' && (window.location.href = '/newspaper');
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="newspaper">
       <div className="App">
         <Routes>
           <Route path='/' element={
-            <Layout>
-              <Header />
-              <Home />
-            </Layout>
-          } />
-          <Route path='/blog' element={
             <Layout>
               <Header />
               <Home />
