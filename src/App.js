@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 
@@ -9,8 +9,10 @@ const Layout = ({ children }) => {
 }
 
 function App() {
+  // Redirect to basename if not
+  window.location.pathname === '/' && (window.location.href = '/newspaper');
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="newspaper">
       <div className="App">
         <Routes>
           <Route path='/' element={
