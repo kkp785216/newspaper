@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -11,17 +12,17 @@ const Header = () => {
                             <span>Monday, December 27, 2021</span>
                         </div>
                         <ul className="flex space-x-3">
-                            <li><a className="hover:text-blue-400" href="#">Sin in / Join</a></li>
-                            <li><a className="hover:text-blue-400" href="#">Forum</a></li>
-                            <li><a className="hover:text-blue-400" href="#">Buy now!</a></li>
+                            <li><Link className="hover:text-blue-400" to="/">Sin in / Join</Link></li>
+                            <li><Link className="hover:text-blue-400" to="/">Forum</Link></li>
+                            <li><Link className="hover:text-blue-400" to="/">Buy now!</Link></li>
                         </ul>
                     </div>
                     <div className="flex">
-                        <a className="p-2" href="#"><img className="invert w-3" src="./img/social/facebook.png" alt="" /></a>
-                        <a className="p-2" href="#"><img className="invert w-3" src="./img/social/instagram.png" alt="" /></a>
-                        <a className="p-2" href="#"><img className="invert w-3" src="./img/social/twitter.png" alt="" /></a>
-                        <a className="p-2" href="#"><img className="invert w-3" src="./img/social/vimeo.png" alt="" /></a>
-                        <a className="p-2" href="#"><img className="invert w-3" src="./img/social/youtube.png" alt="" /></a>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/facebook.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/instagram.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/twitter.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/vimeo.png" alt="" /></Link>
+                        <Link className="p-2" to="/#"><img className="invert w-3" src="./img/social/youtube.png" alt="" /></Link>
                     </div>
                 </div>
             </div>
@@ -32,12 +33,12 @@ const Header = () => {
                 </div>
                 <nav>
                     <ul className="uppercase flex">
-                        <li><a className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 active" href="#">News</a></li>
-                        <li><a className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" href="#">Faishon <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="64" d="M112 184l144 144 144-144" /></svg></a></li>
-                        <li><a className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" href="#">Gadget <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="64" d="M112 184l144 144 144-144" /></svg></a></li>
-                        <li><a className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" href="#">Lifestyle</a></li>
-                        <li><a className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" href="#">Video</a></li>
-                        <li><a className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" href="#">Features</a></li>
+                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 active" to="/">News</Link></li>
+                        <li><Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Faishon <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="64" d="M112 184l144 144 144-144" /></svg></Link></li>
+                        <li><Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Gadget <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="64" d="M112 184l144 144 144-144" /></svg></Link></li>
+                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Lifestyle</Link></li>
+                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Video</Link></li>
+                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Features</Link></li>
                     </ul>
                 </nav>
             </div>
