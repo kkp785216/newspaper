@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LazyLoad from 'react-lazy-load';
 
 const Header = () => {
     return (
         <header className="shadow-md">
-            <div className="bg-black text-mywhite">
+            <div className="bg-black text-[#f4f4f4]">
                 <div className="max-w-screen-lg flex space-x-9 text-11px font-medium m-auto justify-between items-center">
                     <div className="flex space-x-9">
                         <div className="flex space-x-9">
@@ -28,8 +29,8 @@ const Header = () => {
             </div>
             <div className="max-w-screen-lg m-auto">
                 <div className="flex justify-center space-x-6 pt-7 pb-3">
-                    <Link to='/'><img src="./img/newspaper-11-logo-blue.png" alt="" /></Link>
-                    <Link to='/blog'><img src="./img/newspaper-rec728.jpg" alt="" /></Link>
+                    <Link to='/'><LazyLoad><img src="./img/newspaper-11-logo-blue.png" alt="" /></LazyLoad></Link>
+                    <Link to='/blog'><LazyLoad><img src="./img/newspaper-rec728.jpg" alt="" /></LazyLoad></Link>
                 </div>
                 <nav>
                     <ul className="uppercase flex">

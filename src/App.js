@@ -26,6 +26,18 @@ function App() {
               <Home />
             </Layout>
           } />
+          <Route path=':newsId' element={
+            <Layout>
+              <Header />
+                particular post
+            </Layout>
+          } />
+          <Route path='/category' element={
+            <Layout>
+              <Header />
+                Particular Catgory
+            </Layout>
+          } />
         </Routes>
       </div>
     </BrowserRouter>
