@@ -1,6 +1,5 @@
 {
   "name": "newspaper",
-  "homepage": "https://kkp785216.github.io/newspaper",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
