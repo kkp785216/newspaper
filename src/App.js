@@ -12,7 +12,7 @@ function App() {
   // Redirect to basename if not
   // window.location.pathname === '/' && (window.location.href = '/newspaper');
   return (
-    <BrowserRouter basename="newspaper">
+    <BrowserRouter >
       <div className="App">
         <Routes>
           <Route path='/' element={
