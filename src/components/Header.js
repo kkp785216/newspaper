@@ -28,8 +28,8 @@ const Header = () => {
             </div>
             <div className="max-w-screen-lg m-auto">
                 <div className="flex justify-center space-x-6 pt-7 pb-3">
-                    <img src="./img/newspaper-11-logo-blue.png" alt="" />
-                    <img src="./img/newspaper-rec728.jpg" alt="" />
+                    <Link to='/'><img src="./img/newspaper-11-logo-blue.png" alt="" /></Link>
+                    <Link to='/blog'><img src="./img/newspaper-rec728.jpg" alt="" /></Link>
                 </div>
                 <nav>
                     <ul className="uppercase flex">
