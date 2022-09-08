@@ -21,6 +21,13 @@ function App() {
               <Home />
             </Layout>
           } />
+          <Route path='/blog' element={
+            <Layout>
+              <Header />
+              hello this is krishna
+              <Home />
+            </Layout>
+          } />
         </Routes>
       </div>
     </BrowserRouter>
