@@ -1581,10 +1581,7 @@ export const post = [
         content_type: 'common',
         order: 93,
         template: 1
-    }
-]
-
-[
+    },
     {
         parent_category: null,
         category: 'music',
