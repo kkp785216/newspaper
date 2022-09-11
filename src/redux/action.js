@@ -1,9 +1,8 @@
 import { post } from "../lib/post";
 
 const action = (action) => {
-    const {type, payload} = action;
-    return (dispatch) => {
-        switch (type) {
+    return async (dispatch) => {
+        switch (action.type) {
             case 'Hello':
                 dispatch({
                     type: 'Hello',
@@ -14,9 +13,13 @@ const action = (action) => {
                 break;
 
             case 'ARTICLES_LOCAL':
+                console.log(action.page)
                 dispatch({
                     type: 'ARTICLES_LOCAL',
-                    payload: post.concat().splice(0,8*payload.page)
+                    payload: {
+                        articles: post.concat().reverse().splice((action.page - 1) * 8, 8).reverse(),
+                        total_articles: post.length
+                    }
                 });
                 break;
 

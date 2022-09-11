@@ -1,5 +1,8 @@
 export const initialState = {
-    articles: [],
+    articles: {
+        articles: [],
+        total_articles: 0,
+    },
 }
 
 export const reducer = (state, action) => {
@@ -14,7 +17,10 @@ export const reducer = (state, action) => {
         case 'ARTICLES_LOCAL':
             return {
                 ...state,
-                articles: [...state.articles, ...payload]
+                articles: {
+                    articles: [...state.articles.articles, ...payload.articles],
+                    total_articles: payload.total_articles,
+                },
             }
 
         default:

@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
 }
 
 function App() {
+  console.log('hii')
   return (
     <BrowserRouter >
       <div className="App">
@@ -29,13 +30,13 @@ function App() {
           <Route path=':newsId' element={
             <Layout>
               <Header />
-                particular post
+              particular post
             </Layout>
           } />
           <Route path='/category' element={
             <Layout>
               <Header />
-                Particular Catgory
+              Particular Catgory
             </Layout>
           } />
         </Routes>

@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react'
-import store from '../redux/store'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import action from '../redux/action'
 import Highlights from '../components/Highlights';
 import FlashNew from '../components/FlashNew';
 import Article from '../components/Article';
 import { Link } from 'react-router-dom';
 import { Aside, Main, Section } from '../components/Layout';
+import ReactPaginate from 'react-paginate';
 
 const Home = () => {
-  const { articles } = store.getState();
+
+  const { articles } = useSelector(state => state);
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    articles && articles.length <= 0 &&
+    articles.articles.length <= 0 &&
+      dispatch(action({
+        type: 'ARTICLES_LOCAL',
+        page: page
+      }));
+    // eslint-disable-next-line
+  }, [page]);
+
+  const handlePageClick = ({selected}) => {
+    setPage(selected + 1);
     dispatch(action({
       type: 'ARTICLES_LOCAL',
-      payload: {
-        page: 1
-      }
-    }))
-  }, []);
-  console.log(store.getState());
+      page: selected + 1
+    }));
+  }
+
+  // console.log(articles);
+
   return (<>
     <Highlights />
     <FlashNew />
@@ -33,10 +45,26 @@ const Home = () => {
             <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">LATEST ARTICLES</span>
           </div>
           <div className="flex flex-wrap -mx-5 -m-4">
-            {articles?.map((e, i) => (
+            {articles.articles?.map((e, i) => (
               <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} />
             ))}
           </div>
+          <ReactPaginate
+            className='flex items-center'
+            pageClassName='p-4 m-1 relative [&.disabled]:hidden group selected-page'
+            previousClassName='p-4 m-1 relative [&.disabled]:hidden group selected-page'
+            nextClassName='p-4 m-1 relative [&.disabled]:hidden group selected-page'
+            pageLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white selected-page:bg-sky-400 selected-page:text-white selected-page:border-sky-400 text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            previousLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white selected-page:bg-sky-400 selected-page:text-white selected-page:border-sky-400 text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            nextLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white selected-page:bg-sky-400 selected-page:text-white selected-page:border-sky-400 text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            breakLabel="..."
+            previousLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={Math.ceil(articles.total_articles / 8)}
+            nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
+            renderOnZeroPageCount={null}
+          />
         </div>
       </Main>
       <Aside>
