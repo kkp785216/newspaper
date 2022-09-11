@@ -1,5 +1,5 @@
 export const initialState = {
-
+    articles: [],
 }
 
 export const reducer = (state, action) => {
@@ -9,6 +9,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 name: payload.name
+            }
+
+        case 'ARTICLES_LOCAL':
+            return {
+                ...state,
+                articles: [...state.articles, ...payload]
             }
 
         default:
