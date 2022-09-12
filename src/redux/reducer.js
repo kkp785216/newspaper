@@ -3,11 +3,13 @@ export const initialState = {
         articles: [],
         total_articles: 0,
         pages_loaded: [],
+        current_page: 1,
     },
     featured: {
         articles: [],
         total_articles: 0,
         pages_loaded: [],
+        current_page: 1,
     }
 }
 
@@ -37,6 +39,16 @@ export const reducer = (state, action) => {
                     articles: [...state.featured.articles, ...payload.articles],
                     total_articles: payload.total_articles,
                     pages_loaded: Array.from(new Set(state.featured.pages_loaded).add(payload.page)),
+                    current_page: payload.page,
+                },
+            }
+
+        case 'FEATURED_CURRENT_PAGE':
+            return {
+                ...state,
+                featured: {
+                    ...state.featured,
+                    current_page: payload.page,
                 },
             }
 

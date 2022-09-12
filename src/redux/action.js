@@ -34,7 +34,7 @@ const action = (action) => {
                         payload: {
                             articles: featured,
                             total_articles: post.filter(e=>e.sub_category.includes('featured')).length,
-                            page: action.page
+                            page: action.page,
                         }
                     });
                 }, 1000);

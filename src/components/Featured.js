@@ -15,6 +15,12 @@ const Featured = () => {
             type: 'FEATURED',
             page: page
         }));
+
+        featured.pages_loaded.includes(page) &&
+        action(dispatch({
+            type: 'FEATURED_CURRENT_PAGE',
+            payload: {page: page}
+        }));
     }, [page]);
 
     const handlePageClick = (button) => {
@@ -31,9 +37,9 @@ const Featured = () => {
             <div className="border-b-2 w-full mb-6 border-myyellow">
                 <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm bg-myyellow">Don't miss</span>
             </div>
-            {featured.pages_loaded.includes(page) && featured.articles.filter(e => e.page === page).length >= 1 &&
+            {featured.pages_loaded.includes(featured.current_page) && featured.articles.filter(e => e.page === featured.current_page).length >= 1 &&
                 <div className="flex -m-5">
-                    {featured.articles.filter(e => e.page === page).concat().splice(0, 1).map(e => (
+                    {featured.articles.filter(e => e.page === featured.current_page).concat().splice(0, 1).map(e => (
                         <div className="p-5 w-1/2" key={e.order}>
                             <div className="group">
                                 <Link to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
@@ -46,8 +52,8 @@ const Featured = () => {
                             </div>
                         </div>
                     ))}
-                    {featured.articles.filter(e => e.page === page).length >= 2 && <div className="p-5 w-1/2">
-                        {featured.articles.filter(e => e.page === page).concat().splice(1, 4).map(e => (
+                    {featured.articles.filter(e => e.page === featured.current_page).length >= 2 && <div className="p-5 w-1/2">
+                        {featured.articles.filter(e => e.page === featured.current_page).concat().splice(1, 4).map(e => (
                             <div className="flex space-x-4 group mb-4" key={e.order}>
                                 <Link className="w-1/3 relative" to={`/${e.url}`}><LazyLoad><img className="absolute top-0 left-0 right-0 bottom-0 transition-all duration-[.5s]" src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} /></LazyLoad></Link>
                                 <div className="w-2/3">
