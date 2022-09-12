@@ -26,9 +26,19 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 articles: {
-                    // articles: [...state.articles.articles, ...payload.articles],
-                    articles: payload.articles,
+                    articles: [...state.articles.articles, ...payload.articles],
                     total_articles: payload.total_articles,
+                    pages_loaded: Array.from(new Set(state.articles.pages_loaded).add(payload.page)),
+                    current_page: payload.page,
+                },
+            }
+
+        case 'ARTICLE_CURRENT_PAGE':
+            return {
+                ...state,
+                articles: {
+                    ...state.articles,
+                    current_page: payload.page,
                 },
             }
 

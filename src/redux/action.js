@@ -13,31 +13,45 @@ const action = (action) => {
                 break;
 
             case 'ARTICLES_LOCAL':
+                const articles = post.concat().reverse().splice((action.page - 1) * 8, 8).reverse();
+                setTimeout(() => {
+                    dispatch({
+                        type: 'ARTICLES_LOCAL',
+                        payload: {
+                            articles: articles.map(e => ({ ...e, page: action.page })),
+                            total_articles: post.length,
+                            page: action.page
+                        }
+                    });
+                }, 1000);
+                break;
+
+            case 'ARTICLE_CURRENT_PAGE':
                 dispatch({
-                    type: 'ARTICLES_LOCAL',
-                    payload: {
-                        articles: post.concat().reverse().splice((action.page - 1) * 8, 8).reverse(),
-                        total_articles: post.length,
-                        page: action.page
-                    }
+                    type: 'ARTICLE_CURRENT_PAGE',
+                    payload: { page: action.page }
                 });
                 break;
 
             case 'FEATURED':
-                const beforeFeatured = post.concat().filter(e=>e.sub_category.includes('featured')).splice((action.page - 1) * 5, 5);
-                beforeFeatured.forEach(e=>e.page = action.page);
-                const featured = beforeFeatured.sort((a,b)=>b.views - a.views);
-                console.log(featured)
+                const featured = post.concat().filter(e => e.sub_category.includes('featured')).splice((action.page - 1) * 5, 5);
                 setTimeout(() => {
                     dispatch({
                         type: 'FEATURED',
                         payload: {
-                            articles: featured,
-                            total_articles: post.filter(e=>e.sub_category.includes('featured')).length,
+                            articles: featured.sort((a, b) => b.views - a.views).map(e => ({ ...e, page: action.page })),
+                            total_articles: post.filter(e => e.sub_category.includes('featured')).length,
                             page: action.page,
                         }
                     });
                 }, 1000);
+                break;
+
+            case 'FEATURED_CURRENT_PAGE':
+                dispatch({
+                    type: 'FEATURED_CURRENT_PAGE',
+                    payload: { page: action.page }
+                });
                 break;
 
             default:
