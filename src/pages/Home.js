@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom';
 import { Aside, Main, Section } from '../components/Layout';
 import ReactPaginate from 'react-paginate';
 import Featured from '../components/Featured';
+import StayConnected from '../components/StayConnected';
+import { Ad300 } from '../components/Advertisement';
 
 const Home = () => {
 
   const { articles } = useSelector(state => state);
   const dispatch = useDispatch();
-  const [page, setPage] = useState(5);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     articles.articles.length <= 0 &&
@@ -56,6 +58,12 @@ const Home = () => {
         {/* Featured */}
         <Featured />
       </Main>
+      <Aside>
+        {/* Stay Connected */}
+        <StayConnected />
+        {/* Advertisement 300 */}
+        <Ad300/>
+      </Aside>
     </Section>
 
     <Section>

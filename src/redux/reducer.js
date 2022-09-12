@@ -2,10 +2,12 @@ export const initialState = {
     articles: {
         articles: [],
         total_articles: 0,
+        pages_loaded: [],
     },
     featured: {
         articles: [],
         total_articles: 0,
+        pages_loaded: [],
     }
 }
 
@@ -32,9 +34,9 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 featured: {
-                    // articles: [...state.articles.articles, ...payload.articles],
-                    articles: payload.articles,
+                    articles: [...state.featured.articles, ...payload.articles],
                     total_articles: payload.total_articles,
+                    pages_loaded: Array.from(new Set(state.featured.pages_loaded).add(payload.page)),
                 },
             }
 

@@ -24,15 +24,20 @@ const action = (action) => {
                 break;
 
             case 'FEATURED':
-                const featured = post.filter(e=>e.sub_category.includes('featured'))
-                dispatch({
-                    type: 'FEATURED',
-                    payload: {
-                        articles: featured,
-                        total_articles: featured.length,
-                        page: action.page
-                    }
-                });
+                const beforeFeatured = post.concat().filter(e=>e.sub_category.includes('featured')).splice((action.page - 1) * 5, 5);
+                beforeFeatured.forEach(e=>e.page = action.page);
+                const featured = beforeFeatured.sort((a,b)=>b.views - a.views);
+                console.log(featured)
+                setTimeout(() => {
+                    dispatch({
+                        type: 'FEATURED',
+                        payload: {
+                            articles: featured,
+                            total_articles: post.filter(e=>e.sub_category.includes('featured')).length,
+                            page: action.page
+                        }
+                    });
+                }, 1000);
                 break;
 
             default:
