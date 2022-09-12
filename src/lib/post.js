@@ -344,7 +344,7 @@ export const post = [
     {
         parent_category: 'fashion',
         category: 'street-fashion',
-        sub_category: [],
+        sub_category: ['featured'],
         title: 'Spring Fashion Show at the University of Michigan Has Started',
         author: 'krishna',
         status: 'published',
@@ -395,7 +395,7 @@ export const post = [
     {
         parent_category: 'fashion',
         category: 'new-look',
-        sub_category: [],
+        sub_category: ['featured'],
         title: 'Top Fashion Trends to Look for in Every Important Collection',
         author: 'krishna',
         status: 'published',
@@ -990,7 +990,7 @@ export const post = [
     {
         parent_category: 'technology',
         category: 'reviews',
-        sub_category: [],
+        sub_category: ['featured'],
         title: 'Laptop with 128-bit Processor, 32GB of RAM and 24MP Front Camera',
         author: 'krishna',
         status: 'published',
@@ -1092,7 +1092,7 @@ export const post = [
     {
         parent_category: 'lifestyle',
         category: 'travel',
-        sub_category: [],
+        sub_category: ['featured'],
         title: 'Flying Over the Grand Canyon with a Helicopter',
         author: 'krishna',
         status: 'published',
@@ -1381,7 +1381,7 @@ export const post = [
     {
         parent_category: 'lifestyle',
         category: 'business',
-        sub_category: [],
+        sub_category: ['featured'],
         title: 'Study 2020: Fake Engagement is Only Half the Problem',
         author: 'krishna',
         status: 'published',

@@ -3,6 +3,10 @@ export const initialState = {
         articles: [],
         total_articles: 0,
     },
+    featured: {
+        articles: [],
+        total_articles: 0,
+    }
 }
 
 export const reducer = (state, action) => {
@@ -18,7 +22,18 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 articles: {
-                    articles: [...state.articles.articles, ...payload.articles],
+                    // articles: [...state.articles.articles, ...payload.articles],
+                    articles: payload.articles,
+                    total_articles: payload.total_articles,
+                },
+            }
+
+        case 'FEATURED':
+            return {
+                ...state,
+                featured: {
+                    // articles: [...state.articles.articles, ...payload.articles],
+                    articles: payload.articles,
                     total_articles: payload.total_articles,
                 },
             }

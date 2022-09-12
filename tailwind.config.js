@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -31,9 +30,5 @@ module.exports = {
       }
     },
   },
-  plugins: [
-    plugin(function({ addVariant }) {
-      addVariant("selected-page", ".selected-page.selected &");
-    }),
-  ],
+  plugins: [],
 }

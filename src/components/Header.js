@@ -19,18 +19,18 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="flex">
-                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/facebook.png" alt="" /></Link>
-                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/instagram.png" alt="" /></Link>
-                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/twitter.png" alt="" /></Link>
-                        <Link className="p-2" to="/"><img className="invert w-3" src="./img/social/vimeo.png" alt="" /></Link>
-                        <Link className="p-2" to="/#"><img className="invert w-3" src="./img/social/youtube.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="/img/social/facebook.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="/img/social/instagram.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="/img/social/twitter.png" alt="" /></Link>
+                        <Link className="p-2" to="/"><img className="invert w-3" src="/img/social/vimeo.png" alt="" /></Link>
+                        <Link className="p-2" to="/#"><img className="invert w-3" src="/img/social/youtube.png" alt="" /></Link>
                     </div>
                 </div>
             </div>
             <div className="max-w-screen-lg m-auto">
                 <div className="flex justify-center space-x-6 pt-7 pb-3">
-                    <Link to='/'><LazyLoad><img src="./img/newspaper-11-logo-blue.png" alt="" /></LazyLoad></Link>
-                    <Link to='/blog'><LazyLoad><img src="./img/newspaper-rec728.jpg" alt="" /></LazyLoad></Link>
+                    <Link to='/'><LazyLoad><img src="/img/newspaper-11-logo-blue.png" alt="" /></LazyLoad></Link>
+                    <Link to='/blog'><LazyLoad><img src="/img/newspaper-rec728.jpg" alt="" /></LazyLoad></Link>
                 </div>
                 <nav>
                     <ul className="uppercase flex">

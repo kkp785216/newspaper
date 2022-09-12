@@ -9,12 +9,17 @@ const Layout = ({ children }) => {
 }
 
 function App() {
-  console.log('hii')
   return (
     <BrowserRouter >
       <div className="App">
         <Routes>
           <Route path='/' element={
+            <Layout>
+              <Header />
+              <Home />
+            </Layout>
+          } />
+          <Route path='/page/:pageId' element={
             <Layout>
               <Header />
               <Home />

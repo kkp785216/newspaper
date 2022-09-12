@@ -13,12 +13,24 @@ const action = (action) => {
                 break;
 
             case 'ARTICLES_LOCAL':
-                console.log(action.page)
                 dispatch({
                     type: 'ARTICLES_LOCAL',
                     payload: {
                         articles: post.concat().reverse().splice((action.page - 1) * 8, 8).reverse(),
-                        total_articles: post.length
+                        total_articles: post.length,
+                        page: action.page
+                    }
+                });
+                break;
+
+            case 'FEATURED':
+                const featured = post.filter(e=>e.sub_category.includes('featured'))
+                dispatch({
+                    type: 'FEATURED',
+                    payload: {
+                        articles: featured,
+                        total_articles: featured.length,
+                        page: action.page
                     }
                 });
                 break;
