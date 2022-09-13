@@ -1,6 +1,7 @@
 import { post } from "../lib/post";
 
 const action = (action) => {
+    console.log(Array.from(new Set(post.map(e=>e.parent_category))));
     return async (dispatch) => {
         switch (action.type) {
             case 'Hello':

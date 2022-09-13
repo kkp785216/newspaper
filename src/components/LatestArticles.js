@@ -46,8 +46,8 @@ const LatestArticles = () => {
       <div className="border-b-2 w-full mb-6 border-black">
         <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">LATEST ARTICLES</span>
       </div>
-      {articles.pages_loaded.includes(articles.current_page) &&
-        <div className="flex flex-wrap -mx-5 -m-4">
+      {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
+        <div className="flex flex-wrap -mx-5 -m-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
             <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} />
           ))}
