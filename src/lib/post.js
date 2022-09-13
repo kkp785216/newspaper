@@ -514,7 +514,7 @@ export const post = [
     {
         parent_category: 'fashion',
         category: 'style-hunter',
-        sub_category: ['featured'],
+        sub_category: ['featured', ],
         title: 'Just in Time for Spring: Community Style Turnaround has Major Impact',
         author: 'krishna',
         status: 'published',
@@ -2214,7 +2214,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'interiors',
-        sub_category: [],
+        sub_category: ['trending'],
         title: 'Ambrose Seeks Offers on Downtown Building for Apartments',
         author: 'krishna',
         status: 'published',
@@ -2231,7 +2231,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'interiors',
-        sub_category: [],
+        sub_category: ['trending'],
         title: 'Patricia Urquiola Coats Transparent Glas Tables for Livings',
         author: 'krishna',
         status: 'published',
@@ -2248,7 +2248,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'interiors',
-        sub_category: [],
+        sub_category: ['trending'],
         title: 'Another Big Apartment Project Slated for Broad Ripple Company',
         author: 'krishna',
         status: 'published',

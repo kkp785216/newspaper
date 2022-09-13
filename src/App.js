@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { preload } from "./redux/preload";
 
 const Layout = ({ children }) => {
   return (
@@ -9,6 +12,12 @@ const Layout = ({ children }) => {
 }
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    preload(dispatch);
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <BrowserRouter >
       <div className="App">

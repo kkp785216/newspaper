@@ -10,16 +10,17 @@ export const initialState = {
         total_articles: 0,
         pages_loaded: [],
         current_page: 1,
-    }
+    },
+    category: [],
 }
 
 export const reducer = (state, action) => {
     const { type, payload } = action;
     switch (type) {
-        case 'Hello':
+        case 'CATEGORY':
             return {
                 ...state,
-                name: payload.name
+                category: payload.category
             }
 
         case 'ARTICLES_LOCAL':

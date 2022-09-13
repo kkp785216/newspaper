@@ -1,3 +1,9 @@
-import store from "./store";
+import { category } from "../lib/category"
+import action from "./action"
 
-const { cart, loginUser } = store.getState();
+export const preload = (dispatch) => {
+    dispatch(action({
+        type: 'CATEGORY',
+        category: category
+    }));
+}
