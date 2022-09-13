@@ -12,6 +12,7 @@ export const initialState = {
         current_page: 1,
     },
     category: [],
+    config: {}
 }
 
 export const reducer = (state, action) => {
@@ -20,7 +21,13 @@ export const reducer = (state, action) => {
         case 'CATEGORY':
             return {
                 ...state,
-                category: payload.category
+                category: payload.category,
+            }
+
+        case 'CONFIG':
+            return {
+                ...state,
+                config: payload.config,
             }
 
         case 'ARTICLES_LOCAL':

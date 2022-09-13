@@ -11,6 +11,13 @@ const action = (action) => {
                 });
                 break;
 
+            case 'CONFIG':
+                dispatch({
+                    type: 'CONFIG',
+                    payload: {config: action.config}
+                });
+                break;
+
             case 'ARTICLES_LOCAL':
                 const articles = post.concat().reverse().splice((action.page - 1) * 8, 8).reverse();
                 setTimeout(() => {
