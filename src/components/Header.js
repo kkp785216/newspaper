@@ -53,7 +53,7 @@ const Header = () => {
                                 return <li key={i}>
                                     <Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" to={`/category/${menu.url}`}>{menu.name} <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="64" d="M112 184l144 144 144-144" /></svg></Link>
                                     <div className="absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t">
-                                        <div className='w-1/6 p-6'>
+                                        <div className='w-1/6 p-6 border-r'>
                                             <ul>
                                                 <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>All</Link></li>
                                                 <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>New Look</Link></li>
@@ -62,15 +62,25 @@ const Header = () => {
                                                 <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>Vouge</Link></li>
                                             </ul>
                                         </div>
-                                        <div className='w-5/6 p-6 flex space-x-6'>
-                                            {[1,2,3,4].map((e,i)=>(<div className="group w-1/4" key={i}>
-                                                <Link to='/' className="relative block pb-[72%] overflow-hidden">
-                                                    <LazyLoad><img className="absolute top-0 left-0 right-0 bottom-0 transition-all duration-[.5s]" src='/img/articles/485x360/5.jpg' alt="" /></LazyLoad>
-                                                    <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">New Fashion</span>
-                                                </Link>
-                                                <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-myyellow"><Link to='/'>Fashion Outfit Ideas From the Biggest Instagram Influencers</Link></h3>
-                                                <span className="text-11px font-medium text-gray-500">August 19, 2019</span>
-                                            </div>))}
+                                        <div className='w-5/6 p-6'>
+                                            <div className=' flex space-x-6'>
+                                                {[1, 2, 3, 4].map((e, i) => (<div className="group w-1/4" key={i}>
+                                                    <Link to='/' className="relative block pb-[70%] overflow-hidden">
+                                                        <LazyLoad><img className="absolute top-0 left-0 right-0 bottom-0 transition-all duration-[.5s]" src='/img/articles/485x360/5.jpg' alt="" /></LazyLoad>
+                                                        <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">New Fashion</span>
+                                                    </Link>
+                                                    <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-sky-400"><Link to='/'>Fashion Outfit Ideas From the Biggest Instagram Influencers</Link></h3>
+                                                    <span className="text-11px font-medium text-gray-500">August 19, 2019</span>
+                                                </div>))}
+                                            </div>
+                                            <div className="flex space-x-2 mt-8">
+                                                <button className="border p-1.5 hover:bg-blue-400 hover:border-blue-400 transition-all duration-150 text-[#b7b7b7] hover:text-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><title>Chevron Back</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>
+                                                </button>
+                                                <button className="border p-1.5 hover:bg-blue-400 hover:border-blue-400 transition-all duration-150 text-[#b7b7b7] hover:text-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><title>Chevron Forward</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
