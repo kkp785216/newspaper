@@ -7,14 +7,14 @@ const action = (action) => {
             case 'CATEGORY':
                 dispatch({
                     type: 'CATEGORY',
-                    payload: {category: action.category}
+                    payload: { category: action.category }
                 });
                 break;
 
             case 'CONFIG':
                 dispatch({
                     type: 'CONFIG',
-                    payload: {config: action.config}
+                    payload: { config: action.config }
                 });
                 break;
 
@@ -40,12 +40,12 @@ const action = (action) => {
                 break;
 
             case 'FEATURED':
-                const featured = post.concat().filter(e => e.sub_category.includes('featured')).splice((action.page - 1) * 5, 5);
+                const featured = post.concat().filter(e => e.sub_category.includes('featured')).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5);
                 setTimeout(() => {
                     dispatch({
                         type: 'FEATURED',
                         payload: {
-                            articles: featured.sort((a, b) => b.views - a.views).map(e => ({ ...e, page: action.page })),
+                            articles: featured.map(e => ({ ...e, page: action.page })),
                             total_articles: post.filter(e => e.sub_category.includes('featured')).length,
                             page: action.page,
                         }
@@ -57,6 +57,18 @@ const action = (action) => {
                 dispatch({
                     type: 'FEATURED_CURRENT_PAGE',
                     payload: { page: action.page }
+                });
+                break;
+
+            case 'MEGA_MENU_PARENT':
+                // console.log(post.filter(e=> e.parent_category === action.url || e.category === action.url))
+                dispatch({
+                    type: 'MEGA_MENU_PARENT',
+                    payload: {
+                        articles: action.category_type === 'parent' ? post.filter(e=> e.parent_category === action.url || e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4) : post.filter(e=> e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4),
+                        category_type: action.category_type,
+                        url: action.url,
+                    }
                 });
                 break;
 

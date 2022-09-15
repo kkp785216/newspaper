@@ -4,5 +4,6 @@ export const config = {
         {url: 'gadgets', type: 'category', menu_type: 'mega'},
         {url: 'lifestyle', type: 'parent', menu_type: 'normal'},
         {url: 'design', type: 'parent', menu_type: 'normal'},
+        // {url: 'technology', type: 'parent', menu_type: 'mega'},
     ]
 }

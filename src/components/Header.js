@@ -1,11 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LazyLoad from 'react-lazy-load';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import action from '../redux/action';
 
 const Header = () => {
 
-    const { category, config } = useSelector(state => state);
+    const { category, config, mega_menu_parent } = useSelector(state => state);
+    const dispatch = useDispatch();
+    const [page, setPage] = useState({});
+
+    // useEffect(()=>{
+    //     mega_menu_parent && 
+    // }, []);
+
+    useEffect(() => {
+        // !featured.pages_loaded.includes(page) &&
+        // mega_menu_parent.
+        config.menu && category.length >= 1 && config.menu.forEach(e => {
+            console.log('hii')
+            const menu = category.find(a => e.url === a.url && e.type === a.type && ((e.menu_type === 'mega' && e.type === 'parent') || (e.menu_type === 'mega' && e.type === 'category')));
+            menu && menu.type === 'parent' &&
+                dispatch(action({
+                    type: 'MEGA_MENU_PARENT',
+                    url: e.url,
+                    category_type: menu.type
+                }));
+        });
+        // eslint-disable-next-line
+    }, [config.menu, category]);
+
+    const handleMegaMenu = (input) => {
+        config.menu?.forEach(e => {
+            const menu = category.find(a => e.url === a.url && e.type === a.type && ((e.menu_type === 'mega' && e.type === 'parent') || (e.menu_type === 'mega' && e.type === 'category')));
+            menu && dispatch(action({
+                type: 'MEGA_MENU_PARENT',
+                url: input.url,
+                category_type: input.type
+            }));
+        });
+    }
 
     return (
         <header className="shadow-md relative">
@@ -39,15 +73,7 @@ const Header = () => {
                 <nav>
                     <ul className="flex">
                         <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 active" to="/">News</Link></li>
-                        {/* <li><Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Faishon <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="64" d="M112 184l144 144 144-144" /></svg></Link></li>
-                        <li><Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Gadget <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="64" d="M112 184l144 144 144-144" /></svg></Link></li>
-                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Lifestyle</Link></li>
-                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Video</Link></li>
-                        <li><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0" to="/">Features</Link></li> */}
-                        {/* {(()=>{
-                            config.map()
-                        })()} */}
-                        {config.menu?.map((e, i) => ((() => {
+                        {config.menu && category.length >= 1 && config.menu.map((e, i) => ((() => {
                             const menu = category.find(a => e.url === a.url && e.type === a.type);
                             if (menu && e.menu_type === 'mega' && e.type === 'parent') {
                                 return <li key={i}>
@@ -55,11 +81,10 @@ const Header = () => {
                                     <div className="absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t">
                                         <div className='w-1/6 p-6 border-r'>
                                             <ul>
-                                                <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>All</Link></li>
-                                                <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>New Look</Link></li>
-                                                <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>Street Faishon</Link></li>
-                                                <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>Style Hunter</Link></li>
-                                                <li><Link className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>Vouge</Link></li>
+                                                <li><Link onClick={() => handleMegaMenu(e)} className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize active' to='/'>All</Link></li>
+                                                {category.filter(a => a.parent === e.url).map((f, i) => (
+                                                    f.url !== e.url && <li key={i}><Link onClick={() => { handleMegaMenu(f) }} className='block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize' to='/'>{f.name}</Link></li>
+                                                ))}
                                             </ul>
                                         </div>
                                         <div className='w-5/6 p-6'>

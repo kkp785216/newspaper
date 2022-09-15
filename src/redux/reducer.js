@@ -12,7 +12,9 @@ export const initialState = {
         current_page: 1,
     },
     category: [],
-    config: {}
+    config: {},
+    mega_menu_parent: {},
+    mega_menu_child: {},
 }
 
 export const reducer = (state, action) => {
@@ -68,6 +70,21 @@ export const reducer = (state, action) => {
                     ...state.featured,
                     current_page: payload.page,
                 },
+            }
+
+        case 'MEGA_MENU_PARENT':
+            return {
+                ...state,
+                mega_menu_parent: {
+                    ...state.mega_menu_parent,
+                    [payload.category_type === 'parent' ? `${payload.url}_all`: payload.url]: {
+                        ...state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all`: payload.url],
+                        articles: state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all`: payload.url] ? [...state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all`: payload.url].articles, ...payload.articles] : payload.articles,
+                        total_articles: 0,
+                        pages_loaded: [],
+                        current_page: 1,
+                    },
+                }
             }
 
         default:
