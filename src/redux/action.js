@@ -62,12 +62,36 @@ const action = (action) => {
 
             case 'MEGA_MENU_PARENT':
                 // console.log(post.filter(e=> e.parent_category === action.url || e.category === action.url))
+                setTimeout(() => {
+                    dispatch({
+                        type: 'MEGA_MENU_PARENT',
+                        payload: {
+                            articles: action.category_type === 'parent' ? post.filter(e => e.parent_category === action.url || e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4).map(e => ({ ...e, page: action.page })) : post.filter(e => e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4).map(e => ({ ...e, page: action.page })),
+                            category_type: action.category_type,
+                            url: action.url,
+                            total_articles: action.category_type === 'parent' ? post.filter(e => e.parent_category === action.url || e.category === action.url).length : post.filter(e => e.category === action.url).length,
+                            page: action.page
+                        }
+                    });
+                }, 1000);
+                break;
+
+            case 'MEGA_MENU_PARENT_CURRENT_PAGE':
                 dispatch({
-                    type: 'MEGA_MENU_PARENT',
+                    type: 'MEGA_MENU_PARENT_CURRENT_PAGE',
                     payload: {
-                        articles: action.category_type === 'parent' ? post.filter(e=> e.parent_category === action.url || e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4) : post.filter(e=> e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 4, 4),
                         category_type: action.category_type,
                         url: action.url,
+                        page: action.page
+                    }
+                });
+                break;
+
+            case 'MEGA_MENU_PARENT_ACTIVE_STATE':
+                dispatch({
+                    type: 'MEGA_MENU_PARENT_ACTIVE_STATE',
+                    payload: {
+                        activeMenu: action.activeMenu
                     }
                 });
                 break;
