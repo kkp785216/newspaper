@@ -73,8 +73,6 @@ export const reducer = (state, action) => {
             }
 
         case 'MEGA_MENU_PARENT':
-            console.log(state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all` : payload.url] ? [...state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all` : payload.url].articles, ...payload.articles] : payload.articles)
-            // .filter(e=> !state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all` : payload.url].articles.find(f=> f.order===e.order))
             return {
                 ...state,
                 mega_menu_parent: {
@@ -86,11 +84,11 @@ export const reducer = (state, action) => {
                         pages_loaded: Array.from(new Set(state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all` : payload.url]?.pages_loaded).add(payload.page)),
                         current_page: payload.page,
                     },
-                }
+                },
+                mega_menu_parent_activeMenu: payload.category_type === 'parent' ? `${payload.url}_all` : payload.url
             }
 
         case 'MEGA_MENU_PARENT_CURRENT_PAGE':
-            console.log('page')
             return {
                 ...state,
                 mega_menu_parent: {
@@ -99,7 +97,8 @@ export const reducer = (state, action) => {
                         ...state.mega_menu_parent[payload.category_type === 'parent' ? `${payload.url}_all` : payload.url],
                         current_page: payload.page,
                     },
-                }
+                },
+                mega_menu_parent_activeMenu: payload.category_type === 'parent' ? `${payload.url}_all` : payload.url
             }
 
         default:

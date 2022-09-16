@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import action from '../redux/action';
 import MegaMenuParentCurrent from './MegaMenuParentCurrent';
 
-const MegaMenuParent = ({ config_menu, menu }) => {
+const MegaMenuParent = ({ config_menu }) => {
 
-    const { category, mega_menu_parent } = useSelector(state => state);
+    const { category, mega_menu_parent, mega_menu_parent_activeMenu } = useSelector(state => state);
     const dispatch = useDispatch();
     const [activeMenu, setActiveMenu] = useState();
     const [activeState, setActiveState] = useState(config_menu);
@@ -17,7 +17,7 @@ const MegaMenuParent = ({ config_menu, menu }) => {
             dispatch(action({
                 type: 'MEGA_MENU_PARENT',
                 url: config_menu.url,
-                category_type: menu.type,
+                category_type: config_menu.type,
                 page: 1
             }));
         // eslint-disable-next-line
@@ -45,7 +45,8 @@ const MegaMenuParent = ({ config_menu, menu }) => {
                     ))}
                 </ul>
             </div>
-            {mega_menu_parent[activeMenu] && <MegaMenuParentCurrent key={activeMenu} active_menu={mega_menu_parent[activeMenu]} activeState={activeState} />}
+            {/* {mega_menu_parent[activeMenu] && <MegaMenuParentCurrent key={activeMenu} active_menu={mega_menu_parent[activeMenu]} activeState={activeState} />} */}
+            {mega_menu_parent_activeMenu && mega_menu_parent[mega_menu_parent_activeMenu] && <MegaMenuParentCurrent key={mega_menu_parent_activeMenu} active_menu={mega_menu_parent[mega_menu_parent_activeMenu]} activeState={activeState} />}
         </div>
     )
 }
