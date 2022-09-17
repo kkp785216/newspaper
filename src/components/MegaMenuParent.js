@@ -6,7 +6,7 @@ import MegaMenuParentCurrent from './MegaMenuParentCurrent';
 
 const MegaMenuParent = ({ config_menu }) => {
 
-    const { category, mega_menu_parent, mega_menu_parent_activeMenu } = useSelector(state => state);
+    const { category, mega_menu_parent } = useSelector(state => state);
     const dispatch = useDispatch();
     const [activeMenu, setActiveMenu] = useState();
     const [activeState, setActiveState] = useState(config_menu);
@@ -36,7 +36,7 @@ const MegaMenuParent = ({ config_menu }) => {
     }
 
     return (
-        <div className="absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t">
+        <div className="absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t menu-list opacity-0 invisible transition-all duration-150">
             <div className='w-1/6 p-6 border-r'>
                 <ul>
                     <li><Link onMouseEnter={() => handleMegaMenu(config_menu)} className={`block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize ${activeMenu === `${config_menu.url}_all` ? 'active' : ''}`} to='/'>All</Link></li>
@@ -45,8 +45,7 @@ const MegaMenuParent = ({ config_menu }) => {
                     ))}
                 </ul>
             </div>
-            {/* {mega_menu_parent[activeMenu] && <MegaMenuParentCurrent key={activeMenu} active_menu={mega_menu_parent[activeMenu]} activeState={activeState} />} */}
-            {mega_menu_parent_activeMenu && mega_menu_parent[mega_menu_parent_activeMenu] && <MegaMenuParentCurrent key={mega_menu_parent_activeMenu} active_menu={mega_menu_parent[mega_menu_parent_activeMenu]} activeState={activeState} />}
+            {mega_menu_parent[activeMenu] && <MegaMenuParentCurrent key={activeMenu} active_menu={mega_menu_parent[activeMenu]} activeState={activeState} />}
         </div>
     )
 }

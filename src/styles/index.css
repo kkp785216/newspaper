@@ -36,3 +36,8 @@
     border-color: #000 transparent transparent transparent;
     box-sizing: border-box;
 }
+
+.menu:hover .menu-list{
+    opacity: 1;
+    visibility: visible;
+}

@@ -14,7 +14,7 @@ export const initialState = {
     category: [],
     config: {},
     mega_menu_parent: {},
-    mega_menu_child: {},
+    mega_menu_category: {},
 }
 
 export const reducer = (state, action) => {
@@ -99,6 +99,33 @@ export const reducer = (state, action) => {
                     },
                 },
                 mega_menu_parent_activeMenu: payload.category_type === 'parent' ? `${payload.url}_all` : payload.url
+            }
+
+        case 'MEGA_MENU_CATEGORY':
+            return {
+                ...state,
+                mega_menu_category: {
+                    ...state.mega_menu_category,
+                    [payload.url]: {
+                        ...state.mega_menu_category[payload.url],
+                        articles: state.mega_menu_category[payload.url] ? (payload.page !== state.mega_menu_category[payload.url].current_page ? [...state.mega_menu_category[payload.url].articles, ...payload.articles] : state.mega_menu_category[payload.url].articles) : payload.articles,
+                        total_articles: payload.total_articles,
+                        pages_loaded: Array.from(new Set(state.mega_menu_category[payload.url]?.pages_loaded).add(payload.page)),
+                        current_page: payload.page,
+                    },
+                },
+            }
+
+        case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
+            return {
+                ...state,
+                mega_menu_category: {
+                    ...state.mega_menu_category,
+                    [payload.url]: {
+                        ...state.mega_menu_category[payload.url],
+                        current_page: payload.page,
+                    },
+                },
             }
 
         default:

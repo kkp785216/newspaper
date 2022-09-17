@@ -96,6 +96,30 @@ const action = (action) => {
                 });
                 break;
 
+            case 'MEGA_MENU_CATEGORY':
+                setTimeout(() => {
+                    dispatch({
+                        type: 'MEGA_MENU_CATEGORY',
+                        payload: {
+                            articles: post.filter(e => e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5).map(e => ({ ...e, page: action.page })),
+                            url: action.url,
+                            total_articles: post.filter(e => e.category === action.url).length,
+                            page: action.page
+                        }
+                    });
+                }, 1000);
+                break;
+
+            case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
+                    dispatch({
+                        type: 'MEGA_MENU_CATEGORY_CURRENT_PAGE',
+                        payload: {
+                            url: action.url,
+                            page: action.page
+                        }
+                    });
+                break;
+
             default:
                 break;
         }
