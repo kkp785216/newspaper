@@ -11,10 +11,23 @@ export const initialState = {
         pages_loaded: [],
         current_page: 1,
     },
+    trending: {
+        articles: [],
+        total_articles: 0,
+        pages_loaded: [],
+        current_page: 1,
+    },
+    most_popular: {
+        articles: [],
+        total_articles: 0,
+        pages_loaded: [],
+        current_page: 1,
+    },
     category: [],
     config: {},
     mega_menu_parent: {},
     mega_menu_category: {},
+    mega_menu_sub_category: {},
 }
 
 export const reducer = (state, action) => {
@@ -72,6 +85,26 @@ export const reducer = (state, action) => {
                 },
             }
 
+        case 'TRENDING':
+            return {
+                ...state,
+                trending: {
+                    articles: [...state.trending.articles, ...payload.articles],
+                    total_articles: payload.total_articles,
+                    pages_loaded: Array.from(new Set(state.trending.pages_loaded).add(payload.page)),
+                    current_page: payload.page,
+                },
+            }
+
+        case 'TRENDING_CURRENT_PAGE':
+            return {
+                ...state,
+                trending: {
+                    ...state.trending,
+                    current_page: payload.page,
+                },
+            }
+
         case 'MEGA_MENU_PARENT':
             return {
                 ...state,
@@ -125,6 +158,53 @@ export const reducer = (state, action) => {
                         ...state.mega_menu_category[payload.url],
                         current_page: payload.page,
                     },
+                },
+            }
+
+        case 'MEGA_MENU_SUB_CATEGORY':
+            return {
+                ...state,
+                mega_menu_sub_category: {
+                    ...state.mega_menu_sub_category,
+                    [payload.url]: {
+                        ...state.mega_menu_sub_category[payload.url],
+                        articles: state.mega_menu_sub_category[payload.url] ? (payload.page !== state.mega_menu_sub_category[payload.url].current_page ? [...state.mega_menu_sub_category[payload.url].articles, ...payload.articles] : state.mega_menu_sub_category[payload.url].articles) : payload.articles,
+                        total_articles: payload.total_articles,
+                        pages_loaded: Array.from(new Set(state.mega_menu_sub_category[payload.url]?.pages_loaded).add(payload.page)),
+                        current_page: payload.page,
+                    },
+                },
+            }
+
+        case 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE':
+            return {
+                ...state,
+                mega_menu_sub_category: {
+                    ...state.mega_menu_sub_category,
+                    [payload.url]: {
+                        ...state.mega_menu_sub_category[payload.url],
+                        current_page: payload.page,
+                    },
+                },
+            }
+
+        case 'MOST_POPULAR':
+            return {
+                ...state,
+                most_popular: {
+                    articles: [...state.most_popular.articles, ...payload.articles],
+                    total_articles: payload.total_articles,
+                    pages_loaded: Array.from(new Set(state.articles.pages_loaded).add(payload.page)),
+                    current_page: payload.page,
+                },
+            }
+
+        case 'MOST_POPULAR_CURRENT_PAGE':
+            return {
+                ...state,
+                most_popular: {
+                    ...state.most_popular,
+                    current_page: payload.page,
                 },
             }
 

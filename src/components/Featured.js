@@ -41,7 +41,7 @@ const Featured = () => {
             {featured.pages_loaded.includes(featured.current_page) && featured.articles.filter(e => e.page === featured.current_page).length >= 1 &&
                 <div className="flex -m-5">
                     {featured.articles.filter(e => e.page === featured.current_page).splice(0, 1).map(e => (
-                        <div className="p-5 w-1/2" key={e.order}>
+                        <div className="p-5 w-1/2" key={e.order} title={e.title}>
                             <div className="group">
                                 <Link to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
                                     <LazyLoad><img className="absolute top-0 left-0 right-0 bottom-0 transition-all duration-[.5s]" src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title} /></LazyLoad>
@@ -55,7 +55,7 @@ const Featured = () => {
                     ))}
                     {featured.articles.filter(e => e.page === featured.current_page).length >= 2 && <div className="p-5 w-1/2">
                         {featured.articles.filter(e => e.page === featured.current_page).splice(1, 4).map(e => (
-                            <div className="flex space-x-4 group mb-4" key={e.order}>
+                            <div className="flex space-x-4 group mb-4" key={e.order} title={e.title}>
                                 <Link className="w-1/3 relative" to={`/${e.url}`}><LazyLoad><img className="absolute top-0 left-0 right-0 bottom-0 transition-all duration-[.5s]" src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} /></LazyLoad></Link>
                                 <div className="w-2/3">
                                     <h3 className="text-sm group-hover:text-myyellow font-medium text-zinc-900"><Link to={`/${e.url}`}>{e.title}</Link></h3>

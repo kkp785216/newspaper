@@ -4,6 +4,7 @@ import LazyLoad from 'react-lazy-load';
 import { useSelector } from 'react-redux';
 import MegaMenuParent from './MegaMenuParent';
 import MegaMenuCategory from './MegaMenuCategory';
+import MegaMenuSubCategory from './MegaMenuSubCategory';
 
 const Header = () => {
 
@@ -55,11 +56,20 @@ const Header = () => {
                                     <MegaMenuCategory config_menu={config_menu}/>
                                 </li>
                             }
+                            else if (menu && config_menu.menu_type === 'mega' && config_menu.type === 'sub_category') {
+                                return <li key={i} className='menu'>
+                                    <Link className="p-3 text-sm font-bold flex  before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" to={`/category/${menu.parent}/${menu.url}`}>{menu.name} <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-3 ml-1.5" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="64" d="M112 184l144 144 144-144" /></svg></Link>
+                                    <MegaMenuSubCategory config_menu={config_menu}/>
+                                </li>
+                            }
                             else if (menu && config_menu.menu_type === 'normal' && config_menu.type === 'parent') {
                                 return <li key={i}><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" to={`/category/${menu.url}`}>{menu.name}</Link></li>
                             }
                             else if (menu && config_menu.menu_type === 'normal' && config_menu.type === 'category') {
                                 return <li key={i}><Link className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" to={`/category/${menu.parent}/${menu.url}`}>{menu.name}</Link></li>
+                            }
+                            else if (config_menu.menu_type === 'normal' && config_menu.type === 'external') {
+                                return <li key={i}><a className="p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" href={config_menu.url} target='_blank' without rel="noreferrer">{config_menu.title}</a></li>
                             }
                         })()))}
                     </ul>
