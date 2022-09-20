@@ -59,7 +59,7 @@ const Featured = () => {
                                 <div className="flex space-x-4 md:space-x-3 lg:space-x-4 group mt-7 md:mt-0 mb-0 md:mb-5" key={e.order} title={e.title}>
                                     <Link className="w-1/3 md:w-2/5 lg:w-1/3 relative" to={`/${e.url}`}><LazyLoad><img src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} /></LazyLoad></Link>
                                     <div className="w-2/3 md:w-3/5 lg:w-2/3">
-                                        <h3 className="text-sm md:text-[12.5px] lg:text-sm group-hover:text-myyellow font-medium text-zinc-900"><Link to={`/${e.url}`}>{e.title}</Link></h3>
+                                        <h3 className="text-[15px] md:text-[12.5px] lg:text-sm group-hover:text-myyellow font-medium text-zinc-900"><Link to={`/${e.url}`}>{e.title}</Link></h3>
                                         <span className="text-11px font-medium text-gray-500">August 7, 2019</span>
                                     </div>
                                 </div>

@@ -6,7 +6,6 @@ import MegaMenuParent from './MegaMenuParent';
 import MegaMenuCategory from './MegaMenuCategory';
 import MegaMenuSubCategory from './MegaMenuSubCategory';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 
 const Header = () => {
 

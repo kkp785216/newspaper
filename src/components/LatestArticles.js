@@ -47,12 +47,12 @@ const LatestArticles = () => {
         <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">LATEST ARTICLES</span>
       </div>
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
-        <div className="flex flex-wrap -m-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
+        <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
             <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} order={e.order} />
           ))}
         </div>}
-      <div className='flex justify-between items-center mt-11'>
+      <div className='flex justify-start md:justify-between items-center mt-8 md:mt-11'>
         <ReactPaginate
           className='flex items-center -m-1'
           pageClassName='p-4 m-1 relative [&.disabled]:hidden'
@@ -73,7 +73,7 @@ const LatestArticles = () => {
           nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
           renderOnZeroPageCount={null}
         />
-        <span className='text-[13px] text-gray-500'>Page {page} of {Math.ceil(articles.total_articles / 8)}</span>
+        <span className='text-[13px] hidden md:block text-gray-500'>Page {page} of {Math.ceil(articles.total_articles / 8)}</span>
       </div>
     </div>
   )
