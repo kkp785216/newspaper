@@ -41,10 +41,10 @@ const MostPopular = () => {
             </div>
             <div>
                 {most_popular.articles.filter(e => e.page === most_popular.current_page).map((e, i) => (
-                    <div className="flex space-x-4 group mb-4" title={e.title}>
+                    <div className="flex space-x-4 md:space-x-3 lg:space-x-4 group mb-4" title={e.title} key={i}>
                         <Link className="w-1/3" to={`/${e.url}`}><LazyLoad><img className="h-fit" src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} /></LazyLoad></Link>
                         <div className="w-2/3">
-                            <h3 className="text-sm group-hover:text-sky-400 font-medium text-zinc-900"><Link to={`/${e.url}`}>{e.title}</Link></h3>
+                            <h3 className="text-sm md:text-[12.5px] lg:text-sm md:leading-5 group-hover:text-sky-400 font-medium text-zinc-900"><Link to={`/${e.url}`}>{e.title}</Link></h3>
                             <span className="text-11px font-medium text-gray-500">August 7, 2019</span>
                         </div>
                     </div>))}

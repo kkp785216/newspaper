@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Aside = ({ children }) => {
     return (
-        <aside className="w-1/3">
+        <aside className="w-full md:w-1/3">
             <div className="sticky top-6">
                 {children}
             </div>
@@ -12,7 +12,7 @@ export const Aside = ({ children }) => {
 
 export const Main = ({children}) => {
     return (
-        <main className="w-2/3">
+        <main className="w-full md:w-2/3">
             <div className="sticky top-6">
                 {children}
             </div>
@@ -22,7 +22,7 @@ export const Main = ({children}) => {
 
 export const Section = ({ children }) => {
     return (
-        <section className="max-w-screen-lg m-auto mt-11 flex space-x-11">
+        <section className="md:max-w-screen-md lg:max-w-screen-lg lg1140:max-w-[1068px] px-5 lg:px-[22px] lg1140:px-0 m-auto mt-8 md:mt-11 flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-[28px] lg:space-x-11">
             {children}
         </section>
     )

@@ -19,7 +19,7 @@ const action = (action) => {
                 break;
 
             case 'ARTICLES_LOCAL':
-                const articles = post.concat().reverse().splice((action.page - 1) * 8, 8).reverse();
+                const articles = post.concat().reverse().splice((action.page - 1) * 8, 8);
                 setTimeout(() => {
                     dispatch({
                         type: 'ARTICLES_LOCAL',

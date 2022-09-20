@@ -19,7 +19,11 @@ module.exports = {
         '27px': ['27px', '32px'],
       },
       screens: {
-        lg: '1068px',
+        lg1140: '1140px',
+        xs: '540px',
+        xxs: '420px',
+        xxxs: '320px'
+
       },
       colors: ({ colors }) => ({
         mywhite: '#f4f4f4',
