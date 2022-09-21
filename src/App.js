@@ -20,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter >
-      <div className="App">
+      <div className="App scale-100 [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 shadow-[0_0_46px_#000]">
         <Routes>
           <Route path='/' element={
             <Layout>
