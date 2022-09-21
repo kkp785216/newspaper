@@ -8,5 +8,6 @@ export const config = {
         // {url: 'featured', type: 'sub_category', menu_type: 'mega'},
         // {url: 'https://google.com', type: 'external', menu_type: 'normal', title: 'Google'},
         // {url: 'technology', type: 'parent', menu_type: 'mega'},
-    ]
+    ],
+    menu_background: '/img/mobile-bg1.jpg',
 }
