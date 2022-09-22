@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { preload } from "./redux/preload";
+import Footer from "./components/Footer";
 
 const Layout = ({ children }) => {
   return (
@@ -13,7 +14,7 @@ const Layout = ({ children }) => {
 
 function App() {
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     preload(dispatch);
     // eslint-disable-next-line
   }, []);
@@ -26,6 +27,7 @@ function App() {
             <Layout>
               <Header />
               <Home />
+              <Footer />
             </Layout>
           } />
           <Route path='/page/:pageId' element={

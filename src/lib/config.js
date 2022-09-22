@@ -10,4 +10,5 @@ export const config = {
         // {url: 'technology', type: 'parent', menu_type: 'mega'},
     ],
     menu_background: '/img/mobile-bg1.jpg',
+    footer_background: '/img/footer-bg.jpg'
 }

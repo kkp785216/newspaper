@@ -20,7 +20,7 @@ const action = (action) => {
 
             case 'ARTICLES_LOCAL':
                 const articles = post.concat().reverse().splice((action.page - 1) * 8, 8);
-                // setTimeout(() => {
+                setTimeout(() => {
                     dispatch({
                         type: 'ARTICLES_LOCAL',
                         payload: {
@@ -29,7 +29,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                // }, 1000);
+                }, 1000);
                 break;
 
             case 'ARTICLE_CURRENT_PAGE':
@@ -41,7 +41,7 @@ const action = (action) => {
 
             case 'FEATURED':
                 const featured = post.concat().filter(e => e.sub_category.includes('featured')).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5);
-                // setTimeout(() => {
+                setTimeout(() => {
                     dispatch({
                         type: 'FEATURED',
                         payload: {
@@ -50,7 +50,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                // }, 1000);
+                }, 1000);
                 break;
 
             case 'FEATURED_CURRENT_PAGE':
@@ -62,7 +62,7 @@ const action = (action) => {
 
             case 'TRENDING':
                 const trending = post.concat().filter(e => e.sub_category.includes('trending')).sort((a, b) => b.views - a.views).splice((action.page - 1) * 10, 10);
-                // setTimeout(() => {
+                setTimeout(() => {
                     dispatch({
                         type: 'TRENDING',
                         payload: {
@@ -71,7 +71,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                // }, 1000);
+                }, 1000);
                 break;
 
             case 'TRENDING_CURRENT_PAGE':
@@ -118,7 +118,7 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_CATEGORY':
-                // setTimeout(() => {
+                setTimeout(() => {
                     dispatch({
                         type: 'MEGA_MENU_CATEGORY',
                         payload: {
@@ -128,7 +128,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                // }, 1000);
+                }, 1000);
                 break;
 
             case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
@@ -142,7 +142,7 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY':
-                // setTimeout(() => {
+                setTimeout(() => {
                     dispatch({
                         type: 'MEGA_MENU_SUB_CATEGORY',
                         payload: {
@@ -152,7 +152,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                // }, 1000);
+                }, 1000);
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE':
@@ -167,7 +167,7 @@ const action = (action) => {
 
                 case 'MOST_POPULAR':
                     const most_popular = post.concat().sort((a, b) => b.views - a.views).splice((action.page - 1) * 3, 3);
-                    // setTimeout(() => {
+                    setTimeout(() => {
                         dispatch({
                             type: 'MOST_POPULAR',
                             payload: {
@@ -176,7 +176,7 @@ const action = (action) => {
                                 page: action.page,
                             }
                         });
-                    // }, 1000);
+                    }, 1000);
                     break;
     
                 case 'MOST_POPULAR_CURRENT_PAGE':

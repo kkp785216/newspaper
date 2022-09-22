@@ -2076,7 +2076,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'make-it-modern',
-        sub_category: [],
+        sub_category: ['editor-choice'],
         title: 'Urban Kitchen with Granite Tops, Exposed Bulb Lights and Island',
         author: 'krishna',
         status: 'published',
@@ -2093,7 +2093,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'architecture',
-        sub_category: [],
+        sub_category: ['editor-choice'],
         title: 'How To Use Basic Design Principles To Decorate Your Home',
         author: 'krishna',
         status: 'published',
@@ -2161,7 +2161,7 @@ export const post = [
     {
         parent_category: 'design',
         category: 'architecture',
-        sub_category: [],
+        sub_category: ['editor-choice'],
         title: 'Modern Monochrome Home with Calm and Cosy Terrace and Steps',
         author: 'krishna',
         status: 'published',
