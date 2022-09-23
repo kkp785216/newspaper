@@ -28,6 +28,8 @@ export const initialState = {
     mega_menu_parent: {},
     mega_menu_category: {},
     mega_menu_sub_category: {},
+    footer_editor_choice: [],
+    footer_most_popular: [],
 }
 
 export const reducer = (state, action) => {
@@ -206,6 +208,19 @@ export const reducer = (state, action) => {
                     ...state.most_popular,
                     current_page: payload.page,
                 },
+            }
+
+
+        case 'FOOTER_EDITOR_CHOICE':
+            return {
+                ...state,
+                footer_editor_choice: payload.articles,
+            }
+
+        case 'FOOTER_MOST_POPULAR':
+            return {
+                ...state,
+                footer_most_popular: payload.articles,
             }
 
         default:

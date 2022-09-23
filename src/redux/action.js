@@ -132,13 +132,13 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
-                    dispatch({
-                        type: 'MEGA_MENU_CATEGORY_CURRENT_PAGE',
-                        payload: {
-                            url: action.url,
-                            page: action.page
-                        }
-                    });
+                dispatch({
+                    type: 'MEGA_MENU_CATEGORY_CURRENT_PAGE',
+                    payload: {
+                        url: action.url,
+                        page: action.page
+                    }
+                });
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY':
@@ -156,35 +156,49 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE':
-                    dispatch({
-                        type: 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE',
-                        payload: {
-                            url: action.url,
-                            page: action.page
-                        }
-                    });
+                dispatch({
+                    type: 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE',
+                    payload: {
+                        url: action.url,
+                        page: action.page
+                    }
+                });
                 break;
 
-                case 'MOST_POPULAR':
-                    const most_popular = post.concat().sort((a, b) => b.views - a.views).splice((action.page - 1) * 3, 3);
-                    setTimeout(() => {
-                        dispatch({
-                            type: 'MOST_POPULAR',
-                            payload: {
-                                articles: most_popular.map(e => ({ ...e, page: action.page })),
-                                total_articles: post.length,
-                                page: action.page,
-                            }
-                        });
-                    }, 1000);
-                    break;
-    
-                case 'MOST_POPULAR_CURRENT_PAGE':
+            case 'MOST_POPULAR':
+                const most_popular = post.concat().sort((a, b) => b.views - a.views).splice((action.page - 1) * 3, 3);
+                setTimeout(() => {
                     dispatch({
-                        type: 'MOST_POPULAR_CURRENT_PAGE',
-                        payload: { page: action.page }
+                        type: 'MOST_POPULAR',
+                        payload: {
+                            articles: most_popular.map(e => ({ ...e, page: action.page })),
+                            total_articles: post.length,
+                            page: action.page,
+                        }
                     });
-                    break;
+                }, 1000);
+                break;
+
+            case 'MOST_POPULAR_CURRENT_PAGE':
+                dispatch({
+                    type: 'MOST_POPULAR_CURRENT_PAGE',
+                    payload: { page: action.page }
+                });
+                break;
+
+            case 'FOOTER_EDITOR_CHOICE':
+                dispatch({
+                    type: 'FOOTER_EDITOR_CHOICE',
+                    payload: {articles: post.filter(e => e.sub_category.includes('editor-choice')).concat().splice(0,3)},
+                });
+                break;
+
+            case 'FOOTER_MOST_POPULAR':
+                dispatch({
+                    type: 'FOOTER_MOST_POPULAR',
+                    payload: {articles: post.sort((a, b) => b.views - a.views).concat().splice(0,3)},
+                });
+                break;
 
             default:
                 break;
