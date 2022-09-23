@@ -15,7 +15,7 @@ const FlashNew = () => {
                             <span className="text-11.5px font-medium">Armin Vans - August 7, 2019</span>
                         </div>
                     </div>
-                    <div className="w-full flex md:grid grid-cols-2 gap-x-1 gap-y-1 overflow-x-auto">
+                    <div className="w-full flex space-x-1 md:space-x-0 md:grid md:grid-cols-2 md:gap-x-1 md:gap-y-1 overflow-x-auto">
                         <div className="min-w-[80%] xs:min-w-[48%] sm:min-w-[40%] md:w-full h-[180px] md:h-full overflow-hidden relative group text-mywhite col-span-2 row-span-3 after:bg-gradient-to-b after:from-transparent after:via-transparent after:to-[#00000094] after:vertical after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0">
                             <LazyLoad><img src="/img/articles/flash/41.jpg" className="absolute transition-all w-full h-full object-cover duration-300 top-0 bottom-0 group-hover:scale-110" alt="" /></LazyLoad>
                             <div className="absolute bottom-0 left-0 right-0 px-4 py-2 z-10">

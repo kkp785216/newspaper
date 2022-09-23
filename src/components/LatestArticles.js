@@ -52,29 +52,30 @@ const LatestArticles = () => {
             <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} order={e.order} />
           ))}
         </div>}
-      <div className='flex justify-start md:justify-between items-center mt-8 md:mt-11'>
-        <ReactPaginate
-          className='flex items-center -m-1'
-          pageClassName='p-4 m-1 relative [&.disabled]:hidden'
-          previousClassName='p-4 m-1 relative [&.disabled]:hidden'
-          nextClassName='p-4 m-1 relative [&.disabled]:hidden'
-          pageLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
-          previousLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
-          nextLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
-          activeLinkClassName='bg-sky-400 hover:bg-sky-400 border-sky-400 hover:border-sky-400 text-white hover:text-white cursor-auto'
-          breakClassName='mx-4'
-          forcePage={page - 1}
-          breakLabel="..."
-          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={1}
-          pageCount={Math.ceil(articles.total_articles / 8)}
-          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
-          renderOnZeroPageCount={null}
-        />
-        <span className='text-[13px] hidden md:block text-gray-500'>Page {page} of {Math.ceil(articles.total_articles / 8)}</span>
-      </div>
+      {Math.ceil(articles.total_articles / 8) >= 2 &&
+        <div className='flex justify-start md:justify-between items-center mt-8 md:mt-11'>
+          <ReactPaginate
+            className='flex items-center -m-1'
+            pageClassName='p-4 m-1 relative [&.disabled]:hidden'
+            previousClassName='p-4 m-1 relative [&.disabled]:hidden'
+            nextClassName='p-4 m-1 relative [&.disabled]:hidden'
+            pageLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            previousLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            nextLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
+            activeLinkClassName='bg-sky-400 hover:bg-sky-400 border-sky-400 hover:border-sky-400 text-white hover:text-white cursor-auto'
+            breakClassName='mx-4'
+            forcePage={page - 1}
+            breakLabel="..."
+            previousLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageCount={Math.ceil(articles.total_articles / 8)}
+            nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
+            renderOnZeroPageCount={null}
+          />
+          <span className='text-[13px] hidden md:block text-gray-500'>Page {page} of {Math.ceil(articles.total_articles / 8)}</span>
+        </div>}
     </div>
   )
 }
