@@ -604,8 +604,20 @@ video {
   flex: 1 1 auto;
 }
 
-.grid-cols-\[repeat\(auto-fit\2c _minmax\(250px\2c _1fr\)\)\] {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.grid-cols-\[repeat\(auto-fit\2c minmax\(250px\2c 1fr\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+.grid-cols-\[repeat\(auto-fit\2c minmax\(250px\2c 250px\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(250px,250px));
+}
+
+.grid-cols-\[repeat\(250px\)\] {
+  grid-template-columns: repeat(250px);
+}
+
+.grid-cols-\[repeat\(auto-fit\2c 250px\)\] {
+  grid-template-columns: repeat(auto-fit,250px);
 }
 
 .overflow-hidden {
