@@ -3,12 +3,9 @@
   "version": "1.0.0",
   "description": "Newspaper11 Backend",
   "main": "server.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify && node server.js",
     "dev": "nodemon server.js",
     "tailwind": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch"
   },
