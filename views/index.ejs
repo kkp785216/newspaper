@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head'); %>
+    <title>Newspaper - Home</title>
+</head>
+
+<body>
+    <header>
+        <%- include('partials/header.ejs'); %>
+    </header>
+    <div class="max-w-[1068px] mx-auto">
+        <form class="mt-4" action="/image-upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="images" , multiple="true" id="imageInput" onchange="imgPreview(this)">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 rounded text-white px-4 py-1.5">Submit</button>
+        </form>
+        <div id="previewImages" class="mt-11 grid grid-cols-[repeat(auto-fit,250px)] overflow-hidden"></div>
+    </div>
+    <script src="/index.js"></script>
+</body>
+
+</html>

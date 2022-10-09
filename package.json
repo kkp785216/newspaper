@@ -5,13 +5,16 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify && node server.js",
+    "start": "node server.js",
+    "startwithcss": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify && node server.js",
     "dev": "nodemon server.js",
-    "tailwind": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+    "tailwind": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch",
+    "minify": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify"
   },
   "author": "Krishna",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "multer": "^1.4.5-lts.1",
     "sharp": "^0.31.0"
