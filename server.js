@@ -13,5 +13,5 @@ app.set('view engine', 'ejs');
 app.use(imageRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`)
+  console.log(`Example app listening on http://localhost:${port}`);
 });

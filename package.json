@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "startwithcss": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify && node server.js",
     "dev": "nodemon server.js",
     "tailwind": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch",
     "minify": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --minify"
