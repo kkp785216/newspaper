@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.td-module-comments{
+  box-sizing: border-box;
+  position: relative;
+  float: right;
+  font-family: open sans,open sans regular,sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+  display: block;
+}
+
+.td-module-comments a{
+  color: #fff;
+  background-color: #000;
+  display: inline-block;
+  min-width: 17px;
+  padding: 3px 4px 4px 5px;
+  position: relative;
+  text-decoration: none;
+}
+
+.td-module-comments a::after{
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 3px 3px 0 0;
+  border-color: #000 transparent transparent transparent;
+  box-sizing: border-box;
+}
+
+.menu:hover .menu-list{
+  opacity: 1;
+  visibility: visible;
+}
