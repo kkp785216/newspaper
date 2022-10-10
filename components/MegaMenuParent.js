@@ -24,6 +24,7 @@ const MegaMenuParent = ({ config_menu }) => {
     }, []);
 
     const handleMegaMenu = (input) => {
+        console.log('hii')
         setActiveMenu(input.type === 'parent' ? `${input.url}_all` : input.url);
         setActiveState(input);
         !mega_menu_parent[input.type === 'parent' ? `${input.url}_all` : input.url] &&
@@ -39,9 +40,9 @@ const MegaMenuParent = ({ config_menu }) => {
         <div className="absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t menu-list opacity-0 invisible transition-all duration-150">
             <div className='w-1/6 p-6 border-r'>
                 <ul>
-                    <li><Links onMouseEnter={() => handleMegaMenu(config_menu)} className={`block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize ${activeMenu === `${config_menu.url}_all` ? 'active' : ''}`} to='/'>All</Links></li>
+                    <li onMouseEnter={e=>handleMegaMenu(config_menu)}><Links className={`block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize ${activeMenu === `${config_menu.url}_all` ? 'active' : ''}`} to='/'>All</Links></li>
                     {category.filter(a => a.parent === config_menu.url).map((list_menu, i) => (
-                        list_menu.url !== config_menu.url && <li key={i}><Links onMouseEnter={() => { handleMegaMenu(list_menu) }} className={`block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize ${activeMenu === list_menu.url ? 'active' : ''}`} to='/'>{list_menu.name}</Links></li>
+                        list_menu.url !== config_menu.url && <li key={i} onMouseEnter={e=>handleMegaMenu(list_menu)}><Links className={`block text-right text-13px font-medium mb-2 [&.active]:text-sky-400 capitalize ${activeMenu === list_menu.url ? 'active' : ''}`} to='/'>{list_menu.name}</Links></li>
                     ))}
                 </ul>
             </div>
