@@ -33,7 +33,7 @@ const Layout = ({ children, app }) => {
 function MyApp({ Component, pageProps }) {
   const app = useRef();
   return (
-    <div ref={app} className="App">
+    <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
       <Provider store={store}>
         <Layout app={app}>
           <Component {...pageProps} />
