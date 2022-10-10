@@ -36,7 +36,7 @@ const Featured = () => {
     return (
         <div>
             <div className="border-b-2 w-full mb-6 border-myyellow">
-                <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm bg-myyellow">Don't miss</span>
+                <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm bg-myyellow">Don&apos;t miss</span>
             </div>
             {featured.pages_loaded.includes(featured.current_page) && featured.articles.filter(e => e.page === featured.current_page).length >= 1 &&
                 <div className="flex md:-m-[10px] lg:-m-5 flex-col md:flex-row">
