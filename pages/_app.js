@@ -17,16 +17,33 @@ const Layout = ({ children, app }) => {
   }, []);
 
   const router = useRouter();
+  const { post } = router.query
+  console.log(post)
+
   switch (router.pathname) {
     case '/':
       return (<>
-        <Header app={app}/>
+        <Header app={app} />
+        {children}
+        <Footer />
+      </>)
+
+    case `/${post}`:
+      return (<>
+        <Header app={app} />
         {children}
         <Footer />
       </>)
 
     default:
       return <>{children}</>
+  }
+}
+
+export async function getServerSideProps({ req, res }) {
+  console.log(req)
+  return {
+    props: {}, // will be passed to the page component as props
   }
 }
 
