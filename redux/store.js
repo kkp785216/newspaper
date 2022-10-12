@@ -3,10 +3,23 @@ import thunk from "redux-thunk";
 import { reducer } from './reducer'
 import { initialState } from "./reducer";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createWrapper } from "next-redux-wrapper";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
+
+const masterReducer = (state, action) => {
+    if (action.type === HYDRATE) {
+        const nextState = {
+            ...state,
+            category: action.payload.category,
+            config: action.payload.config
+        }
+        return nextState
+    } else {
+        return reducer(state, action);
+    }
+}
 
 const store = createStore(
-    reducer,
+    masterReducer,
     initialState,
     composeWithDevTools(applyMiddleware(thunk))
 );

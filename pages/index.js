@@ -47,3 +47,10 @@ export default function Home() {
     </div>
   )
 }
+
+// export async function getServerSideProps(context) {
+//   console.log('hii this function is excuting on service side')
+//   return {
+//     props: {}, // will be passed to the page component as props
+//   }
+// }
