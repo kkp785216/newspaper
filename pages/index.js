@@ -7,6 +7,8 @@ import StayConnected from '../components/StayConnected';
 import { Ad300 } from '../components/Advertisement';
 import LatestArticles from '../components/LatestArticles';
 import MostPopular from '../components/MostPopular';
+import store from '../redux/store'
+import action from '../redux/action';
 
 
 export default function Home() {
@@ -48,9 +50,20 @@ export default function Home() {
   )
 }
 
-// export async function getServerSideProps(context) {
-//   console.log('hii this function is excuting on service side')
-//   return {
-//     props: {}, // will be passed to the page component as props
-//   }
-// }
+export const getServerSideProps = store.getServerSideProps((store) => async () => {
+  store.dispatch(action({
+    type: 'TRENDING',
+    page: 1
+  }));
+  store.dispatch(action({
+    type: 'FEATURED',
+    page: 1
+  }));
+  store.dispatch(action({
+    type: 'ARTICLES_LOCAL',
+    page: 1
+  }));
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+});

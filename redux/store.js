@@ -7,17 +7,20 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
 const masterReducer = (state, action) => {
     if (action.type === HYDRATE) {
-        console.log({state,action})
+        // console.log({state,action})
         const nextState = {
             ...state,
+            articles: action.payload.articles,
+            featured: action.payload.featured,
+            trending: action.payload.trending,
+            most_popular: action.payload.most_popular,
             category: action.payload.category,
             config: action.payload.config,
-            // trending: {
-            //     articles: [...state.trending.articles, ...action.payload.articles],
-            //     total_articles: payload.total_articles,
-            //     pages_loaded: Array.from(new Set(state.trending.pages_loaded).add(payload.page)),
-            //     current_page: payload.page,
-            // },
+            mega_menu_parent: action.payload.mega_menu_parent,
+            mega_menu_category: action.payload.mega_menu_category,
+            mega_menu_sub_category: action.payload.mega_menu_sub_category,
+            footer_editor_choice: action.payload.footer_editor_choice,
+            footer_most_popular: action.payload.footer_most_popular,
         }
         return nextState
     } else {

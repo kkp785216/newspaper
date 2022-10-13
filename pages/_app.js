@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = store.getInitialAppProps((store) => async () => {
-  console.log(store)
   store.dispatch(action({
     type: 'CATEGORY',
     category: category
@@ -52,6 +51,12 @@ MyApp.getInitialProps = store.getInitialAppProps((store) => async () => {
   store.dispatch(action({
     type: 'CONFIG',
     config: config
+  }));
+  store.dispatch(action({
+    type: 'FOOTER_EDITOR_CHOICE',
+  }));
+  store.dispatch(action({
+    type: 'FOOTER_MOST_POPULAR',
   }));
 });
 

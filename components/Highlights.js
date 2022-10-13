@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import action from '../redux/action';
 import { Links } from './Links';
-import store from '../redux/store'
 
 const Highlights = () => {
 
@@ -51,20 +50,5 @@ const Highlights = () => {
         </section>}
     </>)
 }
-
-// Highlights.getInitialProps = store.getServerSideProps((store) => async () => {
-//     console.log('invoke server function on highlights')
-//     store.dispatch(action({
-//         type: 'TRENDING',
-//         page: 1
-//     }));
-// });
-
-Highlights.getInitialProps = async (ctx) => {
-    const res = await fetch('https://api.github.com/repos/vercel/next.js')
-    const json = await res.json()
-    console.log('hii')
-    return { stars: json.stargazers_count }
-  }
 
 export default Highlights
