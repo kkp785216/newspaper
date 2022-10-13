@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import action from '../redux/action';
 import FooterPosts from './FooterPosts';
 import { Links } from './Links';
-import LazyLoad from 'react-lazy-load';
+import Image from 'next/image';
 
 const Footer = () => {
 
@@ -56,7 +56,7 @@ const Footer = () => {
                         <div className='w-full md:w-2/3'>
                             <div className='flex flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4'>
                                 <div className='w-full md:w-[38%] px-5 md:px-[10px] lg:px-5 py-4'>
-                                    <Links to='/'><LazyLoad><img className='block mx-auto md:mx-0' src="/img/newspaper-11-logo-white.png" alt="" /></LazyLoad></Links>
+                                    <Links to='/'><Image width='272' height='90' src="/img/newspaper-11-logo-white.png" alt="logo"></Image></Links>
                                 </div>
                                 <div className='w-full md:w-[62%] px-5 md:px-[10px] lg:px-5 py-4'>
                                     <h4 className='text-[19px] mb-7 font-semibold uppercase text-center md:text-left  pt-3 md:pt-0'>About Us</h4>

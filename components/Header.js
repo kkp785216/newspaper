@@ -1,12 +1,12 @@
 import React, {useRef} from 'react'
 import { Links } from './Links'
-import LazyLoad from 'react-lazy-load';
 import { useSelector } from 'react-redux';
 import MegaMenuParent from './MegaMenuParent';
 import MegaMenuCategory from './MegaMenuCategory';
 import MegaMenuSubCategory from './MegaMenuSubCategory';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
 
 const Header = ({app}) => {
 
@@ -30,18 +30,18 @@ const Header = ({app}) => {
                         </ul>
                     </div>
                     <div className="flex">
-                        <Links className="p-2" to="/"><img className="invert w-3" src="/img/social/facebook.png" alt="" /></Links>
-                        <Links className="p-2" to="/"><img className="invert w-3" src="/img/social/instagram.png" alt="" /></Links>
-                        <Links className="p-2" to="/"><img className="invert w-3" src="/img/social/twitter.png" alt="" /></Links>
-                        <Links className="p-2" to="/"><img className="invert w-3" src="/img/social/vimeo.png" alt="" /></Links>
-                        <Links className="p-2" to="/#"><img className="invert w-3" src="/img/social/youtube.png" alt="" /></Links>
+                        <Links className="p-2 flex items-center" to="/"><Image width='12' height='12' layout='fixed' className="invert w-3" src="/img/social/facebook.png" alt="" /></Links>
+                        <Links className="p-2 flex items-center" to="/"><Image width='12' height='12' layout='fixed' className="invert w-3" src="/img/social/instagram.png" alt="" /></Links>
+                        <Links className="p-2 flex items-center" to="/"><Image width='12' height='12' layout='fixed' className="invert w-3" src="/img/social/twitter.png" alt="" /></Links>
+                        <Links className="p-2 flex items-center" to="/"><Image width='12' height='12' layout='fixed' className="invert w-3" src="/img/social/vimeo.png" alt="" /></Links>
+                        <Links className="p-2 flex items-center" to="/"><Image width='12' height='12' layout='fixed' className="invert w-3" src="/img/social/youtube.png" alt="" /></Links>
                     </div>
                 </div>
             </div>
             <div className="md:max-w-screen-md lg:max-w-screen-lg lg1140:max-w-[1068px] px-3.5 lg:px-[22px] lg1140:px-0 m-auto hidden md:block">
                 <div className="flex justify-center space-x-6 pt-7 pb-3">
-                    <Links to='/'><LazyLoad><img src="/img/newspaper-11-logo-blue.png" alt="" /></LazyLoad></Links>
-                    <Links to='/blog'><LazyLoad><img src="/img/newspaper-rec728.jpg" alt="" /></LazyLoad></Links>
+                    <Links to='/'><Image width='272' height='90' src="/img/newspaper-11-logo-blue.png" alt="logo"></Image></Links>
+                    <Links to='/blog'><Image width='728' height='90' src="/img/newspaper-rec728.jpg" alt="ad-720"></Image></Links>
                 </div>
                 <nav>
                     <ul className="flex">
@@ -82,7 +82,7 @@ const Header = ({app}) => {
             {/* Mobile Header */}
             <div className='bg-[#222222] text-white flex md:hidden justify-between items-center h-[56px] leading-[56px] overflow-hidden'>
                 <div><MenuIcon style={{ fontSize: '29px' }} onClick={() => { app.current.classList.add('active'); left_menu.current.classList.add('active'); right_menu.current.classList.remove('mactive'); left_menu.current.classList.add('mactive') }} className='px-5 py-[28px] box-content cursor-pointer' /></div>
-                <Links to='/' className='max-w-[180px]'><LazyLoad><img src="/img/newspaper-11-logo-white.png" alt="" /></LazyLoad></Links>
+                <Links to='/' className='max-w-[180px] flex'><Image width='272' height='90' src="/img/newspaper-11-logo-white.png" alt="logo"></Image></Links>
                 <svg version="1.1" onClick={() => { app.current.classList.add('active'); right_menu.current.classList.add('active'); right_menu.current.classList.add('mactive'); left_menu.current.classList.remove('mactive'); }} className='w-[22px] px-5 py-[28px] box-content cursor-pointer' fill='white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M946.371 843.601l-125.379-125.44c43.643-65.925 65.495-142.1 65.475-218.040 0.051-101.069-38.676-202.588-115.835-279.706-77.117-77.148-178.606-115.948-279.644-115.886-101.079-0.061-202.557 38.738-279.665 115.876-77.169 77.128-115.937 178.627-115.907 279.716-0.031 101.069 38.728 202.588 115.907 279.665 77.117 77.117 178.616 115.825 279.665 115.804 75.94 0.020 152.136-21.862 218.061-65.495l125.348 125.46c30.915 30.904 81.029 30.904 111.954 0.020 30.915-30.935 30.915-81.029 0.020-111.974zM705.772 714.925c-59.443 59.341-136.899 88.842-214.784 88.924-77.896-0.082-155.341-29.583-214.784-88.924-59.443-59.484-88.975-136.919-89.037-214.804 0.061-77.885 29.604-155.372 89.037-214.825 59.464-59.443 136.878-88.945 214.784-89.016 77.865 0.082 155.3 29.583 214.784 89.016 59.361 59.464 88.914 136.919 88.945 214.825-0.041 77.885-29.583 155.361-88.945 214.804z"></path></svg>
             </div>
             {/* Mobile Left Menu */}

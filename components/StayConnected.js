@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const StayConnected = () => {
     return (
@@ -9,7 +10,7 @@ const StayConnected = () => {
             <div>
                 <div className="flex justify-between items-center text-11px font-bold tracking-wide mb-3">
                     <div className="flex space-x-3 items-center">
-                        <div className="p-3 bg-blue-600"><img className="invert w-4" src="/img/social/facebook.png" alt="" /></div>
+                        <div className="p-3 bg-blue-600 flex items-center"><Image width='16' height='16' layout='fixed' className="invert w-4" src="/img/social/facebook.png" alt="" /></div>
                         <span>22,034</span>
                         <span>Fans</span>
                     </div>
@@ -17,7 +18,7 @@ const StayConnected = () => {
                 </div>
                 <div className="flex justify-between items-center text-11px font-bold tracking-wide mb-3">
                     <div className="flex space-x-3 items-center">
-                        <div className="p-3 bg-cyan-400"><img className="invert w-4" src="/img/social/twitter.png" alt="" /></div>
+                        <div className="p-3 bg-cyan-400 flex items-center"><Image width='16' height='16' layout='fixed' className="invert w-4" src="/img/social/twitter.png" alt="" /></div>
                         <span>3,085</span>
                         <span>Followers</span>
                     </div>
@@ -25,7 +26,7 @@ const StayConnected = () => {
                 </div>
                 <div className="flex justify-between items-center text-11px font-bold tracking-wide mb-3">
                     <div className="flex space-x-3 items-center">
-                        <div className="p-3 bg-red-600"><img className="invert w-4" src="/img/social/youtube.png" alt="" /></div>
+                        <div className="p-3 bg-red-600 flex items-center"><Image width='16' height='16' layout='fixed' className="invert w-4" src="/img/social/youtube.png" alt="" /></div>
                         <span>18,990</span>
                         <span>Subscribers</span>
                     </div>
