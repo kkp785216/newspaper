@@ -7,10 +7,17 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
 const masterReducer = (state, action) => {
     if (action.type === HYDRATE) {
+        console.log({state,action})
         const nextState = {
             ...state,
             category: action.payload.category,
-            config: action.payload.config
+            config: action.payload.config,
+            // trending: {
+            //     articles: [...state.trending.articles, ...action.payload.articles],
+            //     total_articles: payload.total_articles,
+            //     pages_loaded: Array.from(new Set(state.trending.pages_loaded).add(payload.page)),
+            //     current_page: payload.page,
+            // },
         }
         return nextState
     } else {
