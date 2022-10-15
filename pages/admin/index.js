@@ -1,4 +1,5 @@
 import React from 'react'
+import Dashboard from './dashboard';
 
 const admin = ({ logedIn }) => {
     return (
@@ -8,7 +9,7 @@ const admin = ({ logedIn }) => {
 
             {logedIn &&
                 <div>
-                    
+                    <Dashboard/>
                 </div>}
         </div>
     )

@@ -7,6 +7,7 @@ import StayConnected from '../components/StayConnected';
 import { Ad300 } from '../components/Advertisement';
 import LatestArticles from '../components/LatestArticles';
 import MostPopular from '../components/MostPopular';
+import store from '../redux/store'
 
 
 export default function Home() {

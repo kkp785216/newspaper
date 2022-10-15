@@ -17,8 +17,6 @@ const Layout = ({ children, app }) => {
   }, []);
 
   const router = useRouter();
-  const { post } = router.query
-  console.log(router)
 
   switch (router.route) {
     case '/':
