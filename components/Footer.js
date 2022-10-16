@@ -55,7 +55,7 @@ const Footer = () => {
                     <div className='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-[28px] lg:space-x-11'>
                         <div className='w-full md:w-2/3'>
                             <div className='flex flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4'>
-                                <div className='w-full md:w-[38%] px-5 md:px-[10px] lg:px-5 py-4'>
+                                <div className='w-full md:w-[38%] px-5 md:px-[10px] lg:px-5 py-4 block'>
                                     <Links to='/'><Image width='272' height='90' src="/img/newspaper-11-logo-white.png" alt="logo"></Image></Links>
                                 </div>
                                 <div className='w-full md:w-[62%] px-5 md:px-[10px] lg:px-5 py-4'>

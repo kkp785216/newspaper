@@ -51,7 +51,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 articles: {
-                    articles: [...state.articles.articles, ...payload.articles],
+                    articles: !state.articles.pages_loaded.includes(payload.page) ? [...state.articles.articles, ...payload.articles] : state.articles.articles,
                     total_articles: payload.total_articles,
                     pages_loaded: Array.from(new Set(state.articles.pages_loaded).add(payload.page)),
                     current_page: payload.page,
@@ -71,7 +71,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 featured: {
-                    articles: [...state.featured.articles, ...payload.articles],
+                    articles: !state.featured.pages_loaded.includes(payload.page) ? [...state.featured.articles, ...payload.articles] : state.featured.articles,
                     total_articles: payload.total_articles,
                     pages_loaded: Array.from(new Set(state.featured.pages_loaded).add(payload.page)),
                     current_page: payload.page,
@@ -191,13 +191,14 @@ export const reducer = (state, action) => {
             }
 
         case 'MOST_POPULAR':
+            console.log(payload.total_articles)
             return {
                 ...state,
                 most_popular: {
-                    articles: [...state.most_popular.articles, ...payload.articles],
-                    total_articles: payload.total_articles,
-                    pages_loaded: Array.from(new Set(state.articles.pages_loaded).add(payload.page)),
+                    articles: !state.most_popular.pages_loaded.includes(payload.page) ? [...state.most_popular.articles, ...payload.articles] : state.most_popular.articles,
+                    pages_loaded: Array.from(new Set(state.most_popular.pages_loaded).add(payload.page)),
                     current_page: payload.page,
+                    total_articles: payload.total_articles,
                 },
             }
 

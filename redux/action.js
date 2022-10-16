@@ -1,4 +1,3 @@
-import { post } from "../lib/post";
 import fetchapi from "../lib/api";
 
 const action = (action) => {
@@ -7,19 +6,22 @@ const action = (action) => {
         switch (action.type) {
             case 'CATEGORY':
                 try {
-                    const { category } = await fetchapi('getcategories');
+                    const res = await fetchapi('getcategories');
                     dispatch({
                         type: 'CATEGORY',
-                        payload: { category }
+                        payload: { category: res.category }
                     });
                 } catch (error) { }
                 break;
 
             case 'CONFIG':
-                dispatch({
-                    type: 'CONFIG',
-                    payload: { config: action.config }
-                });
+                try {
+                    const res = await fetchapi('config');
+                    dispatch({
+                        type: 'CONFIG',
+                        payload: { config: res.config }
+                    });
+                } catch (error) {}
                 break;
 
             case 'ARTICLES_LOCAL':
@@ -66,7 +68,7 @@ const action = (action) => {
 
             case 'TRENDING':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${10}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=1&limit=${10}&page=${action.page}`);
                     dispatch({
                         type: 'TRENDING',
                         payload: {
@@ -86,29 +88,32 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_PARENT':
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=${action.category_type}&sortby=${'views'}&order=-1&limit=${4}&page=${action.page}`);
                     dispatch({
                         type: 'MEGA_MENU_PARENT',
                         payload: {
-                            articles: action.category_type === 'parent' ? post.filter(e => e.parent_category === action.url || e.category === action.url).sort((a, b) => b.date - a.date).splice((action.page - 1) * 4, 4).map(e => ({ ...e, page: action.page })) : post.filter(e => e.category === action.url).sort((a, b) => b.date - a.date).splice((action.page - 1) * 4, 4).map(e => ({ ...e, page: action.page })),
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
                             category_type: action.category_type,
                             url: action.url,
-                            total_articles: action.category_type === 'parent' ? post.filter(e => e.parent_category === action.url || e.category === action.url).length : post.filter(e => e.category === action.url).length,
+                            total_articles: res.total_articles,
                             page: action.page
                         }
                     });
-                }, 1000);
+                } catch (error) { }
                 break;
 
             case 'MEGA_MENU_PARENT_CURRENT_PAGE':
-                dispatch({
-                    type: 'MEGA_MENU_PARENT_CURRENT_PAGE',
-                    payload: {
-                        category_type: action.category_type,
-                        url: action.url,
-                        page: action.page
-                    }
-                });
+                try {
+                    dispatch({
+                        type: 'MEGA_MENU_PARENT_CURRENT_PAGE',
+                        payload: {
+                            category_type: action.category_type,
+                            url: action.url,
+                            page: action.page
+                        }
+                    });
+                } catch (error) { }
                 break;
 
             case 'MEGA_MENU_PARENT_ACTIVE_STATE':
@@ -121,17 +126,18 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_CATEGORY':
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
                     dispatch({
                         type: 'MEGA_MENU_CATEGORY',
                         payload: {
-                            articles: post.filter(e => e.category === action.url).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5).map(e => ({ ...e, page: action.page })),
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
                             url: action.url,
-                            total_articles: post.filter(e => e.category === action.url).length,
+                            total_articles: res.total_articles,
                             page: action.page
                         }
                     });
-                }, 1000);
+                } catch (error) { }
                 break;
 
             case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
@@ -145,17 +151,18 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY':
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
                     dispatch({
                         type: 'MEGA_MENU_SUB_CATEGORY',
                         payload: {
-                            articles: post.filter(e => e.sub_category.includes(action.url)).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5).map(e => ({ ...e, page: action.page })),
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
                             url: action.url,
-                            total_articles: post.filter(e => e.sub_category.includes(action.url)).length,
+                            total_articles: res.total_articles,
                             page: action.page
                         }
                     });
-                }, 1000);
+                } catch (error) { }
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE':
@@ -171,12 +178,11 @@ const action = (action) => {
             case 'MOST_POPULAR':
                 try {
                     const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`);
-                    console.log(res)
                     dispatch({
                         type: 'MOST_POPULAR',
                         payload: {
                             articles: res.articles.map(e => ({ ...e, page: action.page })),
-                            total_articles: res.count,
+                            total_articles: res.total_articles,
                             page: action.page,
                         }
                     });

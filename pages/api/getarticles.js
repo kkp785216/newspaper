@@ -31,8 +31,8 @@ const handler = async (req, res) => {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let articles = await (async () => {
             if (req.query.type == 'parent') {
-                let count = await article.find({ parent_category: req.query.category }).count();
-                let res = await article.find({ parent_category: req.query.category }).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
+                let count = await article.find().or([{ parent_category: req.query.category}, {category: req.query.category}]).count();
+                let res = await article.find().or([{ parent_category: req.query.category}, {category: req.query.category}]).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
                 return {res, count};
             }
             else if (req.query.type == 'category') {
