@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const DB_URI = process.env.DB_URI
+const DB_URI = `${process.env.DB_URI}`
 
 const connectDB = handler => async (req, res) => {
     if(mongoose.connections[0].readyState) {
