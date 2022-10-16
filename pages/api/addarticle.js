@@ -18,14 +18,21 @@ const handler = async (req, res) => {
         //     img_comp: '3',
         //     content: null,
         //     content_type: 'music',
-        //     order: 3,
+        //     order: 134,
         //     template: 1
         // });
         // await p.save();
-        // post.forEach(async (e) => {
-        //     let p = new article(e)
-        //     await p.save();
-        // });
+
+        // const myfunc = (index) => {
+        //     if(index <= post.length) {
+        //         let p = new article(post[index - 1])
+        //         let q = p.save();
+        //         q.then(e=> {
+        //             myfunc(index + 1)
+        //         })
+        //     }
+        // }
+        // myfunc(1)
         res.status(200).json({ success: "your document has been saved" })
     } else {
         res.status(400).json({ error: 'This method is not allowed' })

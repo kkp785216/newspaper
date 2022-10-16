@@ -1,14 +1,18 @@
 import { post } from "../lib/post";
+import fetchapi from "../lib/api";
 
 const action = (action) => {
 
     return async (dispatch) => {
         switch (action.type) {
             case 'CATEGORY':
-                dispatch({
-                    type: 'CATEGORY',
-                    payload: { category: action.category }
-                });
+                try {
+                    const { category } = await fetchapi('getcategories');
+                    dispatch({
+                        type: 'CATEGORY',
+                        payload: { category }
+                    });
+                } catch (error) { }
                 break;
 
             case 'CONFIG':
@@ -19,17 +23,17 @@ const action = (action) => {
                 break;
 
             case 'ARTICLES_LOCAL':
-                const articles = post.concat().reverse().splice((action.page - 1) * 8, 8);
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=allarticles&limit=${8}&page=${action.page}`)
                     dispatch({
                         type: 'ARTICLES_LOCAL',
                         payload: {
-                            articles: articles.map(e => ({ ...e, page: action.page })),
-                            total_articles: post.length,
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
+                            total_articles: res.total_articles,
                             page: action.page
                         }
                     });
-                }, 1000);
+                } catch (error) { console.log(error) }
                 break;
 
             case 'ARTICLE_CURRENT_PAGE':
@@ -40,17 +44,17 @@ const action = (action) => {
                 break;
 
             case 'FEATURED':
-                const featured = post.concat().filter(e => e.sub_category.includes('featured')).sort((a, b) => b.views - a.views).splice((action.page - 1) * 5, 5);
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'featured'}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
                     dispatch({
                         type: 'FEATURED',
                         payload: {
-                            articles: featured.map(e => ({ ...e, page: action.page })),
-                            total_articles: post.filter(e => e.sub_category.includes('featured')).length,
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
+                            total_articles: res.total_articles,
                             page: action.page,
                         }
                     });
-                }, 1000);
+                } catch (error) { }
                 break;
 
             case 'FEATURED_CURRENT_PAGE':
@@ -61,17 +65,17 @@ const action = (action) => {
                 break;
 
             case 'TRENDING':
-                const trending = post.concat().filter(e => e.sub_category.includes('trending')).sort((a, b) => b.views - a.views).splice((action.page - 1) * 10, 10);
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${10}&page=${action.page}`);
                     dispatch({
                         type: 'TRENDING',
                         payload: {
-                            articles: trending.map(e => ({ ...e, page: action.page })),
-                            total_articles: post.filter(e => e.sub_category.includes('trending')).length,
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
+                            total_articles: res.total_articles,
                             page: action.page,
                         }
                     });
-                }, 1000);
+                } catch (error) { }
                 break;
 
             case 'TRENDING_CURRENT_PAGE':
@@ -82,7 +86,6 @@ const action = (action) => {
                 break;
 
             case 'MEGA_MENU_PARENT':
-                // console.log(post.filter(e=> e.parent_category === action.url || e.category === action.url))
                 setTimeout(() => {
                     dispatch({
                         type: 'MEGA_MENU_PARENT',
@@ -166,17 +169,18 @@ const action = (action) => {
                 break;
 
             case 'MOST_POPULAR':
-                const most_popular = post.concat().sort((a, b) => b.views - a.views).splice((action.page - 1) * 3, 3);
-                setTimeout(() => {
+                try {
+                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`);
+                    console.log(res)
                     dispatch({
                         type: 'MOST_POPULAR',
                         payload: {
-                            articles: most_popular.map(e => ({ ...e, page: action.page })),
-                            total_articles: post.length,
+                            articles: res.articles.map(e => ({ ...e, page: action.page })),
+                            total_articles: res.count,
                             page: action.page,
                         }
                     });
-                }, 1000);
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MOST_POPULAR_CURRENT_PAGE':
@@ -187,17 +191,23 @@ const action = (action) => {
                 break;
 
             case 'FOOTER_EDITOR_CHOICE':
-                dispatch({
-                    type: 'FOOTER_EDITOR_CHOICE',
-                    payload: {articles: post.filter(e => e.sub_category.includes('editor-choice')).concat().splice(0,3)},
-                });
+                try {
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'editor-choice'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${3}&page=${1}`);
+                    dispatch({
+                        type: 'FOOTER_EDITOR_CHOICE',
+                        payload: { articles: res.articles },
+                    });
+                } catch (error) { }
                 break;
 
             case 'FOOTER_MOST_POPULAR':
-                dispatch({
-                    type: 'FOOTER_MOST_POPULAR',
-                    payload: {articles: post.sort((a, b) => b.views - a.views).concat().splice(0,3)},
-                });
+                try {
+                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${1}`);
+                    dispatch({
+                        type: 'FOOTER_MOST_POPULAR',
+                        payload: { articles: res.articles },
+                    });
+                } catch (error) { }
                 break;
 
             default:
