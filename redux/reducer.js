@@ -32,7 +32,7 @@ export const initialState = {
     footer_most_popular: [],
 }
 
-export const reducer = (state, action) => {
+export const reducer = (state , action) => {
     const { type, payload } = action;
     switch (type) {
         case 'CATEGORY':
@@ -191,7 +191,6 @@ export const reducer = (state, action) => {
             }
 
         case 'MOST_POPULAR':
-            console.log(payload.total_articles)
             return {
                 ...state,
                 most_popular: {

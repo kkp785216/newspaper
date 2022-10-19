@@ -15,6 +15,14 @@ const handler = async (req, res) => {
             total_articles: count,
         });
     }
+    else if (req.query.uses === 'singlearticle', req.query.slug) {
+        try {
+            let articles = await article.findOne({'url': req.query.slug});
+            articles ? res.status(200).json({article: articles}) : res.status(501).json({error: 'Document doesn\'t exist'})
+        } catch (error) {
+            res.status({error: 'internal server error', message: error.message});
+        }
+    }
     else if (req.query.uses === 'popular' && req.query.limit && req.query.page) {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let count = await article.find().count();

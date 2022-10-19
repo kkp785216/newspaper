@@ -35,7 +35,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { console.log(error) }
+                } catch (error) {  }
                 break;
 
             case 'ARTICLE_CURRENT_PAGE':
@@ -186,7 +186,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                } catch (error) { console.log(error) }
+                } catch (error) { }
                 break;
 
             case 'MOST_POPULAR_CURRENT_PAGE':
