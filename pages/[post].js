@@ -1,30 +1,20 @@
 import { useRouter } from 'next/router'
-import fetchapi from '../lib/api'
+import Template1 from '../components/Template1'
 
-const Post = (response) => {
+const Post = () => {
   const router = useRouter()
   const { post } = router.query
 
   return (
     <div>
-      Helo {post}
+      <Template1 />
     </div>
   )
 }
 
-export async function getStaticPaths() {
-  const res = await fetchapi('getroutes?uses=articles');
+export async function getServerSideProps(context) {
   return {
-    paths: res['routes'] ? res.routes.map(route=> ({params: {post: route.url}})) : [{params: {}}],
-    fallback: false, // can also be true or 'blocking'
-  }
-}
-
-export async function getStaticProps(context) {
-  const res = await fetchapi(`getarticles?slug=${post}`);
-  return {
-    // Passed to the page component as props
-    props: { response: { res } },
+    props: {}, // will be passed to the page component as props
   }
 }
 
