@@ -16,6 +16,9 @@ const Template1 = () => {
                             <li className='p-1 text-[#747474]'>Best Things You Can Do on a Solo Mountain Climb</li>
                         </ul>
                     </div>
+                    <div>
+                        
+                    </div>
                 </Main>
                 <Aside>
 
