@@ -62,14 +62,14 @@ const Template1 = () => {
                         <img className='' src="/img/articles/flash/67.jpg" alt=""></img>
                     </div>
                     <div className='mt-7 tracking-[0.2px] text-[16.4px]'>
-                        <p className='max-w-[600px] mx-auto'>We woke reasonably late following the feast and free flowing wine the night before. After gathering ourselves and our packs, we headed down to our homestay family’s small dining room for breakfast.</p>
+                        <p className='max-w-[600px] mx-auto'>We woke reasonably late following the feast and free flowing wine the night before. After gathering ourselves and our packs, we headed down to our homestay family&#39;s small dining room for breakfast.</p>
                         <strong className='max-w-[600px] block mt-7 mx-auto'>Refreshingly, what was expected of her was the same thing that was expected of Lara Stone: to take a beautiful picture.</strong>
                         <p className='max-w-[600px] mx-auto mt-7'>We were making our way to the Rila Mountains, where we were visiting the Rila Monastery where we enjoyed scrambled eggs, toast, mekitsi, local jam and peppermint tea.</p>
                         <figure className='mt-7'>
                             <img src="/img/girl2.jpg" alt="" />
                             <figcaption className='italic text-xs py-1'>Adderall and flirting with bulimia in an attempt to whittle herself</figcaption>
                         </figure>
-                        <p className='max-w-[600px] mx-auto mt-7'>We wandered the site with busloads of other tourists, yet strangely the place did not seem crowded. I’m not sure if it was the sheer size of the place, or whether the masses congregated in one area and didn’t venture far from the main church, but I didn’t feel overwhelmed by tourists in the monastery.</p>
+                        <p className='max-w-[600px] mx-auto mt-7'>We wandered the site with busloads of other tourists, yet strangely the place did not seem crowded. I&#39;m not sure if it was the sheer size of the place, or whether the masses congregated in one area and didn&#39;t venture far from the main church, but I didn’t feel overwhelmed by tourists in the monastery.</p>
                     </div>
                 </Main>
                 <Aside>
