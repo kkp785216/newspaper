@@ -33,6 +33,13 @@ const Layout = ({ children, app }) => {
         <Footer />
       </>)
 
+    case '/404':
+      return (<>
+        <Header app={app} />
+        {children}
+        <Footer />
+      </>)
+
     default:
       return <>{children}</>
   }
