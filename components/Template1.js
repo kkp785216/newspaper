@@ -4,8 +4,7 @@ import { Links } from './Links'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import ShareIcon from '@mui/icons-material/Share';
-import Image from 'next/image';
+import PostShare from './elements/PostShare';
 
 const Template1 = () => {
     return (
@@ -39,24 +38,8 @@ const Template1 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex mt-6'>
-                        <div className='flex items-center text-[#444] mr-[18px] mb-[7px] border rounded-sm h-10 px-3 relative bg-white before:border-[9px_0_9px_11px] before:border-[transparent_transparent_transparent_#e9e9e9] before:absolute before:top-1/2 before:left-full before:w-0 before:h-0 before:-translate-y-1/2 after:border-[8px_0_8px_10px] after:border-[transparent_transparent_transparent_#fff] after:absolute after:top-1/2 after:left-full after:w-0 after:h-0 after:-translate-y-1/2'>
-                            <ShareIcon className='text-[15px]' />
-                            <div className="w-px h-5 mx-3 bg-[#e5e7eb]"></div>
-                            <span className='text-xs text-black font-medium'>Share</span>
-                        </div>
-                        <Links to='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fdemo.tagdiv.com%2Fnewspaper_pro%2Ftd-post-how-to-burn-calories-with-pleasant-activities%2F' className='h-10 w-10 flex items-center justify-center bg-[#516eab] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
-                            <Image width='15' height='15' layout='fixed' className="invert w-3" src="/img/social/facebook.png" alt="" />
-                        </Links>
-                        <Links to='https://twitter.com/intent/tweet?text=How+to+Burn+Calories+with+Pleasant+Activities&url=https%3A%2F%2Fdemo.tagdiv.com%2Fnewspaper_pro%2Ftd-post-how-to-burn-calories-with-pleasant-activities%2F&via=Newspaper+Demo+%7C+The+Best+News+Magazine+WordPress+Theme' className='h-10 w-10 flex items-center justify-center bg-[#29c5f6] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
-                            <Image width='15' height='15' layout='fixed' className="invert w-3" src="/img/social/twitter.png" alt="" />
-                        </Links>
-                        <Links to='https://pinterest.com/pin/create/button/?url=https://demo.tagdiv.com/newspaper_pro/td-post-how-to-burn-calories-with-pleasant-activities/&media=https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/61.jpg&description=How+to+Burn+Calories+with+Pleasant+Activities' className='h-10 w-10 flex items-center justify-center bg-[#ca212a] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
-                            <Image width='15' height='15' layout='fixed' className="invert w-3" src="/img/social/pintrest.png" alt="" />
-                        </Links>
-                        <Links to='https://api.whatsapp.com/send?text=How+to+Burn+Calories+with+Pleasant+Activities%20%0A%0A%20https://demo.tagdiv.com/newspaper_pro/td-post-how-to-burn-calories-with-pleasant-activities/' className='h-10 w-10 flex items-center justify-center bg-[#7bbf6a] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
-                            <Image width='18' height='18' layout='fixed' className="invert w-3" src="/img/social/whatsapp.svg" alt="" />
-                        </Links>
+                    <div className='mt-6'>
+                        <PostShare />
                     </div>
                     <div className="mt-5">
                         <img className='' src="/img/articles/flash/67.jpg" alt=""></img>
@@ -69,7 +52,49 @@ const Template1 = () => {
                             <img src="/img/girl2.jpg" alt="" />
                             <figcaption className='italic text-xs py-1'>Adderall and flirting with bulimia in an attempt to whittle herself</figcaption>
                         </figure>
-                        <p className='max-w-[600px] mx-auto mt-7'>We wandered the site with busloads of other tourists, yet strangely the place did not seem crowded. I&#39;m not sure if it was the sheer size of the place, or whether the masses congregated in one area and didn&#39;t venture far from the main church, but I didn’t feel overwhelmed by tourists in the monastery.</p>
+                        <p className='max-w-[600px] mx-auto mt-7'>We wandered the site with busloads of other tourists, yet strangely the place did not seem crowded. I&#39;m not sure if it was the sheer size of the place, or whether the masses congregated in one area and didn&#39;t venture far from the main church, but I didn&#39;t feel overwhelmed by tourists in the monastery.</p>
+                        <figure className='mt-7 float-right max-w-[307px] ml-6 mb-5'>
+                            <img src="/img/boy1.jpg" alt="" />
+                            <figcaption className='italic text-xs py-1'>Adderall and flirting with bulimia in an attempt to whittle herself</figcaption>
+                        </figure>
+                        <p className='max-w-[600px] mx-auto mt-7'>Headed over Lions Bridge and made our way to the Sofia Synagogue, then sheltered in the Central Market Hall until the recurrent (but short-lived) mid-afternoon rain passed.</p>
+                        <p className='max-w-[600px] mx-auto mt-7'>Feeling refreshed after an espresso, we walked a short distance to the small but welcoming Banya Bashi Mosque, then descended into the ancient Serdica complex.</p>
+                        <p className='max-w-[600px] mx-auto mt-7'>We were exhausted after a long day of travel, so we headed back to the hotel and crashed.</p>
+                        <p className='max-w-[600px] mx-auto mt-7'>I had low expectations about Sofia as a city, but after the walking tour I absolutely loved the place. This was an easy city to navigate, and it was a beautiful city – despite its ugly, staunch and stolid communist-built surrounds. Sofia has a very average facade as you enter the city, but once you lose yourself in the old town area, everything changes.</p>
+                        <blockquote><p className='text-[#4db2ec] italic text-[31px] text-center mt-7'>IF YOU HAVE IT, YOU CAN MAKE ANYTHING LOOK GOOD</p></blockquote>
+                        <p className='max-w-[600px] mx-auto mt-7'>Clothes can transform your mood and confidence. Fashion moves so quickly that, unless you have a strong point of view, you can lose integrity. I like to be real. I don&#39;t like things to be staged or fussy. I think I&#39; go mad if I didn&#39;t have a place to escape to. You have to stay true to your heritage, that’s what your brand is about.</p>
+                    </div>
+                    <div className='pt-7 pb-6 mt-7 border-t border-b'>
+                        <PostShare />
+                    </div>
+                    <div className='mt-7 flex'>
+                        <div className='w-1/2 pr-3.5'>
+                            <span className='text-xs text-[#747474]'>Previous article</span>
+                            <Links className='block text-[14px] font-medium' to='/'>Top 10 Interior Design in 2020 New York Business</Links>
+                        </div>
+                        <div className='w-1/2 pl-3.5'>
+                            <span className='text-xs text-[#747474] block text-right'>Next article</span>
+                            <Links className='block text-[14px] font-medium text-right' to='/'>What Do I Need to Make It in the World of Business?</Links>
+                        </div>
+                    </div>
+                    <div className="mt-7 flex p-[21px] border">
+                        <div className='w-[18%]'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'><img className='w-full' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
+                        <div className='w-[82%] pl-[21px]'>
+                            <a className='font-semibold hover:text-sky-400 block' href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'>Krishna Prajapati</a>
+                            <span className='block italic text-xs mt-2 hover:text-sky-400'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'>https://kkp785216.github.io/krishna-portfolio/</a></span>
+                            <p className='text-[13.5px] mt-2'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo. Donec urna lacus gravida ac vulputate sagittis tristique vitae lectus. Nullam rhoncus tortor at dignissim vehicula.</p>
+                            <div className='flex mt-4 mb-2'>
+                                <a className='mr-5' href='http://facebook.com' target='_blank'><img className='w-[14px]' src="/img/social/facebook.png" alt="" /></a>
+                                <a className='mr-5' href='http://instagram.com' target='_blank'><img className='w-[14px]' src="/img/social/instagram.png" alt="" /></a>
+                                <a className='mr-5' href='http://twitter.com' target='_blank'><img className='w-[14px]' src="/img/social/twitter.png" alt="" /></a>
+                                <a href='http://youtube.com' target='_blank'><img className='w-[14px]' src="/img/social/youtube.png" alt="" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='mt-11'>
+                        <div className="border-b-2 w-full mb-6 border-black">
+                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">RELATED ARTICLES</span>
+                        </div>
                     </div>
                 </Main>
                 <Aside>
