@@ -78,16 +78,16 @@ const Template1 = ({ article }) => {
                         </div>
                     </div>
                     <div className="mt-7 flex p-[21px] border">
-                        <div className='w-[18%]'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'><img className='w-full' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
+                        <div className='w-[18%]'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'><img className='w-full' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
                         <div className='w-[82%] pl-[21px]'>
-                            <a className='font-semibold hover:text-sky-400 block' href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'>Krishna Prajapati</a>
-                            <span className='block italic text-xs mt-2 hover:text-sky-400'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank'>https://kkp785216.github.io/krishna-portfolio/</a></span>
+                            <a className='font-semibold hover:text-sky-400 block' href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'>Krishna Prajapati</a>
+                            <span className='block italic text-xs mt-2 hover:text-sky-400'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'>https://kkp785216.github.io/krishna-portfolio/</a></span>
                             <p className='text-[13.5px] mt-2'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo. Donec urna lacus gravida ac vulputate sagittis tristique vitae lectus. Nullam rhoncus tortor at dignissim vehicula.</p>
                             <div className='flex mt-4 mb-2'>
-                                <a className='mr-5' href='http://facebook.com' target='_blank'><img className='w-[14px]' src="/img/social/facebook.png" alt="" /></a>
-                                <a className='mr-5' href='http://instagram.com' target='_blank'><img className='w-[14px]' src="/img/social/instagram.png" alt="" /></a>
-                                <a className='mr-5' href='http://twitter.com' target='_blank'><img className='w-[14px]' src="/img/social/twitter.png" alt="" /></a>
-                                <a href='http://youtube.com' target='_blank'><img className='w-[14px]' src="/img/social/youtube.png" alt="" /></a>
+                                <a className='mr-5' href='http://facebook.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/facebook.png" alt="" /></a>
+                                <a className='mr-5' href='http://instagram.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/instagram.png" alt="" /></a>
+                                <a className='mr-5' href='http://twitter.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/twitter.png" alt="" /></a>
+                                <a href='http://youtube.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/youtube.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
