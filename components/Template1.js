@@ -6,7 +6,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PostShare from './elements/PostShare';
 
-const Template1 = () => {
+const Template1 = ({ article }) => {
     return (
         <div>
             <Section>
@@ -16,7 +16,7 @@ const Template1 = () => {
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon className='text-xs' /></li>
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Lifestyle</Links><NavigateNextIcon className='text-xs' /></li>
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Travel</Links><NavigateNextIcon className='text-xs' /></li>
-                            <li className='p-0.5 text-[#747474]'>Best Things You Can Do on a Solo Mountain Climb</li>
+                            <li className='p-0.5 text-[#747474]'>{article.title}</li>
                         </ul>
                     </div>
                     <div className='mt-3.5'>
@@ -26,7 +26,7 @@ const Template1 = () => {
                         </div>
                     </div>
                     <div className='mt-3.5'>
-                        <h1 className='mb-4 font-normal text-[35px] leading-[46px]'>Discover the Most Magical Sunset in Santorini</h1>
+                        <h1 className='mb-4 font-normal text-[35px] leading-[46px]'>{article.title}</h1>
                         <p className='italic text-[#2e2e2e] text-lg font-extralight'>The full member list of the Trump Leadership Council, a group of corporate influencers who guided the president&#39;s anti-regulatory policy blitz.</p>
                     </div>
                     <div className='mt-5'>
@@ -42,7 +42,7 @@ const Template1 = () => {
                         <PostShare />
                     </div>
                     <div className="mt-5">
-                        <img className='' src="/img/articles/flash/67.jpg" alt=""></img>
+                        <img className='' src={article.img_url ? article.img_url : `/img/articles/flash/${article.img_comp}.jpg`} alt={article.title}></img>
                     </div>
                     <div className='mt-7 tracking-[0.2px] text-[16.4px]'>
                         <p className='max-w-[600px] mx-auto'>We woke reasonably late following the feast and free flowing wine the night before. After gathering ourselves and our packs, we headed down to our homestay family&#39;s small dining room for breakfast.</p>
@@ -94,6 +94,9 @@ const Template1 = () => {
                     <div className='mt-11'>
                         <div className="border-b-2 w-full mb-6 border-black">
                             <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">RELATED ARTICLES</span>
+                        </div>
+                        <div>
+
                         </div>
                     </div>
                 </Main>
