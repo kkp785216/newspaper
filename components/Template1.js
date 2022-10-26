@@ -14,15 +14,15 @@ const Template1 = ({ article }) => {
                     <div>
                         <ul className='flex -m-0.5 text-xs'>
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon className='text-xs' /></li>
-                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Lifestyle</Links><NavigateNextIcon className='text-xs' /></li>
-                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Travel</Links><NavigateNextIcon className='text-xs' /></li>
+                            {article.parent_category && <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon className='text-xs' /></li>}
+                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon className='text-xs' /></li>
                             <li className='p-0.5 text-[#747474]'>{article.title}</li>
                         </ul>
                     </div>
                     <div className='mt-3.5'>
                         <div className="flex text-[10px] text-white">
-                            <span className='py-[3px] px-[6px] bg-[#8224e3] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>Lifestyle</Links></span>
-                            <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>Travel</Links></span>
+                            {article.parent_category && <span className='py-[3px] px-[6px] bg-[#8224e3] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>}
+                            <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>
                         </div>
                     </div>
                     <div className='mt-3.5'>

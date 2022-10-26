@@ -11,7 +11,7 @@ const PostShare = () => {
                 <div className="w-px h-5 mx-3 bg-[#e5e7eb]"></div>
                 <span className='text-xs text-black font-medium'>Share</span>
             </div>
-            <Links to='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fdemo.tagdiv.com%2Fnewspaper_pro%2Ftd-post-how-to-burn-calories-with-pleasant-activities%2F' className='h-10 w-10 flex items-center justify-center bg-[#516eab] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
+            <Links to={`https://www.facebook.com/sharer.php?u=https%3A%2F%2Fdemo.tagdiv.com%2Fnewspaper_pro%2Ftd-post-how-to-burn-calories-with-pleasant-activities%2F`} className='h-10 w-10 flex items-center justify-center bg-[#516eab] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
                 <Image width='15' height='15' layout='fixed' className="invert w-3" src="/img/social/facebook.png" alt="" />
             </Links>
             <Links to='https://twitter.com/intent/tweet?text=How+to+Burn+Calories+with+Pleasant+Activities&url=https%3A%2F%2Fdemo.tagdiv.com%2Fnewspaper_pro%2Ftd-post-how-to-burn-calories-with-pleasant-activities%2F&via=Newspaper+Demo+%7C+The+Best+News+Magazine+WordPress+Theme' className='h-10 w-10 flex items-center justify-center bg-[#29c5f6] rounded-sm mx-[3px] mb-[7px] hover:opacity-80 transition-opacity duration-300'>
