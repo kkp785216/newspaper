@@ -6,7 +6,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PostShare from './elements/PostShare';
 
-const Template1 = ({ article }) => {
+const Template1 = ({ article, nextprev }) => {
     return (
         <div>
             <Section>
@@ -21,8 +21,8 @@ const Template1 = ({ article }) => {
                     </div>
                     <div className='mt-3.5'>
                         <div className="flex text-[10px] text-white">
-                            {article.parent_category && <span className='py-[3px] px-[6px] bg-[#8224e3] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>}
-                            <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to='/'>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>
+                            {article.parent_category && <span className='py-[3px] px-[6px] bg-[#8224e3] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>}
+                            <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to={`/category/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>
                         </div>
                     </div>
                     <div className='mt-3.5'>
@@ -67,16 +67,16 @@ const Template1 = ({ article }) => {
                     <div className='pt-7 pb-6 mt-7 border-t border-b'>
                         <PostShare />
                     </div>
-                    <div className='mt-7 flex'>
-                        <div className='w-1/2 pr-3.5'>
-                            <span className='text-xs text-[#747474]'>Previous article</span>
-                            <Links className='block text-[14px] font-medium' to='/'>Top 10 Interior Design in 2020 New York Business</Links>
-                        </div>
-                        <div className='w-1/2 pl-3.5'>
+                    {(nextprev.prev || nextprev.next) && <div className='mt-7 flex'>
+                        {nextprev.prev && <div className='w-1/2 pr-3.5'>
+                            <span className='text-xs text-[#747474] justify-start flex-1'>Previous article</span>
+                            <Links className='block text-[14px] font-medium hover:text-sky-400 transition-colors' to={`/${nextprev.prev.url}`}>{nextprev.prev.title}</Links>
+                        </div>}
+                        {nextprev.next && <div className='w-1/2 pl-3.5 justify-end flex-1'>
                             <span className='text-xs text-[#747474] block text-right'>Next article</span>
-                            <Links className='block text-[14px] font-medium text-right' to='/'>What Do I Need to Make It in the World of Business?</Links>
-                        </div>
-                    </div>
+                            <Links className='block text-[14px] font-medium text-right hover:text-sky-400 transition-colors' to={`/${nextprev.next.url}`}>{nextprev.next.title}</Links>
+                        </div>}
+                    </div>}
                     <div className="mt-7 flex p-[21px] border">
                         <div className='w-[18%]'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'><img className='w-full' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
                         <div className='w-[82%] pl-[21px]'>

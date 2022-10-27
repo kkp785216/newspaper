@@ -15,12 +15,12 @@ const handler = async (req, res) => {
             total_articles: count,
         });
     }
-    else if (req.query.uses === 'singlearticle', req.query.slug) {
+    else if (req.query.uses === 'singlearticle' && req.query.slug) {
         try {
-            let articles = await article.findOne({'url': req.query.slug});
-            articles ? res.status(200).json({article: articles}) : res.status(501).json({error: 'Document doesn\'t exist'})
+            let articles = await article.findOne({ 'url': req.query.slug });
+            articles ? res.status(200).json({ article: articles }) : res.status(501).json({ error: 'Document doesn\'t exist' })
         } catch (error) {
-            res.status({error: 'internal server error', message: error.message});
+            res.status({ error: 'internal server error', message: error.message });
         }
     }
     else if (req.query.uses === 'popular' && req.query.limit && req.query.page) {
@@ -39,19 +39,19 @@ const handler = async (req, res) => {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let articles = await (async () => {
             if (req.query.type == 'parent') {
-                let count = await article.find().or([{ parent_category: req.query.category}, {category: req.query.category}]).count();
-                let res = await article.find().or([{ parent_category: req.query.category}, {category: req.query.category}]).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
-                return {res, count};
+                let count = await article.find().or([{ parent_category: req.query.category }, { category: req.query.category }]).count();
+                let res = await article.find().or([{ parent_category: req.query.category }, { category: req.query.category }]).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
+                return { res, count };
             }
             else if (req.query.type == 'category') {
                 let count = await article.find({ category: req.query.category }).count();
                 let res = await article.find({ category: req.query.category }).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
-                return {res, count};
+                return { res, count };
             }
             else if (req.query.type == 'sub_category') {
                 let count = await article.find({ sub_category: req.query.category }).count();
                 let res = await article.find({ sub_category: req.query.category }).sort({ [req.query.sortby]: req.query.order }).limit(limit).skip((req.query.page - 1) * limit);
-                return {res, count};
+                return { res, count };
             }
         })();
         res.status(200).json({
@@ -61,6 +61,19 @@ const handler = async (req, res) => {
             max_limit: maxLimit,
             total_articles: articles.count,
         });
+    }
+    else if (req.query.uses === 'prevnext' && req.query.slug) {
+        try {
+            let nextprevRef = await article.findOne({ 'url': req.query.slug });
+            let prev = await article.findOne({ _id: { $lt: nextprevRef._id } }).sort({ _id: -1 }).limit(1);
+            let next = await article.findOne({ _id: { $gt: nextprevRef._id } }).sort({ _id: 1 }).limit(1);
+            res.status(200).json({
+                prev,next
+            });
+
+        } catch (error) {
+            res.status(404).json({ error: 'internal server error', message: error.message });
+        }
     }
     else {
         res.status(404).json({ error: 'Please provide a valid parameter' });

@@ -7,13 +7,16 @@ const Post = () => {
   const router = useRouter()
   const { post } = router.query
   const [article, setArticle] = useState(null);
+  const [nextprev, setNextPrev] = useState(null);
 
   useEffect(() => {
     (async () => {
       if (post !== undefined) {
         try {
           let article = await fetchapi(`getarticles?uses=singlearticle&slug=${post}`);
+          let prevnext = await fetchapi(`getarticles?uses=prevnext&slug=${post}`)
           setArticle(article.article);
+          setNextPrev(prevnext);
         } catch (error) { console.log(error.message) }
       }
     })();
@@ -21,7 +24,7 @@ const Post = () => {
 
   return (
     <div>
-      {article && <Template1 article={article} />}
+      {article && nextprev && <Template1 article={article} nextprev={nextprev}/>}
     </div>
   )
 }
