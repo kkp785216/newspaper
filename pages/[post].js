@@ -14,7 +14,7 @@ const Post = () => {
       if (post !== undefined) {
         try {
           let article = await fetchapi(`getarticles?uses=singlearticle&slug=${post}`);
-          let prevnext = await fetchapi(`getarticles?uses=prevnext&slug=${post}`)
+          let prevnext = await fetchapi(`getarticles?uses=prevnext&slug=${post}`);
           setArticle(article.article);
           setNextPrev(prevnext);
         } catch (error) { console.log(error.message) }
@@ -24,7 +24,7 @@ const Post = () => {
 
   return (
     <div>
-      {article && nextprev && <Template1 article={article} nextprev={nextprev}/>}
+      {article && nextprev && <Template1 key={article.url} article={article} nextprev={nextprev} />}
     </div>
   )
 }

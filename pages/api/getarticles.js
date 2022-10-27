@@ -62,13 +62,41 @@ const handler = async (req, res) => {
             total_articles: articles.count,
         });
     }
+    else if (req.query.uses === 'relatedposts' && req.query.slug && req.query.type && req.query.limit && req.query.page) {
+        let ref = await article.findOne({ 'url': req.query.slug });
+        const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
+        let articles = await (async () => {
+            if (req.query.type == 'parent') {
+                let count = await article.find().or([{ parent_category: ref.category }, { category: ref.category }]).nor([{ url: req.query.slug }]).count();
+                let res = await article.find().or([{ parent_category: ref.category }, { category: ref.category }]).nor([{ url: req.query.slug }]).limit(limit).skip((req.query.page - 1) * limit);
+                return { res, count };
+            }
+            else if (req.query.type == 'category') {
+                let count = await article.find({ category: ref.category }).nor([{ url: req.query.slug }]).count();
+                let res = await article.find({ category: ref.category }).nor([{ url: req.query.slug }]).limit(limit).skip((req.query.page - 1) * limit);
+                return { res, count };
+            }
+            else if (req.query.type == 'sub_category') {
+                let count = await article.find({ sub_category: ref.category }).nor([{ url: req.query.slug }]).count();
+                let res = await article.find({ sub_category: ref.category }).nor([{ url: req.query.slug }]).limit(limit).skip((req.query.page - 1) * limit);
+                return { res, count };
+            }
+        })();
+        res.status(200).json({
+            articles: articles.res,
+            page: parseInt(req.query.page),
+            limit: parseInt(req.query.limit),
+            max_limit: maxLimit,
+            total_articles: articles.count,
+        });
+    }
     else if (req.query.uses === 'prevnext' && req.query.slug) {
         try {
             let nextprevRef = await article.findOne({ 'url': req.query.slug });
             let prev = await article.findOne({ _id: { $lt: nextprevRef._id } }).sort({ _id: -1 }).limit(1);
             let next = await article.findOne({ _id: { $gt: nextprevRef._id } }).sort({ _id: 1 }).limit(1);
             res.status(200).json({
-                prev,next
+                prev, next
             });
 
         } catch (error) {

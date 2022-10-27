@@ -1,12 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Aside, Section, Main } from './Layout'
 import { Links } from './Links'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PostShare from './elements/PostShare';
+import fetchapi from '../lib/api';
+import Image from 'next/image';
 
 const Template1 = ({ article, nextprev }) => {
+
+    const [page, setPage] = useState(1);
+    const [relatedPosts, setRelatedPosts] = useState({
+        articles: [],
+        total_articles: 0,
+        pages_loaded: [],
+        current_page: 1,
+    });
+
+    useEffect(() => {
+        (async () => {
+            try {
+                let related = await fetchapi(`getarticles?uses=relatedposts&type=category&limit=3&page=${page}&slug=${article.url}`);
+                const myarticles = related.articles.map(e => ({ ...e, page: page }));
+                setRelatedPosts({
+                    ...relatedPosts,
+                    articles: !relatedPosts.pages_loaded.includes(page) ? [...relatedPosts.articles, ...myarticles] : relatedPosts.articles,
+                    total_articles: related.total_articles,
+                    pages_loaded: Array.from(new Set(relatedPosts.pages_loaded).add(page)),
+                    current_page: page,
+                });
+            } catch (error) { console.log(error.message) }
+        })();
+    }, [page]);
+
+    useEffect(() => {
+        console.log(page)
+    }, [page])
+
+    const handlePageClick = (button) => {
+        if (page >= 2 && page <= Math.ceil(relatedPosts.total_articles / 3) && button === "prev") {
+            setPage(page - 1);
+        }
+        if (page >= 1 && page < Math.ceil(relatedPosts.total_articles / 3) && button === "next") {
+            setPage(page + 1);
+        }
+    }
+
     return (
         <div>
             <Section>
@@ -33,7 +73,7 @@ const Template1 = ({ article, nextprev }) => {
                         <div className="flex justify-between items-center mt-2">
                             <span className="text-11px font-medium text-[#444] flex items-center"><img className='w-5 h-5 mr-3 rounded-full' src="/img/user.png" alt="" /><strong className="text-black mr-3"><Links to="/krishna">Krishna Prajapati</Links></strong> Aug 17, 2022</span>
                             <div className='flex space-x-5'>
-                                <div className='text-xs flex items-center'><VisibilityIcon className='text-sm mr-1 text-[#444]' /> 0</div>
+                                <div className='text-xs flex items-center'><VisibilityIcon className='text-sm mr-1 text-[#444]' /> {article.views}</div>
                                 <div className='text-xs flex items-center'><ForumIcon className='text-sm mr-1 text-[#444]' /> 0</div>
                             </div>
                         </div>
@@ -68,11 +108,11 @@ const Template1 = ({ article, nextprev }) => {
                         <PostShare />
                     </div>
                     {(nextprev.prev || nextprev.next) && <div className='mt-7 flex'>
-                        {nextprev.prev && <div className='w-1/2 pr-3.5'>
+                        {nextprev.prev && <div className='w-1/2 pr-4'>
                             <span className='text-xs text-[#747474] justify-start flex-1'>Previous article</span>
                             <Links className='block text-[14px] font-medium hover:text-sky-400 transition-colors' to={`/${nextprev.prev.url}`}>{nextprev.prev.title}</Links>
                         </div>}
-                        {nextprev.next && <div className='w-1/2 pl-3.5 justify-end flex-1'>
+                        {nextprev.next && <div className='w-1/2 pl-4 justify-end flex-1'>
                             <span className='text-xs text-[#747474] block text-right'>Next article</span>
                             <Links className='block text-[14px] font-medium text-right hover:text-sky-400 transition-colors' to={`/${nextprev.next.url}`}>{nextprev.next.title}</Links>
                         </div>}
@@ -95,8 +135,26 @@ const Template1 = ({ article, nextprev }) => {
                         <div className="border-b-2 w-full mb-6 border-black">
                             <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">RELATED ARTICLES</span>
                         </div>
-                        <div>
-
+                        <div className='flex -m-3' key={relatedPosts.current_page}>
+                            {relatedPosts.articles.filter(e => e.page === relatedPosts.current_page).map(e => (
+                                <div className="p-3 w-full md:w-1/3" key={e.order} title={e.title}>
+                                    <div className="group">
+                                        <Links to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
+                                            <Image layout='fill' width='485' height='360' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
+                                            <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
+                                        </Links>
+                                        <h3 className="text-[13px] font-medium mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex space-x-2 mt-5">
+                            <button onClick={e => handlePageClick('prev')} className="border p-1.5 hover:bg-sky-400 hover:border-sky-400 transition-all duration-150 text-[#b7b7b7] hover:text-white disabled:opacity-60 disabled:hover:bg-white disabled:hover:text-[#b7b7b7] disabled:hover:border-[#e5e7eb]" disabled={page < 2 || page > Math.ceil(relatedPosts.total_articles / 3)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>
+                            </button>
+                            <button onClick={e => handlePageClick('next')} className="border p-1.5 hover:bg-sky-400 hover:border-sky-400 transition-all duration-150 text-[#b7b7b7] hover:text-white disabled:opacity-60 disabled:hover:bg-white disabled:hover:text-[#b7b7b7] disabled:hover:border-[#e5e7eb]" disabled={page < 1 || page >= Math.ceil(relatedPosts.total_articles / 3)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>
+                            </button>
                         </div>
                     </div>
                 </Main>
