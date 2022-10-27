@@ -21,15 +21,23 @@ const Template1 = ({ article, nextprev }) => {
     useEffect(() => {
         (async () => {
             try {
-                let related = await fetchapi(`getarticles?uses=relatedposts&type=category&limit=3&page=${page}&slug=${article.url}`);
-                const myarticles = related.articles.map(e => ({ ...e, page: page }));
-                setRelatedPosts({
-                    ...relatedPosts,
-                    articles: !relatedPosts.pages_loaded.includes(page) ? [...relatedPosts.articles, ...myarticles] : relatedPosts.articles,
-                    total_articles: related.total_articles,
-                    pages_loaded: Array.from(new Set(relatedPosts.pages_loaded).add(page)),
-                    current_page: page,
-                });
+                if (!relatedPosts.pages_loaded.includes(page)) {
+                    let related = await fetchapi(`getarticles?uses=relatedposts&type=category&limit=3&page=${page}&slug=${article.url}`);
+                    const myarticles = related.articles.map(e => ({ ...e, page: page }));
+                    setRelatedPosts({
+                        ...relatedPosts,
+                        articles: !relatedPosts.pages_loaded.includes(page) ? [...relatedPosts.articles, ...myarticles] : relatedPosts.articles,
+                        total_articles: related.total_articles,
+                        pages_loaded: Array.from(new Set(relatedPosts.pages_loaded).add(page)),
+                        current_page: page,
+                    });
+                }
+                else {
+                    setRelatedPosts({
+                        ...relatedPosts,
+                        current_page: page,
+                    });
+                }
             } catch (error) { console.log(error.message) }
         })();
     }, [page]);
