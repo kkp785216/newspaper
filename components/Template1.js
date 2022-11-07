@@ -7,6 +7,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import PostShare from './elements/PostShare';
 import fetchapi from '../lib/api';
 import Image from 'next/image';
+import MostPopular from './MostPopular';
+import DisplayComments from './DisplayComments';
+import AddComments from './AddComments';
 
 const Template1 = ({ article, nextprev }) => {
 
@@ -165,9 +168,21 @@ const Template1 = ({ article, nextprev }) => {
                             </button>
                         </div>
                     </div>
+                    <div className='mt-11'>
+                        <div className="border-b-2 w-full mb-6 border-black">
+                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">5 Comments</span>
+                        </div>
+                        <DisplayComments />
+                    </div>
+                    <div className='mt-11'>
+                        <div className="border-b-2 w-full mb-6 border-black">
+                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">Leave A Reply</span>
+                        </div>
+                        <AddComments />
+                    </div>
                 </Main>
                 <Aside>
-
+                    <MostPopular />
                 </Aside>
             </Section>
         </div>
