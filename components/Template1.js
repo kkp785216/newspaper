@@ -43,11 +43,8 @@ const Template1 = ({ article, nextprev }) => {
                 }
             } catch (error) { console.log(error.message) }
         })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
-
-    useEffect(() => {
-        console.log(page)
-    }, [page])
 
     const handlePageClick = (button) => {
         if (page >= 2 && page <= Math.ceil(relatedPosts.total_articles / 3) && button === "prev") {

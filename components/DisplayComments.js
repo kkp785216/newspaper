@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 import { Links } from './Links'
 
@@ -11,8 +12,8 @@ const DisplayComments = () => {
   return (
     <div>
       {[1, 2].map((comment, index) => (
-          <div className="flex mb-5">
-            <img className='w-[50px] h-[50px] mr-5 mb-5' src="/img/commantuser.jpg" alt="krishan" />
+          <div className="flex mb-5" key={index}>
+            <Image className='w-[50px] h-[50px] mr-5 mb-5' width={120} height={120} src="/img/commantuser.jpg" alt="krishan" />
             <div>
               <div className="flex space-x-4 items-center">
                 <Links className='font-semibold hover:text-sky-400 block' to='/'>Krishna</Links>
