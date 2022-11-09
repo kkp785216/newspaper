@@ -172,8 +172,8 @@ const Template1 = ({ article, nextprev }) => {
                         <DisplayComments />
                     </div>
                     <div className='mt-11'>
-                        <div className="border-b-2 w-full mb-6 border-black">
-                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">Leave A Reply</span>
+                        <div className="w-full mb-2.5">
+                            <span className="w-fit block uppercase text-[17px] font-medium">Leave A Reply</span>
                         </div>
                         <AddComments />
                     </div>
