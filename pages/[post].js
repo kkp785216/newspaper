@@ -1,38 +1,16 @@
-// import { useEffect, useState } from 'react'
-// import { useRouter } from 'next/router'
 import Template1 from '../components/Template1'
 import fetchapi from '../lib/api'
 
-const Post = ({ article, nextprev }) => {
-  // const router = useRouter()
-  // const { post } = router.query
-  // const [article, setArticle] = useState(null);
-  // const [nextprev, setNextPrev] = useState(null);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     if (post !== undefined) {
-  //       try {
-  //         let article = await fetchapi(`getarticles?uses=singlearticle&slug=${post}`);
-  //         let prevnext = await fetchapi(`getarticles?uses=prevnext&slug=${post}`);
-  //         setArticle(article.article);
-  //         setNextPrev(prevnext);
-  //         console.log(article.article, "this is article")
-  //         console.log(data, "this is data")
-  //       } catch (error) { console.log(error.message) }
-  //     }
-  //   })();
-  // }, [post]);
-
+const Post = ({ article, nextprev, route }) => {
   return (
     <div>
-      {article && nextprev && <Template1 key={article.url} article={article} nextprev={nextprev} />}
+      {article && nextprev && <Template1 key={article.url} article={article} nextprev={nextprev} route={route} />}
     </div>
   )
 }
 
 export async function getStaticPaths(context) {
-  const routes = await fetchapi('getroutes?uses=articles', 'localhost:3000');
+  const routes = await fetchapi('getroutes?uses=articles', `${process.env.NEXT_PUBLIC_HOST}`);
   return {
     paths: routes.routes.map((route) => {
       return { params: { post: route.url } }
@@ -43,10 +21,10 @@ export async function getStaticPaths(context) {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  let article = await fetchapi(`getarticles?uses=singlearticle&slug=${params.post}`, 'localhost:3000');
-  let nextprev = await fetchapi(`getarticles?uses=prevnext&slug=${params.post}`, 'localhost:3000');
+  let article = await fetchapi(`getarticles?uses=singlearticle&slug=${params.post}`, `${process.env.NEXT_PUBLIC_HOST}`);
+  let nextprev = await fetchapi(`getarticles?uses=prevnext&slug=${params.post}`, `${process.env.NEXT_PUBLIC_HOST}`);
   return {
-    props: { article: article.article, nextprev }, // will be passed to the page component as props
+    props: { article: article.article, nextprev, route: params.post }, // will be passed to the page component as props
   }
 }
 

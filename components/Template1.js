@@ -11,7 +11,7 @@ import MostPopular from './MostPopular';
 import DisplayComments from './DisplayComments';
 import AddComments from './AddComments';
 
-const Template1 = ({ article, nextprev }) => {
+const Template1 = ({ article, nextprev, route }) => {
 
     const [page, setPage] = useState(1);
     const [relatedPosts, setRelatedPosts] = useState({
@@ -175,7 +175,7 @@ const Template1 = ({ article, nextprev }) => {
                         <div className="w-full mb-2.5">
                             <span className="w-fit block uppercase text-[17px] font-medium">Leave A Reply</span>
                         </div>
-                        <AddComments />
+                        <AddComments route={route} />
                     </div>
                 </Main>
                 <Aside>

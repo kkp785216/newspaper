@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddComments = () => {
+const AddComments = ({route}) => {
 
   const [formData, setFormData] = useState({
     comment: '',
@@ -10,8 +10,12 @@ const AddComments = () => {
     save: false,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // const res = fetch(`/api/${'addcomment'}`, {
+    //   method: 'POST',
+      
+    // });
   }
 
   return (
