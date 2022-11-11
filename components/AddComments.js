@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddComments = ({route}) => {
+const AddComments = ({ route }) => {
 
   const [formData, setFormData] = useState({
     comment: '',
@@ -12,10 +12,13 @@ const AddComments = ({route}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const res = fetch(`/api/${'addcomment'}`, {
-    //   method: 'POST',
-      
-    // });
+    try {
+      const res = await fetch(`/api/${'addcomment'}?comment=${formData.comment}&name=${formData.name}&email=${formData.email}&website=${formData.website}&post=${route}`, {
+        method: 'POST',
+      });
+      const resdata = await res.json();
+      resdata.success && console.log('comment added');
+    } catch (error) { console.log(error.message) }
   }
 
   return (
