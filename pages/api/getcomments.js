@@ -6,7 +6,7 @@ const handler = async (req, res) => {
     if (req.query.post && req.query.limit && req.query.page) {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let count = await comment.find({post: req.query.post}).count();
-        let comments = await comment.find({post: req.query.post}).limit(limit).skip((req.query.page - 1) * limit);
+        let comments = await comment.find({post: req.query.post}).sort({ createdAt: 'desc' }).limit(limit).skip((req.query.page - 1) * limit);
         res.status(200).json({
             comments,
             page: parseInt(req.query.page),

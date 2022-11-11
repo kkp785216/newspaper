@@ -11,7 +11,7 @@ import MostPopular from './MostPopular';
 import DisplayComments from './DisplayComments';
 import AddComments from './AddComments';
 
-const Template1 = ({ article, nextprev, route }) => {
+const Template1 = ({ article, nextprev, route, comments }) => {
 
     const [page, setPage] = useState(1);
     const [relatedPosts, setRelatedPosts] = useState({
@@ -165,12 +165,12 @@ const Template1 = ({ article, nextprev, route }) => {
                             </button>
                         </div>
                     </div>
-                    <div className='mt-11'>
+                    {comments.total_comments > 0 && <div className='mt-11'>
                         <div className="border-b-2 w-full mb-6 border-black">
                             <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">5 Comments</span>
                         </div>
-                        <DisplayComments />
-                    </div>
+                        <DisplayComments comments={comments} />
+                    </div>}
                     <div className='mt-11'>
                         <div className="w-full mb-2.5">
                             <span className="w-fit block uppercase text-[17px] font-medium">Leave A Reply</span>

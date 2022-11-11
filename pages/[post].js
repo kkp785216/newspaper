@@ -1,10 +1,10 @@
 import Template1 from '../components/Template1'
 import fetchapi from '../lib/api'
 
-const Post = ({ article, nextprev, route }) => {
+const Post = ({ article, nextprev, route, comments }) => {
   return (
     <div>
-      {article && nextprev && <Template1 key={article.url} article={article} nextprev={nextprev} route={route} />}
+      {article && nextprev && <Template1 key={article.url} article={article} nextprev={nextprev} route={route} comments={comments} />}
     </div>
   )
 }
@@ -23,8 +23,9 @@ export async function getStaticProps(context) {
   const { params } = context;
   let article = await fetchapi(`getarticles?uses=singlearticle&slug=${params.post}`, `${process.env.NEXT_PUBLIC_HOST}`);
   let nextprev = await fetchapi(`getarticles?uses=prevnext&slug=${params.post}`, `${process.env.NEXT_PUBLIC_HOST}`);
+  let comments = await fetchapi(`getcomments?post=${params.post}&limit=3&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
   return {
-    props: { article: article.article, nextprev, route: params.post }, // will be passed to the page component as props
+    props: { article: article.article, nextprev, route: params.post, comments }, // will be passed to the page component as props
   }
 }
 

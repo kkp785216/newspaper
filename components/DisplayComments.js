@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Links } from './Links'
 
-const DisplayComments = () => {
+const DisplayComments = ({ comments }) => {
+
+  const [allComments, setAllComments] = useState(comments.comments);
 
   const formatDate = (input) => {
     const date = new Date(input);
@@ -10,15 +12,15 @@ const DisplayComments = () => {
 
   return (
     <div>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((comment, index) => (
+      {allComments.map((comment, index) => (
         <div className="flex mb-5 border-b pb-[13px] border-dashed border-[#ededed]" key={index}>
           <img className='w-[50px] h-[50px] mr-5 mb-5' src="/img/commantuser.jpg" alt="krishan" />
           <div>
             <div className="flex space-x-4 items-center">
-              <Links className='font-semibold hover:text-sky-400 block' to='/'>Krishna</Links>
-              <span className='text-[11px] font-medium text-[#747474]'>{formatDate(new Date())}</span>
+              <Links className='font-semibold hover:text-sky-400 block' to='/'>{comment.name}</Links>
+              <span className='text-[11px] font-medium text-[#747474]'>{formatDate(comment.createdAt)}</span>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, error. Sunt consectetur quaerat molestias autem.</p>
+            <p>{comment.comment}</p>
             <span className='hover:text-sky-400 cursor-pointer text-[#747474] text-xs tracking-[0.3px]'>Reply</span>
           </div>
         </div>
