@@ -43,10 +43,10 @@ export async function getServerSideProps(context) {
   else {
     res.statusCode = 404
     return {
+      notFound: true,
       props: {
         error: `couldn't find the thing`
       },
-      notFound: true,
     }
   }
 }
