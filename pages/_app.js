@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import '../styles/globals.css'
-import { useRouter } from 'next/router'
-import { Provider } from 'react-redux'
+import '../styles/globals.css';
+import { useRouter } from 'next/router';
+import { Provider } from 'react-redux';
 import store from '../redux/store';
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
