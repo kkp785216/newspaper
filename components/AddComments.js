@@ -17,8 +17,8 @@ const AddComments = ({ route }) => {
         method: 'POST',
       });
       const resdata = await res.json();
-      resdata.success && console.log('comment added');
-    } catch (error) { console.log(error.message) }
+      resdata.success && typeof window !== 'undefined' && window.alert('comment saved successfully!');
+    } catch (error) { typeof window !== 'undefined' && window.alert('some error when saving your comment') }
   }
 
   return (
