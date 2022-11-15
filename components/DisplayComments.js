@@ -1,14 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Links } from './Links'
+import fetchapi from '../lib/api';
 
-const DisplayComments = ({ comments }) => {
+const DisplayComments = ({ comments, route }) => {
 
   const [allComments, setAllComments] = useState(comments.comments);
+  const [page, setPage] = useState(2);
 
   const formatDate = (input) => {
     const date = new Date(input);
     return `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()]} ${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}, ${date.getFullYear()} At ${date.getHours()}:${date.getMinutes <= 9 ? '0' + date.getMinutes() : date.getMinutes()} ${date.getHours() < 12 ? 'am' : 'pm'}`
   }
+
+  useEffect(() => {
+    (async () => {
+      if (page !== 1) {
+        if (comments.total_comments) {
+          let comments = await fetchapi(`/getcomments?post=${route}&limit=5&page=${page}`);
+          console.log(comments)
+          setAllComments([
+            ...allComments,
+            ...comments.comments
+          ])
+        }
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   return (
     <div>
