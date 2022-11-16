@@ -7,7 +7,7 @@ const PostShare = () => {
     return (
         <div className='flex'>
             <div className='flex items-center text-[#444] mr-[18px] mb-[7px] border rounded-sm h-10 px-3 relative bg-white before:border-[9px_0_9px_11px] before:border-[transparent_transparent_transparent_#e9e9e9] before:absolute before:top-1/2 before:left-full before:w-0 before:h-0 before:-translate-y-1/2 after:border-[8px_0_8px_10px] after:border-[transparent_transparent_transparent_#fff] after:absolute after:top-1/2 after:left-full after:w-0 after:h-0 after:-translate-y-1/2'>
-                <ShareIcon className='text-[15px]' />
+                <ShareIcon style={{fontSize: '15px'}} />
                 <div className="w-px h-5 mx-3 bg-[#e5e7eb]"></div>
                 <span className='text-xs text-black font-medium'>Share</span>
             </div>

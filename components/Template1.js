@@ -18,9 +18,9 @@ const Template1 = ({ article, nextprev, route, comments, related }) => {
                 <Main>
                     <div>
                         <ul className='flex -m-0.5 text-xs'>
-                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon className='text-xs' /></li>
-                            {article.parent_category && <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon className='text-xs' /></li>}
-                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon className='text-xs' /></li>
+                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon style={{fontSize: '12px'}} /></li>
+                            {article.parent_category && <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon style={{fontSize: '12px'}} /></li>}
+                            <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon style={{fontSize: '12px'}} /></li>
                             <li className='p-0.5 text-[#747474]'>{article.title}</li>
                         </ul>
                     </div>
@@ -38,8 +38,8 @@ const Template1 = ({ article, nextprev, route, comments, related }) => {
                         <div className="flex justify-between items-center mt-2">
                             <span className="text-11px font-medium text-[#444] flex items-center"><img className='w-5 h-5 mr-3 rounded-full' src="/img/user.png" alt="" /><strong className="text-black mr-3"><Links to="/krishna">Krishna Prajapati</Links></strong> Aug 17, 2022</span>
                             <div className='flex space-x-5'>
-                                <div className='text-xs flex items-center'><VisibilityIcon className='text-sm mr-1 text-[#444]' /> {article.views}</div>
-                                <div className='text-xs flex items-center'><ForumIcon className='text-sm mr-1 text-[#444]' /> 0</div>
+                                <div className='text-xs flex items-center'><VisibilityIcon className='mr-1 text-[#444]' style={{fontSize: '14px'}} /> {article.views}</div>
+                                <div className='text-xs flex items-center'><ForumIcon className='mr-1 text-[#444]' style={{fontSize: '14px'}} /> {comments.total_comments}</div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ const Template1 = ({ article, nextprev, route, comments, related }) => {
                     </div>}
                     {comments.total_comments > 0 && <div className='mt-11'>
                         <div className="border-b-2 w-full mb-6 border-black">
-                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">5 Comments</span>
+                            <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{comments.total_comments} Comments</span>
                         </div>
                         <DisplayComments comments={comments} route={route} />
                     </div>}
