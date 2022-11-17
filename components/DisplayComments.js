@@ -5,7 +5,9 @@ import fetchapi from '../lib/api';
 const DisplayComments = ({ comments, route }) => {
 
   const [allComments, setAllComments] = useState(comments.comments);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
+  const totalPage = comments.total_comments <= 3 ? 1 : Math.ceil((comments.total_comments - 3) / 5) + 1;
+  console.log(totalPage)
 
   const formatDate = (input) => {
     const date = new Date(input);
@@ -43,6 +45,7 @@ const DisplayComments = ({ comments, route }) => {
           </div>
         </div>
       ))}
+      {page < totalPage && <span className='cursor-pointer text-sm text-sky-400 block text-center' onClick={e=>setPage(page + 1)}>Load More</span>}
     </div>
   )
 }
