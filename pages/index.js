@@ -7,9 +7,11 @@ import StayConnected from '../components/StayConnected';
 import { Ad300 } from '../components/Advertisement';
 import LatestArticles from '../components/LatestArticles';
 import MostPopular from '../components/MostPopular';
+import RecentComments from '../components/RecentComments';
+import fetchapi from '../lib/api';
 
 
-export default function Home() {
+export default function Home({ recentcomments }) {
   return (
     <div>
       <Head>
@@ -42,8 +44,19 @@ export default function Home() {
         <Aside>
           {/* Most Popular */}
           <MostPopular />
+          {/* Recent Comments */}
+          <div className='mt-7 md:mt-11'>
+            <RecentComments recentcomments={recentcomments} />
+          </div>
         </Aside>
       </Section>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
+  return {
+    props: { recentcomments }, // will be passed to the page component as props
+  }
 }

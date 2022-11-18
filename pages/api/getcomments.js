@@ -3,10 +3,22 @@ import connectDB from "../../middleware/mongoose"
 
 const handler = async (req, res) => {
     const maxLimit = 20;
-    if (req.query.post && req.query.limit && req.query.page) {
+    if (req.query.uses === "comment" && req.query.post && req.query.limit && req.query.page) {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let count = await comment.find({post: req.query.post}).count();
         let comments = await comment.find({post: req.query.post}).sort({ createdAt: 'desc' }).limit(limit).skip((req.query.page - 1) * limit);
+        res.status(200).json({
+            comments,
+            page: parseInt(req.query.page),
+            limit: parseInt(req.query.limit),
+            max_limit: maxLimit,
+            total_comments: count,
+        });
+    }
+    else if (req.query.uses === "recentcomment" && req.query.limit && req.query.page) {
+        const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
+        let count = await comment.find().count();
+        let comments = await comment.find().sort({ createdAt: 'desc' }).limit(limit).skip((req.query.page - 1) * limit);
         res.status(200).json({
             comments,
             page: parseInt(req.query.page),

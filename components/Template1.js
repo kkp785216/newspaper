@@ -11,7 +11,7 @@ import AddComments from './AddComments';
 import RelatedPosts from './RelatedPosts';
 import RecentComments from './RecentComments';
 
-const Template1 = ({ article, nextprev, route, comments, related }) => {
+const Template1 = ({ article, nextprev, route, comments, related, recentcomments }) => {
 
     return (
         <div>
@@ -116,7 +116,7 @@ const Template1 = ({ article, nextprev, route, comments, related }) => {
                 <Aside>
                     <MostPopular />
                     <div className='mt-7 md:mt-11'>
-                        <RecentComments />
+                        <RecentComments recentcomments={recentcomments} />
                     </div>
                 </Aside>
             </Section>
