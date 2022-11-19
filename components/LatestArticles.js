@@ -49,7 +49,7 @@ const LatestArticles = () => {
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
-            <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} order={e.order} />
+            <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} order={e.order} commentCount={e.commentCount} />
           ))}
         </div>}
       {Math.ceil(articles.total_articles / 8) >= 2 &&

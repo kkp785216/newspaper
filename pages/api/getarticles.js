@@ -1,14 +1,20 @@
 import article from "../../models/article";
 import connectDB from "../../middleware/mongoose"
+import comment from "../../models/comment";
 
 const handler = async (req, res) => {
     const maxLimit = 20;
+    const articleWidhCommentCount = async (articleArr) => {
+        let commentcountreq = articleArr.map(article=>(comment.find({post: article.url}).count()));
+        let commentcount = await Promise.all(commentcountreq);
+        return JSON.parse(JSON.stringify(articleArr)).map((article,index)=>({...article, commentCount: commentcount[index]}));
+    }
     if (req.query.uses === 'allarticles' && req.query.limit && req.query.page) {
         const limit = req.query.limit <= maxLimit ? req.query.limit : maxLimit
         let count = await article.find().count();
         let articles = await article.find().sort({ createdAt: 'desc' }).limit(limit).skip((req.query.page - 1) * limit);
         res.status(200).json({
-            articles,
+            articles: await articleWidhCommentCount(articles),
             page: parseInt(req.query.page),
             limit: parseInt(req.query.limit),
             max_limit: maxLimit,
