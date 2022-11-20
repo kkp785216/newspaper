@@ -17,6 +17,7 @@ const Template1 = ({ article, nextprev, route, comments, related, recentcomments
         <div>
             <Section>
                 <Main>
+                    {/* Breadcrumb */}
                     <div>
                         <ul className='flex -m-0.5 text-xs'>
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon style={{ fontSize: '12px' }} /></li>
