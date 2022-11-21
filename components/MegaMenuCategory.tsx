@@ -53,7 +53,7 @@ const MegaMenuCategory = ({ config_menu }) => {
           {mega_menu_category[config_menu.url] && mega_menu_category[config_menu.url].pages_loaded.includes(mega_menu_category[config_menu.url].current_page) && mega_menu_category[config_menu.url].articles.filter(e => e.page === mega_menu_category[config_menu.url].current_page).map((e, i) => (
             <div className="group w-1/5 p-3" key={i}>
               <Links to={`/${e.url}`} className="relative block pb-[70%] overflow-hidden">
-                <Image layout='fill' width='485' height='360' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
+                <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
                 <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
               </Links>
               <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>

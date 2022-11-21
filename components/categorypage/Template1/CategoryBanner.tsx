@@ -1,7 +1,6 @@
 import React from 'react'
 import { Links } from '../../Links'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Section } from '../../Layout';
 
 const CategoryBanner = () => {
   return (

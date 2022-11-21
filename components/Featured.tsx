@@ -44,7 +44,7 @@ const Featured = () => {
                         <div className="md:p-[10px] lg:p-5 w-full md:w-1/2" key={e.order} title={e.title}>
                             <div className="group">
                                 <Links to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
-                                    <Image layout='fill' width='485' height='360' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title} />
+                                    <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title} />
                                     <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
                                 </Links>
                                 <h3 className="text-2xl leading-7 mt-2 group-hover:text-myyellow"><Links to={`/${e.url}`}>{e.title}</Links></h3>
