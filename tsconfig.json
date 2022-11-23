@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pagesComps/*": ["components/pages/*"],
+      "@const/*": ["constants/*"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -26,5 +31,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

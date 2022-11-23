@@ -5,7 +5,7 @@ import { Aside, Main, Section } from '../components/Layout';
 import Featured from '../components/Featured';
 import StayConnected from '../components/StayConnected';
 import { Ad300 } from '../components/Advertisement';
-import LatestArticles from '../components/LatestArticles';
+import LatestArticles from '../components/pages/Homepage/LatestArticles';
 import MostPopular from '../components/MostPopular';
 import RecentComments from '../components/RecentComments';
 import fetchapi from '../lib/api';

@@ -1,39 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import ReactPaginate from 'react-paginate'
-import Article from './Article'
-import { useSelector, useDispatch } from 'react-redux'
-import action from '../redux/action'
+import Article from '../Article'
+import { DisplayArticlesType } from '@const/apiResultTypes'
 
-const LatestArticles = () => {
+interface Props {
+  articles: DisplayArticlesType,
+  page: number,
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+}
 
-  const { articles } = useSelector(state => state);
-  const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+const DisplayArticles = ({ articles, page, setPage }: Props) => {
 
-  useEffect(() => {
-    !articles.pages_loaded.includes(page) &&
-      dispatch(action({
-        type: 'ARTICLES_LOCAL',
-        page: page
-      }));
-
-    articles.pages_loaded.includes(page) &&
-      dispatch(action({
-        type: 'ARTICLE_CURRENT_PAGE',
-        page: page
-      }));
-    // eslint-disable-next-line
-  }, [page]);
+  const articleRef = useRef<HTMLDivElement>(null);
 
   function scrollToTargetAdjusted() {
-    let element = document.getElementById('latest-articles');
-    let headerOffset = 24;
-    let elementPosition = element.getBoundingClientRect().top;
-    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth"
-    });
+    if (null !== articleRef.current) {
+      let element = articleRef.current;
+      let headerOffset = 24;
+      let elementPosition = element.getBoundingClientRect().top;
+      let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   }
 
   const handlePageClick = ({ selected }) => {
@@ -42,14 +32,14 @@ const LatestArticles = () => {
   }
 
   return (
-    <div id='latest-articles'>
+    <div ref={articleRef}>
       <div className="border-b-2 w-full mb-6 border-black">
         <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">LATEST ARTICLES</span>
       </div>
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
-            <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} order={e.order} commentCount={e.commentCount} />
+            <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} commentCount={e.commentCount} />
           ))}
         </div>}
       {Math.ceil(articles.total_articles / 8) >= 2 &&
@@ -80,4 +70,4 @@ const LatestArticles = () => {
   )
 }
 
-export default LatestArticles
+export default DisplayArticles
