@@ -1,15 +1,15 @@
 import React from 'react'
 import { Aside, Main, Section } from '../../../Layout'
-import LatestArticles from '../../../SharedComponents/LatestArticles'
-import CategoryBanner from './CategoryBanner'
+import CategoryArticle from '@pagesComps/CategoryPage/Template1/SubComponents/CategoryArticles'
+import CategoryBanner from '@pagesComps/CategoryPage/Template1/SubComponents/CategoryBanner'
 
-const Template1 = () => {
+const Template1 = ({articlesData}) => {
     return (
         <div>
             <CategoryBanner />
             <Section>
                 <Main>
-                    <LatestArticles />
+                    <CategoryArticle articlesData={articlesData} />
                 </Main>
                 <Aside>
                     This is Sidebar

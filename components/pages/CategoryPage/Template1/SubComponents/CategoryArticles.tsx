@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import action from '../../../redux/action'
+import action from '../../../../../redux/action'
 import DisplayArticles from '@sharedComps/DisplayArticles'
 
 const LatestArticles = () => {

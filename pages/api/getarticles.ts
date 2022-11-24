@@ -61,7 +61,7 @@ const handler = async (req, res) => {
             }
         })();
         res.status(200).json({
-            articles: articles.res,
+            articles: await articleWidhCommentCount(articles.res),
             page: parseInt(req.query.page),
             limit: parseInt(req.query.limit),
             max_limit: maxLimit,

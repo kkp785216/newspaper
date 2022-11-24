@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@pagesComps/*": ["components/pages/*"],
-      "@const/*": ["constants/*"]
+      "@const/*": ["constants/*"],
+      "@sharedComps/*": ["components/SharedComponents/*"],
     },
     "target": "es5",
     "lib": [

@@ -1,5 +1,4 @@
 import React from 'react'
-import LazyLoad from 'react-lazy-load'
 import Image from 'next/image'
 
 export const Ad300 = () => {

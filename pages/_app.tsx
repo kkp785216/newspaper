@@ -33,7 +33,14 @@ const Layout = ({ children, app }) => {
         <Footer />
       </>)
 
-    case '/category':
+    case '/category/[category]':
+      return (<>
+        <Header app={app} />
+        {children}
+        <Footer />
+      </>)
+
+    case '/category/[category]/[childcategory]':
       return (<>
         <Header app={app} />
         {children}
