@@ -8,7 +8,7 @@ const AddComments = ({ route }) => {
     name: '',
     email: '',
     website: '',
-    save: false,
+    save: true,
   });
 
   useEffect(() => {

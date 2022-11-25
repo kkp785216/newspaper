@@ -21,7 +21,7 @@ const action = (action) => {
                         type: 'CONFIG',
                         payload: { config: res.config }
                     });
-                } catch (error) {}
+                } catch (error) { }
                 break;
 
             case 'ARTICLES_LOCAL':
@@ -35,7 +35,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) {  }
+                } catch (error) { }
                 break;
 
             case 'ARTICLE_CURRENT_PAGE':

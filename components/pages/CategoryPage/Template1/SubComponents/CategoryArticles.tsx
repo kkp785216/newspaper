@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import action from '../../../../../redux/action'
 import DisplayArticles from '@sharedComps/DisplayArticles'
+import {FetchArticleType} from "@const/apiResultTypes"
 
-const LatestArticles = () => {
+interface Props {
+    articlesData: FetchArticleType;
+}
+
+const LatestArticles = ({ articlesData }: Props) => {
 
     const { articles } = useSelector(state => state);
     const dispatch = useDispatch();
