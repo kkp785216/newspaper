@@ -6,7 +6,7 @@ const action = (action) => {
         switch (action.type) {
             case 'CATEGORY':
                 try {
-                    const res = await fetchapi('getcategories');
+                    const res = await fetchapi('getcategories', `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'CATEGORY',
                         payload: { category: res.category }
@@ -16,7 +16,7 @@ const action = (action) => {
 
             case 'CONFIG':
                 try {
-                    const res = await fetchapi('config');
+                    const res = await fetchapi('config', `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'CONFIG',
                         payload: { config: res.config }
@@ -26,7 +26,7 @@ const action = (action) => {
 
             case 'ARTICLES_LOCAL':
                 try {
-                    const res = await fetchapi(`getarticles?uses=allarticles&limit=${8}&page=${action.page}`)
+                    const res = await fetchapi(`getarticles?uses=allarticles&limit=${8}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`)
                     dispatch({
                         type: 'ARTICLES_LOCAL',
                         payload: {
@@ -47,7 +47,7 @@ const action = (action) => {
 
             case 'FEATURED':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'featured'}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'featured'}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'FEATURED',
                         payload: {
@@ -68,7 +68,7 @@ const action = (action) => {
 
             case 'TRENDING':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=1&limit=${10}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=1&limit=${10}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'TRENDING',
                         payload: {
@@ -89,7 +89,7 @@ const action = (action) => {
 
             case 'MEGA_MENU_PARENT':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=${action.category_type}&sortby=${'views'}&order=-1&limit=${4}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=${action.category_type}&sortby=${'views'}&order=-1&limit=${4}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'MEGA_MENU_PARENT',
                         payload: {
@@ -127,7 +127,7 @@ const action = (action) => {
 
             case 'MEGA_MENU_CATEGORY':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'MEGA_MENU_CATEGORY',
                         payload: {
@@ -152,7 +152,7 @@ const action = (action) => {
 
             case 'MEGA_MENU_SUB_CATEGORY':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${action.url}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'MEGA_MENU_SUB_CATEGORY',
                         payload: {
@@ -177,7 +177,7 @@ const action = (action) => {
 
             case 'MOST_POPULAR':
                 try {
-                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`);
+                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'MOST_POPULAR',
                         payload: {
@@ -198,7 +198,7 @@ const action = (action) => {
 
             case 'FOOTER_EDITOR_CHOICE':
                 try {
-                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'editor-choice'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${3}&page=${1}`);
+                    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'editor-choice'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${3}&page=${1}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'FOOTER_EDITOR_CHOICE',
                         payload: { articles: res.articles },
@@ -208,7 +208,7 @@ const action = (action) => {
 
             case 'FOOTER_MOST_POPULAR':
                 try {
-                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${1}`);
+                    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${1}`, `${process.env.NEXT_PUBLIC_HOST}`);
                     dispatch({
                         type: 'FOOTER_MOST_POPULAR',
                         payload: { articles: res.articles },
