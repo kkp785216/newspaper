@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Featured = () => {
     const { featured } = useSelector(state => state);
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
     const dispatch = useDispatch();
 
     useEffect(() => {

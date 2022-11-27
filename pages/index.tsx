@@ -66,6 +66,14 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
       type: 'FEATURED',
       page: 1
     }));
+    store.dispatch(action({
+      type: 'MOST_POPULAR',
+      page: 1
+    }));
+    store.dispatch(action({
+      type: 'ARTICLES_LOCAL',
+      page: 1
+    }));
     return {
       props: { recentcomments }, // will be passed to the page component as props
     }
