@@ -52,7 +52,7 @@ const DisplayArticles = ({ articles, page, setPage }: Props) => {
             pageLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
             previousLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
             nextLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
-            activeLinkClassName='bg-sky-400 hover:bg-sky-400 border-sky-400 hover:border-sky-400 text-white hover:text-white cursor-auto'
+            activeLinkClassName='bg-sky-400 hover:bg-sky-400 border-sky-400 hover:border-sky-400 text-[white_!important] hover:text-white cursor-auto'
             breakClassName='mx-4'
             forcePage={page - 1}
             breakLabel="..."

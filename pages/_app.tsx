@@ -77,8 +77,6 @@ const Layout = ({ Component, pageProps }) => {
 };
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
-  // let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
-  // console.log(recentcomments)
   store.dispatch(action({
     type: 'CATEGORY',
   }));

@@ -11,7 +11,7 @@ const action = (action) => {
                         type: 'CATEGORY',
                         payload: { category: res.category }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'CONFIG':
@@ -21,7 +21,7 @@ const action = (action) => {
                         type: 'CONFIG',
                         payload: { config: res.config }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'ARTICLES_LOCAL':
@@ -35,7 +35,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'ARTICLE_CURRENT_PAGE':
@@ -56,7 +56,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'FEATURED_CURRENT_PAGE':
@@ -77,7 +77,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'TRENDING_CURRENT_PAGE':
@@ -100,7 +100,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MEGA_MENU_PARENT_CURRENT_PAGE':
@@ -113,7 +113,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MEGA_MENU_PARENT_ACTIVE_STATE':
@@ -137,7 +137,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MEGA_MENU_CATEGORY_CURRENT_PAGE':
@@ -162,7 +162,7 @@ const action = (action) => {
                             page: action.page
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MEGA_MENU_SUB_CATEGORY_CURRENT_PAGE':
@@ -186,7 +186,7 @@ const action = (action) => {
                             page: action.page,
                         }
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'MOST_POPULAR_CURRENT_PAGE':
@@ -203,7 +203,7 @@ const action = (action) => {
                         type: 'FOOTER_EDITOR_CHOICE',
                         payload: { articles: res.articles },
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             case 'FOOTER_MOST_POPULAR':
@@ -213,7 +213,7 @@ const action = (action) => {
                         type: 'FOOTER_MOST_POPULAR',
                         payload: { articles: res.articles },
                     });
-                } catch (error) { }
+                } catch (error) { console.log(error) }
                 break;
 
             default:
