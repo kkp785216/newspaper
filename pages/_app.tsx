@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useRef } from "react";
 import '../styles/globals.css';
 import { useRouter } from 'next/router';
@@ -5,6 +6,8 @@ import { wrapper } from '../redux/store';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import action from '../redux/action';
+import { Provider } from "react-redux";
+import type { AppProps } from "next/app";
 
 const AppLayout = ({ children, app }) => {
 
@@ -57,14 +60,18 @@ const AppLayout = ({ children, app }) => {
   }
 }
 
-function MyApp({ Component, pageProps }) {
+const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
   const app = useRef();
   return (
-    <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
-      <AppLayout app={app}>
-        <Layout Component={Component} pageProps={pageProps} />
-      </AppLayout>
-    </div>
+    <Provider store={store}>
+      <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
+        <AppLayout app={app}>
+          <Layout Component={Component} pageProps={pageProps} />
+        </AppLayout>
+      </div>
+    </Provider>
   )
 }
 
@@ -94,4 +101,4 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
   }
 });
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;
