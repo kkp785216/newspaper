@@ -73,7 +73,7 @@ const Header = ({app}) => {
                                 return <li key={i}><Links className="text-[11px] lg:text-sm p-2.5 lg:p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" to={`/category/${menu.parent}/${menu.url}`}>{menu.name}</Links></li>
                             }
                             else if (config_menu.menu_type === 'normal' && config_menu.type === 'external') {
-                                return <li key={i}><a className="text-[11px] lg:text-sm p-2.5 lg:p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" href={config_menu.url} target='_blank' without rel="noreferrer">{config_menu.title}</a></li>
+                                return <li key={i}><a className="text-[11px] lg:text-sm p-2.5 lg:p-3 text-sm font-bold block before:transition-all before:m-auto relative before:w-0 [&.active:before]:w-full hover:before:w-full before:h-[3px] before:bg-blue-400 before:absolute before:bottom-0 before:left-0 before:right-0 uppercase" href={config_menu.url} target='_blank' rel="noreferrer">{config_menu.title}</a></li>
                             }
                         })()))}
                     </ul>

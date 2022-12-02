@@ -1,30 +1,30 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Links } from './Links'
 import { useDispatch } from 'react-redux';
 import action from '../redux/action';
 import Image from 'next/image';
 
-const MegaMenuParentCurrent = ({active_menu, activeState}) => {
+const MegaMenuParentCurrent = ({ active_menu, activeState }) => {
 
     const [page, setPage] = useState(active_menu.current_page)
     const dispatch = useDispatch();
 
     useEffect(() => {
         !active_menu.pages_loaded.includes(page) &&
-        dispatch(action({
-            type: 'MEGA_MENU_PARENT',
-            url: activeState.url,
-            category_type: activeState.type,
-            page: page
-        }));
-        
+            dispatch(action({
+                type: 'MEGA_MENU_PARENT',
+                url: activeState.url,
+                category_type: activeState.type,
+                page: page
+            }));
+
         active_menu.pages_loaded.includes(page) &&
-        dispatch(action({
-            type: 'MEGA_MENU_PARENT_CURRENT_PAGE',
-            url: activeState.url,
-            category_type: activeState.type,
-            page: page
-        }));
+            dispatch(action({
+                type: 'MEGA_MENU_PARENT_CURRENT_PAGE',
+                url: activeState.url,
+                category_type: activeState.type,
+                page: page
+            }));
         // eslint-disable-next-line
     }, [page]);
 
@@ -37,16 +37,21 @@ const MegaMenuParentCurrent = ({active_menu, activeState}) => {
         }
     }
 
+    const formatDate = (input) => {
+        const date = new Date(input);
+        return `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()]} ${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}, ${date.getFullYear()}`
+    }
+
     return (
         <div className='w-5/6 p-6'>
             {<div className=' flex -m-3' key={active_menu.current_page}>
                 {active_menu.articles.filter(e => e.page === active_menu.current_page).map((e, i) => (<div className="group w-1/4 p-3" key={i}>
                     <Links to={`/${e.url}`} className="relative block pb-[70%] overflow-hidden">
                         <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
-                        <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
+                        <Links to={e.parent_category ? `/category/${e.parent_category}/${e.category}`: `/category/${e.category}`} className="absolute bottom-0 left-0 text-mywhite bg-black hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</Links>
                     </Links>
                     <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>
-                    <span className="text-11px font-medium text-gray-500">August 19, 2019</span>
+                    <span className="text-11px font-medium text-gray-500">{formatDate(e.createdAt)}</span>
                 </div>))}
             </div>}
             <div className="flex space-x-2 mt-5">

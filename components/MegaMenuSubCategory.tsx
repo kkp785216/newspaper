@@ -46,6 +46,11 @@ const MegaMenuSubCategory = ({ config_menu }) => {
     }
   }
 
+  const formatDate = (input) => {
+    const date = new Date(input);
+    return `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()]} ${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}, ${date.getFullYear()}`
+  }
+
   return (
     <div className='absolute left-6 right-6 top-full z-20 bg-white flex shadow-md border-t menu-list opacity-0 invisible transition-all duration-150'>
       <div className='w-full p-6 border-r'>
@@ -54,10 +59,10 @@ const MegaMenuSubCategory = ({ config_menu }) => {
             <div className="group w-1/5 p-3" key={i}>
               <Links to={`/${e.url}`} className="relative block pb-[70%] overflow-hidden">
                 <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
-                <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
+                <span className="absolute bottom-0 left-0 text-mywhite bg-black hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
               </Links>
               <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>
-              <span className="text-11px font-medium text-gray-500">August 19, 2019</span>
+              <span className="text-11px font-medium text-gray-500">{formatDate(e.createdAt)}</span>
             </div>))}
         </div>
         {mega_menu_sub_category[config_menu.url] && <div className="flex space-x-2 mt-5">
