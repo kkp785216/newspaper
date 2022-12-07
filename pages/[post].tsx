@@ -148,10 +148,21 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
         let comments = await fetchapi(`getcomments?uses=comment&post=${params.post}&limit=3&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
         let related = await fetchapi(`getarticles?uses=relatedposts&type=category&limit=3&page=1&slug=${params.post}`, `${process.env.NEXT_PUBLIC_HOST}`);
         let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
-        store.dispatch(action({
-            type: 'MOST_POPULAR',
-            page: 1
-        }));
+
+        // Dispatch MOST_POPULAR
+        try {
+            const action = { page: 1 };
+            const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+            store.dispatch({
+                type: 'MOST_POPULAR',
+                payload: {
+                    articles: res.articles.map(e => ({ ...e, page: action.page })),
+                    total_articles: res.total_articles,
+                    page: action.page,
+                }
+            });
+        } catch (error) { console.log(error) };
+
         return {
             props: { article: article.article, nextprev, route: params.post, comments, related, recentcomments }, // will be passed to the page component as props
         }

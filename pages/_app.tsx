@@ -8,14 +8,9 @@ import Footer from "../components/Footer";
 import action from '../redux/action';
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
+import fetchapi from "lib/api";
 
 const AppLayout = ({ children, app }) => {
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   preload(dispatch);
-  //   // eslint-disable-next-line
-  // }, []);
 
   const router = useRouter();
 
@@ -84,18 +79,43 @@ const Layout = ({ Component, pageProps }) => {
 };
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
-  store.dispatch(action({
-    type: 'CATEGORY',
-  }));
-  store.dispatch(action({
-    type: 'CONFIG',
-  }));
-  store.dispatch(action({
-    type: 'FOOTER_EDITOR_CHOICE',
-  }));
-  store.dispatch(action({
-    type: 'FOOTER_MOST_POPULAR',
-  }));
+
+  // Dispatch CATEGORY
+  try {
+    const res = await fetchapi('getcategories', `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'CATEGORY',
+      payload: { category: res.category }
+    });
+  } catch (error) { console.log(error) };
+
+  // Dispatch CONFIG
+  try {
+    const res = await fetchapi('config', `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'CONFIG',
+      payload: { config: res.config }
+    });
+  } catch (error) { console.log(error) };
+
+  // Dispatch FOOTER_EDITOR_CHOICE
+  try {
+    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'editor-choice'}&type=sub_category&sortby=${'createdAt'}&order=-1&limit=${3}&page=${1}`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'FOOTER_EDITOR_CHOICE',
+      payload: { articles: res.articles },
+    });
+  } catch (error) { console.log(error) };
+
+  // Dispatch FOOTER_MOST_POPULAR
+  try {
+    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${1}`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'FOOTER_MOST_POPULAR',
+      payload: { articles: res.articles },
+    });
+  } catch (error) { console.log(error) };
+
   return {
     props: {}, // will be passed to the page component as props
   }

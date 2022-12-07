@@ -59,22 +59,63 @@ export default function Home({ recentcomments }) {
 // export const getStaticProps = wrapper.getStaticProps((store) => async (context) => {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
-  store.dispatch(action({
-    type: 'TRENDING',
-    page: 1
-  }));
-  store.dispatch(action({
-    type: 'FEATURED',
-    page: 1
-  }));
-  store.dispatch(action({
-    type: 'MOST_POPULAR',
-    page: 1
-  }));
-  store.dispatch(action({
-    type: 'ARTICLES_LOCAL',
-    page: 1
-  }));
+
+  // Dispatch TRENDING
+  try {
+    const action = { page: 1 };
+    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'trending'}&type=sub_category&sortby=${'createdAt'}&order=1&limit=${10}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'TRENDING',
+      payload: {
+        articles: res.articles.map(e => ({ ...e, page: action.page })),
+        total_articles: res.total_articles,
+        page: action.page,
+      }
+    });
+  } catch (error) { console.log(error) }
+
+  // Dispatch FEATURED
+  try {
+    const action = { page: 1 };
+    const res = await fetchapi(`getarticles?uses=articlesbycategory&category=${'featured'}&type=sub_category&sortby=${'views'}&order=-1&limit=${5}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'FEATURED',
+      payload: {
+        articles: res.articles.map(e => ({ ...e, page: action.page })),
+        total_articles: res.total_articles,
+        page: action.page,
+      }
+    });
+  } catch (error) { console.log(error) };
+
+  // Dispatch ARTICLE_LOCAL
+  try {
+    const action = { page: 1 };
+    const res = await fetchapi(`getarticles?uses=allarticles&limit=${8}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`)
+    store.dispatch({
+      type: 'ARTICLES_LOCAL',
+      payload: {
+        articles: res.articles.map(e => ({ ...e, page: action.page })),
+        total_articles: res.total_articles,
+        page: action.page
+      }
+    });
+  } catch (error) { console.log(error) }
+
+  // Dispatch MOST_POPULAR
+  try {
+    const action = { page: 1 };
+    const res = await fetchapi(`getarticles?uses=popular&limit=${3}&page=${action.page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch({
+      type: 'MOST_POPULAR',
+      payload: {
+        articles: res.articles.map(e => ({ ...e, page: action.page })),
+        total_articles: res.total_articles,
+        page: action.page,
+      }
+    });
+  } catch (error) { console.log(error) };
+
   return {
     props: { recentcomments }, // will be passed to the page component as props
   }
