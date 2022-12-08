@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { wrapper } from '../redux/store';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import action from '../redux/action';
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
 import fetchapi from "lib/api";
@@ -61,10 +60,12 @@ const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
   const app = useRef();
   return (
     <Provider store={store}>
-      <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
-        <AppLayout app={app}>
-          <Layout Component={Component} pageProps={pageProps} />
-        </AppLayout>
+      <div className="overflow-hidden">
+        <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
+          <AppLayout app={app}>
+            <Layout Component={Component} pageProps={pageProps} />
+          </AppLayout>
+        </div>
       </div>
     </Provider>
   )
