@@ -19,7 +19,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                 <Main>
                     {/* Breadcrumb */}
                     <div>
-                        <ul className='flex -m-0.5 text-xs'>
+                        <ul className='[&>li]:inline -m-0.5 text-xs'>
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to='/'>Home</Links><NavigateNextIcon style={{ fontSize: '12px' }} /></li>
                             {article.parent_category && <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon style={{ fontSize: '12px' }} /></li>}
                             <li className='p-0.5 text-[#747474]'><Links className='hover:text-black' to={`/category/${article.parent_category}/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links><NavigateNextIcon style={{ fontSize: '12px' }} /></li>
@@ -33,8 +33,8 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                         </div>
                     </div>
                     <div className='mt-3.5'>
-                        <h1 className='mb-4 font-normal text-[35px] leading-[46px]'>{article.title}</h1>
-                        <p className='italic text-[#2e2e2e] text-lg font-extralight'>The full member list of the Trump Leadership Council, a group of corporate influencers who guided the president&#39;s anti-regulatory policy blitz.</p>
+                        <h1 className='mb-4 font-normal text-[30px] md:text-[32px] lg:text-[35px] leading-[36px] md:leading-[43px] lg:leading-[46px]'>{article.title}</h1>
+                        <p className='italic text-[#2e2e2e] text-base md:text-lg font-extralight'>The full member list of the Trump Leadership Council, a group of corporate influencers who guided the president&#39;s anti-regulatory policy blitz.</p>
                     </div>
                     <div className='mt-5'>
                         <div className="flex justify-between items-center mt-2">
@@ -48,8 +48,8 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                     <div className='mt-6'>
                         <PostShare />
                     </div>
-                    <div className="mt-5">
-                        <img className='' src={article.img_url ? article.img_url : `/img/articles/flash/${article.img_comp}.jpg`} alt={article.title}></img>
+                    <div className="mt-5 -mx-5 md:mx-0">
+                        <img className='w-full' src={article.img_url ? article.img_url : `/img/articles/flash/${article.img_comp}.jpg`} alt={article.title}></img>
                     </div>
                     <div className='mt-7 tracking-[0.2px] text-[16.4px]'>
                         <p className='max-w-[600px] mx-auto'>We woke reasonably late following the feast and free flowing wine the night before. After gathering ourselves and our packs, we headed down to our homestay family&#39;s small dining room for breakfast.</p>
@@ -60,7 +60,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                             <figcaption className='italic text-xs py-1'>Adderall and flirting with bulimia in an attempt to whittle herself</figcaption>
                         </figure>
                         <p className='max-w-[600px] mx-auto mt-7'>We wandered the site with busloads of other tourists, yet strangely the place did not seem crowded. I&#39;m not sure if it was the sheer size of the place, or whether the masses congregated in one area and didn&#39;t venture far from the main church, but I didn&#39;t feel overwhelmed by tourists in the monastery.</p>
-                        <figure className='mt-7 float-right max-w-[307px] ml-6 mb-5'>
+                        <figure className='mt-7 md:float-right mx-auto md:mx-[unset] max-w-[307px] md:ml-6 mb-5'>
                             <img src="/img/boy1.jpg" alt="" />
                             <figcaption className='italic text-xs py-1'>Adderall and flirting with bulimia in an attempt to whittle herself</figcaption>
                         </figure>
@@ -68,7 +68,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                         <p className='max-w-[600px] mx-auto mt-7'>Feeling refreshed after an espresso, we walked a short distance to the small but welcoming Banya Bashi Mosque, then descended into the ancient Serdica complex.</p>
                         <p className='max-w-[600px] mx-auto mt-7'>We were exhausted after a long day of travel, so we headed back to the hotel and crashed.</p>
                         <p className='max-w-[600px] mx-auto mt-7'>I had low expectations about Sofia as a city, but after the walking tour I absolutely loved the place. This was an easy city to navigate, and it was a beautiful city – despite its ugly, staunch and stolid communist-built surrounds. Sofia has a very average facade as you enter the city, but once you lose yourself in the old town area, everything changes.</p>
-                        <blockquote><p className='text-[#4db2ec] italic text-[31px] text-center mt-7'>IF YOU HAVE IT, YOU CAN MAKE ANYTHING LOOK GOOD</p></blockquote>
+                        <blockquote><p className='text-[#4db2ec] italic text-[22px] md:text-2xl lg:text-[31px] text-center mt-7'>IF YOU HAVE IT, YOU CAN MAKE ANYTHING LOOK GOOD</p></blockquote>
                         <p className='max-w-[600px] mx-auto mt-7'>Clothes can transform your mood and confidence. Fashion moves so quickly that, unless you have a strong point of view, you can lose integrity. I like to be real. I don&#39;t like things to be staged or fussy. I think I&#39; go mad if I didn&#39;t have a place to escape to. You have to stay true to your heritage, that’s what your brand is about.</p>
                     </div>
                     <div className='pt-7 pb-6 mt-7 border-t border-b'>
@@ -84,13 +84,13 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                             <Links className='block text-[14px] font-medium text-right hover:text-sky-400 transition-colors' to={`/${nextprev.next.url}`}>{nextprev.next.title}</Links>
                         </div>}
                     </div>}
-                    <div className="mt-7 flex p-[21px] border">
-                        <div className='w-[18%]'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'><img className='w-full' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
-                        <div className='w-[82%] pl-[21px]'>
+                    <div className="mt-7 flex flex-col md:flex-row items-center md:items-start p-[21px] border">
+                        <div className='flex-none'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'><img className='w-[117px] h-[117px]' src="/img/user.png" alt="" title='Krishna Prajapati' /></a></div>
+                        <div className='md:pl-[21px] text-center md:text-left mt-5 md:mt-0'>
                             <a className='font-semibold hover:text-sky-400 block' href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'>Krishna Prajapati</a>
                             <span className='block italic text-xs mt-2 hover:text-sky-400'><a href='https://kkp785216.github.io/krishna-portfolio/' target='_blank' rel='noreferrer'>https://kkp785216.github.io/krishna-portfolio/</a></span>
                             <p className='text-[13.5px] mt-2'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo. Donec urna lacus gravida ac vulputate sagittis tristique vitae lectus. Nullam rhoncus tortor at dignissim vehicula.</p>
-                            <div className='flex mt-4 mb-2'>
+                            <div className='flex mt-4 mb-2 justify-center md:justify-start'>
                                 <a className='mr-5' href='http://facebook.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/facebook.png" alt="" /></a>
                                 <a className='mr-5' href='http://instagram.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/instagram.png" alt="" /></a>
                                 <a className='mr-5' href='http://twitter.com' target='_blank' rel='noreferrer'><img className='w-[14px]' src="/img/social/twitter.png" alt="" /></a>

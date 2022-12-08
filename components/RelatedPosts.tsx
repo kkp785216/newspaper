@@ -46,20 +46,28 @@ const RelatedPosts = ({ related, route }) => {
         }
     }
 
+    const formatDate = (input) => {
+        const date = new Date(input);
+        return `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()]} ${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}, ${date.getFullYear()}`
+    }
+
     return (
         <>
             <div className="border-b-2 w-full mb-6 border-black">
                 <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">RELATED ARTICLES</span>
             </div>
-            <div className='flex -m-3' key={relatedPosts.current_page}>
+            <div className='flex flex-wrap -m-3' key={relatedPosts.current_page}>
                 {relatedPosts.articles.filter(e => e.page === relatedPosts.current_page).map(e => (
                     <div className="p-3 w-full md:w-1/3" key={e.order} title={e.title}>
-                        <div className="group">
-                            <Links to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
-                                <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
-                                <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
+                        <div className="group flex flex-row md:flex-col mb-1 md:mb-0 space-x-4 md:space-x-0">
+                            <Links to={`/${e.url}`} className="relative w-1/3 md:w-full block md:pb-[72%] overflow-hidden">
+                                <Image className='md:absolute bottom-0 left-0 top-0 right-0 object-cover' width={485} height={360} src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
+                                <Links to={e.parent_category ? `/category/${e.parent_category}/${e.category}` : `/category/${e.category}`} className="absolute bottom-0 left-0 text-mywhite bg-black hover:bg-blue-500 hidden md:block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</Links>
                             </Links>
-                            <h3 className="text-[13px] font-medium mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>
+                            <div className="w-2/3 md:w-full">
+                                <h3 className="text-sm md:text-[13px] font-medium md:mt-2 group-hover:text-sky-400 text-zinc-900"><Links to={`/${e.url}`}>{e.title}</Links></h3>
+                                <span className="md:hidden text-11px font-medium text-gray-500">{formatDate(e.createdAt)}</span>
+                            </div>
                         </div>
                     </div>
                 ))}
