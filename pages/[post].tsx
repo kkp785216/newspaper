@@ -11,7 +11,6 @@ import MostPopular from 'components/MostPopular';
 import RecentComments from 'components/RecentComments';
 import PostShare from 'components/elements/PostShare';
 import wrapper from 'redux/store';
-import action from '../redux/action'
 
 const Post = ({ article, nextprev, route, comments, related, recentcomments }) => {
     return (

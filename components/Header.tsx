@@ -7,12 +7,37 @@ import MegaMenuSubCategory from './MegaMenuSubCategory';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
+import Link from 'next/link';
 
-const Header = ({ app }) => {
+const Header = ({ app, appcontainer }) => {
 
     const { category, config } = useSelector(state => state);
     const left_menu = useRef();
     const right_menu = useRef();
+    const mob_collapse_menu = useRef();
+    const mob_collapse_wrapper = useRef();
+    const mob_nav_toggle = useRef();
+
+    const mobNavToggle = () => {
+        if (mob_collapse_menu.current.style.height === '0px') {
+            mob_collapse_menu.current.style.height = `${mob_collapse_wrapper.current.offsetHeight}px`
+            mob_nav_toggle.current.classList.add('opened');
+            setTimeout(() => {
+                mob_collapse_menu.current.style.height = 'auto';
+            }, 300);
+            setTimeout(() => {
+                mob_collapse_menu.current.style.opacity = '1';
+            }, 200);
+        }
+        else {
+            mob_collapse_menu.current.style.height = `${mob_collapse_wrapper.current.offsetHeight}px`
+            setTimeout(() => {
+                mob_collapse_menu.current.style.height = '0px';
+            }, 100);
+            mob_collapse_menu.current.style.opacity = '0';
+            mob_nav_toggle.current.classList.remove('opened')
+        }
+    }
 
     return (
         <header className="shadow-md relative">
@@ -81,17 +106,63 @@ const Header = ({ app }) => {
             </div>
             {/* Mobile Header */}
             <div className='bg-[#222222] text-white flex md:hidden justify-between items-center h-[56px] leading-[56px] overflow-hidden'>
-                <div><MenuIcon style={{ fontSize: '29px' }} onClick={() => { right_menu.current.style.display = "none"; left_menu.current.style.display = "block"; setTimeout(() => { app.current.classList.add('active'); left_menu.current.classList.add('active'); right_menu.current.classList.remove('mactive'); left_menu.current.classList.add('mactive'); }, 0) }} className='px-5 py-[28px] box-content cursor-pointer' /></div>
+                <div><MenuIcon style={{ fontSize: '29px' }} onClick={() => { right_menu.current.style.display = "none"; left_menu.current.style.display = "block"; appcontainer.current.classList.add('active'); setTimeout(() => { app.current.classList.add('active'); left_menu.current.classList.add('active'); right_menu.current.classList.remove('mactive'); left_menu.current.classList.add('mactive'); }, 0) }} className='px-5 py-[28px] box-content cursor-pointer' /></div>
                 <Links to='/' className='max-w-[180px] flex'><Image width='272' height='90' src="/img/newspaper-11-logo-white.png" alt="logo"></Image></Links>
-                <svg version="1.1" onClick={() => { left_menu.current.style.display = "none"; right_menu.current.style.display = "block"; setTimeout(() => { app.current.classList.add('active'); right_menu.current.classList.add('active'); right_menu.current.classList.add('mactive'); left_menu.current.classList.remove('mactive'); }, 0) }} className='w-[22px] px-5 py-[28px] box-content cursor-pointer' fill='white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M946.371 843.601l-125.379-125.44c43.643-65.925 65.495-142.1 65.475-218.040 0.051-101.069-38.676-202.588-115.835-279.706-77.117-77.148-178.606-115.948-279.644-115.886-101.079-0.061-202.557 38.738-279.665 115.876-77.169 77.128-115.937 178.627-115.907 279.716-0.031 101.069 38.728 202.588 115.907 279.665 77.117 77.117 178.616 115.825 279.665 115.804 75.94 0.020 152.136-21.862 218.061-65.495l125.348 125.46c30.915 30.904 81.029 30.904 111.954 0.020 30.915-30.935 30.915-81.029 0.020-111.974zM705.772 714.925c-59.443 59.341-136.899 88.842-214.784 88.924-77.896-0.082-155.341-29.583-214.784-88.924-59.443-59.484-88.975-136.919-89.037-214.804 0.061-77.885 29.604-155.372 89.037-214.825 59.464-59.443 136.878-88.945 214.784-89.016 77.865 0.082 155.3 29.583 214.784 89.016 59.361 59.464 88.914 136.919 88.945 214.825-0.041 77.885-29.583 155.361-88.945 214.804z"></path></svg>
+                <svg version="1.1" onClick={() => { left_menu.current.style.display = "none"; right_menu.current.style.display = "block"; appcontainer.current.classList.add('active'); setTimeout(() => { app.current.classList.add('active'); right_menu.current.classList.add('active'); right_menu.current.classList.add('mactive'); left_menu.current.classList.remove('mactive'); }, 0) }} className='w-[22px] px-5 py-[28px] box-content cursor-pointer' fill='white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M946.371 843.601l-125.379-125.44c43.643-65.925 65.495-142.1 65.475-218.040 0.051-101.069-38.676-202.588-115.835-279.706-77.117-77.148-178.606-115.948-279.644-115.886-101.079-0.061-202.557 38.738-279.665 115.876-77.169 77.128-115.937 178.627-115.907 279.716-0.031 101.069 38.728 202.588 115.907 279.665 77.117 77.117 178.616 115.825 279.665 115.804 75.94 0.020 152.136-21.862 218.061-65.495l125.348 125.46c30.915 30.904 81.029 30.904 111.954 0.020 30.915-30.935 30.915-81.029 0.020-111.974zM705.772 714.925c-59.443 59.341-136.899 88.842-214.784 88.924-77.896-0.082-155.341-29.583-214.784-88.924-59.443-59.484-88.975-136.919-89.037-214.804 0.061-77.885 29.604-155.372 89.037-214.825 59.464-59.443 136.878-88.945 214.784-89.016 77.865 0.082 155.3 29.583 214.784 89.016 59.361 59.464 88.914 136.919 88.945 214.825-0.041 77.885-29.583 155.361-88.945 214.804z"></path></svg>
             </div>
             {/* Mobile Left Menu */}
             <div ref={left_menu} className='left-menu min-h-screen max-h-screen origin-[50%_200px_0] [&.active]:scale-[1.11111111] transition-transform duration-700 ease-in-out fixed top-0 left-0 bottom-0 right-0 overflow-y-auto z-30 text-white -translate-x-[100%] [&.active]:translate-x-0 opacity-0 [&.mactive]:opacity-100' style={{ background: `linear-gradient(rgb(0 0 0 / 52%), rgb(0 0 0 / 52%)), url("${config.menu_background}") no-repeat top / cover` }}>
-                <div className='flex justify-end'><CloseIcon onClick={() => { app.current.classList.remove('active'); left_menu.current.classList.remove('active'); right_menu.current.classList.remove('mactive'); left_menu.current.classList.add('mactive'); }} className='p-5 box-content cursor-pointer' style={{ fontSize: '32px' }} /></div>
+                <div className='flex justify-end'><CloseIcon onClick={() => { app.current.classList.remove('active'); left_menu.current.classList.remove('active'); right_menu.current.classList.remove('mactive'); left_menu.current.classList.add('mactive'); setTimeout(() => { appcontainer.current.classList.remove('active') }, 700) }} className='p-5 box-content cursor-pointer' style={{ fontSize: '32px' }} /></div>
+                {/* Mobile Navbar */}
+                <nav className='p-5'>
+                    <ul className='[&_li]:mb-4 [&_li:last-child]:mb-4'>
+                        <li><Links className="font-bold block capitalize text-white text-[22px] active [&.active]:text-sky-400" to="/">News</Links></li>
+                        {config.menu && category.length >= 1 && config.menu.map((config_menu, i) => ((() => {
+                            const menu = category.find(all_menu => config_menu.url === all_menu.url && config_menu.type === all_menu.type);
+                            if (menu && config_menu.menu_type === 'mega' && config_menu.type === 'parent') {
+                                return <li key={i}>
+                                    <Link ref={mob_nav_toggle} onClick={mobNavToggle} className="font-bold flex justify-between items-center capitalize text-white text-[22px] [&.active]:text-sky-400 [&>svg]:-rotate-90 [&.opened>svg]:rotate-0" href="#">{menu.name} <svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-5 ml-1.5 transition duration-300" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="64" d="M112 184l144 144 144-144" /></svg></Link>
+                                    <ul ref={mob_collapse_menu} className='pl-5 overflow-hidden transition-[max-height_0.5s_cubic-bezier(0.77,0,0.175,1),opacity_0.5s_cubic-bezier(0.77,0,0.175,1)]' style={{ height: '0px', opacity: '0' }}>
+                                        <div ref={mob_collapse_wrapper} className='[&_li:last-child]:mb-0 [&_li]:mb-3 pt-3'>
+                                            {category.filter(a => a.parent === config_menu.url).map((list_menu, i) => (
+                                                list_menu.url !== config_menu.url && <li key={i}><Links className="block capitalize text-white" to={`/category/${config_menu.url}/${list_menu.url}`}>{list_menu.name}</Links></li>
+                                            ))}
+                                        </div>
+                                    </ul>
+                                </li>
+                            }
+                            else if (menu && config_menu.menu_type === 'mega' && config_menu.type === 'category') {
+                                return <li key={i} className='menu'>
+                                    <Links className="font-bold block capitalize text-white text-[22px] [&.active]:text-sky-400" to={`/category/${menu.parent}/${menu.url}`}>{menu.name}</Links>
+                                </li>
+                            }
+                            else if (menu && config_menu.menu_type === 'mega' && config_menu.type === 'sub_category') {
+                                return <li key={i} className='menu'>
+                                    <Links className="font-bold block capitalize text-white text-[22px] [&.active]:text-sky-400" to={`/category/${menu.parent}/${menu.url}`}>{menu.name}</Links>
+                                </li>
+                            }
+                            else if (menu && config_menu.menu_type === 'normal' && config_menu.type === 'parent') {
+                                return <li key={i}>
+                                    <Links className="font-bold block capitalize text-white text-[22px] [&.active]:text-sky-400" to={`/category/${menu.url}`}>{menu.name}</Links>
+                                </li>
+                            }
+                            else if (menu && config_menu.menu_type === 'normal' && config_menu.type === 'category') {
+                                return <li key={i}>
+                                    <Links className="font-bold block capitalize text-white text-[22px] [&.active]:text-sky-400" to={`/category/${menu.parent}/${menu.url}`}>{menu.name}</Links>
+                                </li>
+                            }
+                            else if (config_menu.menu_type === 'normal' && config_menu.type === 'external') {
+                                return <li key={i}>
+                                    <a className="font-bold block capitalize text-white text-[22px] [&.active]:text-sky-400" href={config_menu.url} target='_blank' rel="noreferrer">{config_menu.title}</a>
+                                </li>
+                            }
+                        })()))}
+                    </ul>
+                </nav>
             </div>
             {/* Mobile Right Menu */}
             <div ref={right_menu} className='right-menu min-h-screen max-h-screen origin-[50%_200px_0] [&.active]:scale-[1.11111111] transition-transform duration-700 ease-in-out fixed top-0 left-0 bottom-0 right-0 overflow-y-auto z-30 text-white translate-x-[100%] [&.active]:translate-x-0 opacity-0 [&.mactive]:opacity-100' style={{ background: `linear-gradient(rgb(0 0 0 / 52%), rgb(0 0 0 / 52%)), url("${config.menu_background}") no-repeat top / cover` }}>
-                <div className='flex justify-end'><CloseIcon onClick={() => { app.current.classList.remove('active'); right_menu.current.classList.remove('active'); right_menu.current.classList.add('mactive'); left_menu.current.classList.remove('mactive'); }} className='p-5 box-content cursor-pointer' style={{ fontSize: '32px' }} /></div>
+                <div className='flex justify-end'><CloseIcon onClick={() => { app.current.classList.remove('active'); right_menu.current.classList.remove('active'); right_menu.current.classList.add('mactive'); left_menu.current.classList.remove('mactive'); setTimeout(() => { appcontainer.current.classList.remove('active') }, 700) }} className='p-5 box-content cursor-pointer' style={{ fontSize: '32px' }} /></div>
             </div>
         </header>
     )

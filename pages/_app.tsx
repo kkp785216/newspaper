@@ -9,42 +9,42 @@ import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
 import fetchapi from "lib/api";
 
-const AppLayout = ({ children, app }) => {
+const AppLayout = ({ children, app, appcontainer }) => {
 
   const router = useRouter();
 
   switch (router.route) {
     case '/':
       return (<>
-        <Header app={app} />
+        <Header app={app} appcontainer={appcontainer} />
         {children}
         <Footer />
       </>)
 
     case '/[post]':
       return (<>
-        <Header app={app} />
+        <Header app={app} appcontainer={appcontainer} />
         {children}
         <Footer />
       </>)
 
     case '/category/[category]':
       return (<>
-        <Header app={app} />
+        <Header app={app} appcontainer={appcontainer} />
         {children}
         <Footer />
       </>)
 
     case '/category/[category]/[childcategory]':
       return (<>
-        <Header app={app} />
+        <Header app={app} appcontainer={appcontainer} />
         {children}
         <Footer />
       </>)
 
     case '/404':
       return (<>
-        <Header app={app} />
+        <Header app={app} appcontainer={appcontainer} />
         {children}
         <Footer />
       </>)
@@ -58,11 +58,12 @@ const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps } = props;
   const app = useRef();
+  const appcontainer = useRef();
   return (
     <Provider store={store}>
-      <div className="overflow-hidden">
+      <div ref={appcontainer} className="[&.active]:overflow-hidden">
         <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
-          <AppLayout app={app}>
+          <AppLayout app={app} appcontainer={appcontainer}>
             <Layout Component={Component} pageProps={pageProps} />
           </AppLayout>
         </div>
