@@ -65,9 +65,9 @@ const Header = ({ app, appcontainer }) => {
             </div>
             <div className="md:max-w-screen-md lg:max-w-screen-lg lg1140:max-w-[1068px] px-3.5 lg:px-[22px] lg1140:px-0 m-auto hidden md:block">
                 <div className="flex justify-between space-x-6 pt-7 pb-3">
-                    <Links to='/'><Image width='272' height='90' loading='eager' src="/img/newspaper-11-logo-blue.png" alt="logo"></Image></Links>
+                    <Links to='/'><Image width='272' height='90' src="/img/newspaper-11-logo-blue.png" alt="logo"></Image></Links>
                     <div className='w-[728px] h-[90px] relative'>
-                        <Image layout='fill' objectFit='cover' loading='eager' src="/img/newspaper-rec728.jpg" alt=""></Image>
+                        <Image layout='fill' objectFit='cover' src="/img/newspaper-rec728.jpg" alt=""></Image>
                     </div>
                 </div>
                 <nav>
