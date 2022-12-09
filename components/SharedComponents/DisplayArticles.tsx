@@ -7,9 +7,10 @@ interface Props {
   articles: DisplayArticlesType,
   page: number,
   setPage: React.Dispatch<React.SetStateAction<number>>,
+  heading?: String,
 }
 
-const DisplayArticles = ({ articles, page, setPage }: Props) => {
+const DisplayArticles = ({ articles, page, setPage, heading }: Props) => {
 
   const articleRef = useRef<HTMLDivElement>(null);
 
@@ -34,12 +35,12 @@ const DisplayArticles = ({ articles, page, setPage }: Props) => {
   return (
     <div ref={articleRef}>
       <div className="border-b-2 w-full mb-6 border-black">
-        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">LATEST ARTICLES</span>
+        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{heading? heading: 'Latest Articles'}</span>
       </div>
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
-            <Article key={i} title={e.title} img_url={e.img_url} img_comp={e.img_comp} date={e.date} url={e.url} author={e.author} commentCount={e.commentCount} />
+            <Article key={i} article={e} />
           ))}
         </div>}
       {Math.ceil(articles.total_articles / 8) >= 2 &&

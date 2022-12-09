@@ -2,7 +2,11 @@ import React from 'react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Link from 'next/link';
 
-const CategoryBanner = () => {
+interface Props {
+  category: String | String[];
+}
+
+const CategoryBanner = ({category}: Props) => {
   return (
     <div className='relative'>
       <div className='overflow-hidden w-full h-[445px] before:bg-[#00000080] before:w-full before:h-full before:absolute'>
@@ -21,7 +25,7 @@ const CategoryBanner = () => {
             </ul>
           </div>
           <div className='mt-[100px]'>
-            <h1 className='text-4xl uppercase font-bold mb-5'>Fashion</h1>
+            <h1 className='text-4xl uppercase font-bold mb-5'>{category.toString().replace('-', ' ')}</h1>
             <ul className='flex text-xs mb-4'>
               <li className='mr-1 mb-1 group p-px bg-[#f96945]'><Link className='group-hover:bg-[#00000071] transition duration-300 block px-2 py-px' href="/">New Look</Link></li>
               <li className='mr-1 mb-1 group p-px bg-[#f24d4d]'><Link className='group-hover:bg-[#00000071] transition duration-300 block px-2 py-px' href="/">Street Fashion</Link></li>

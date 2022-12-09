@@ -19,7 +19,7 @@ type DisplayArticlesType = {
         createdAt: string;
         updatedAt: string;
         __v: number;
-        commentCount: number;
+        commentCount?: number;
         page: number;
     }[],
     total_articles: number;
