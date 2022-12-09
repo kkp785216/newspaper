@@ -11,6 +11,7 @@ import MostPopular from 'components/MostPopular';
 import RecentComments from 'components/RecentComments';
 import PostShare from 'components/elements/PostShare';
 import wrapper from 'redux/store';
+import Image from 'next/image';
 
 const Post = ({ article, nextprev, route, comments, related, recentcomments }) => {
     return (
@@ -49,7 +50,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                         <PostShare />
                     </div>
                     <div className="mt-5 -mx-5 md:mx-0">
-                        <img className='w-full' src={article.img_url ? article.img_url : `/img/articles/flash/${article.img_comp}.jpg`} alt={article.title}></img>
+                        <Image width={696} height={485} objectFit='contain' className='w-full h-auto' src={article.img_url ? article.img_url : `/img/articles/flash/${article.img_comp}.jpg`} alt={article.title}></Image>
                     </div>
                     <div className='mt-7 tracking-[0.2px] text-[16.4px]'>
                         <p className='max-w-[600px] mx-auto'>We woke reasonably late following the feast and free flowing wine the night before. After gathering ourselves and our packs, we headed down to our homestay family&#39;s small dining room for breakfast.</p>
