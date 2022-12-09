@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: true,
   swcMinify: true,
   typescript: {
     // !! WARN !!
@@ -22,6 +23,8 @@ const nextConfig = {
         ]
       }
     ]
+  },images: {
+    unoptimized: true
   },
 }
 

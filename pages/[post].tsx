@@ -126,19 +126,19 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
 }
 
 
-// export async function getStaticPaths() {
-//     const routes = await fetchapi('getroutes?uses=articles', `${process.env.NEXT_PUBLIC_HOST}`);
-//     console.log(routes)
+export async function getStaticPaths() {
+    const routes = await fetchapi('getroutes?uses=articles', `${process.env.NEXT_PUBLIC_HOST}`);
+    // console.log(routes)
 
-//     const paths = routes.routes.map((route) => ({
-//         params: { post: route.url.toString() },
-//     }));
+    const paths = routes.routes.map((route) => ({
+        params: { post: route.url.toString() },
+    }));
 
-//     return { paths, fallback: false }
-// }
+    return { paths, fallback: false }
+}
 
-// export const getStaticProps = wrapper.getStaticProps((store) => async (context) => {
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+export const getStaticProps = wrapper.getStaticProps((store) => async (context) => {
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
     const { params, res } = context;
     const routes = await fetchapi('getroutes?uses=articles', `${process.env.NEXT_PUBLIC_HOST}`);
     if (routes.routes.find(route => route.url === params.post)) {
