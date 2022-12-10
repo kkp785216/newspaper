@@ -61,7 +61,7 @@ const AppLayout = ({ children, app, appcontainer }) => {
   }
 }
 
-const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
+const MyApp  = ({ Component, ...rest } : AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps } = props;
   const app = useRef();
@@ -71,8 +71,7 @@ const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
       <div ref={appcontainer} className="[&.active]:overflow-hidden">
         <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
           <AppLayout app={app} appcontainer={appcontainer}>
-            {/* <Layout Component={Component} pageProps={pageProps} /> */}
-            <Component {...pageProps} />
+            <Layout Component={Component} pageProps={pageProps} />
           </AppLayout>
         </div>
       </div>
@@ -80,13 +79,13 @@ const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
   )
 }
 
-// const Layout = ({ Component, pageProps }) => {
-//   if (Component.getLayout) {
-//     return Component.getLayout(<Component {...pageProps} />);
-//   } else {
-//     return <Component {...pageProps} />;
-//   }
-// };
+const Layout = ({ Component, pageProps }) => {
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />);
+  } else {
+    return <Component {...pageProps} />;
+  }
+};
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
 
