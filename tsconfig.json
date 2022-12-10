@@ -4,6 +4,7 @@
     "paths": {
       "@pagesComps/*": ["components/pages/*"],
       "@const/*": ["constants/*"],
+      "@redux/*": ["redux/*"],
       "@sharedComps/*": ["components/SharedComponents/*"],
     },
     "target": "es5",

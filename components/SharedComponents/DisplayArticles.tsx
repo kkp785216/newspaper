@@ -8,9 +8,10 @@ interface Props {
   page: number,
   setPage: React.Dispatch<React.SetStateAction<number>>,
   heading?: String,
+  baseurl?:String,
 }
 
-const DisplayArticles = ({ articles, page, setPage, heading }: Props) => {
+const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) => {
 
   const articleRef = useRef<HTMLDivElement>(null);
 
@@ -64,6 +65,10 @@ const DisplayArticles = ({ articles, page, setPage, heading }: Props) => {
             pageCount={Math.ceil(articles.total_articles / 8)}
             nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
             renderOnZeroPageCount={null}
+            hrefBuilder={(page, pageCount, selected) =>
+              page >= 1 && page <= pageCount ? `${baseurl?baseurl:""}/page/${page}` : '#'
+            }
+            hrefAllControls
           />
           <span className='text-[13px] hidden md:block text-gray-500'>Page {page} of {Math.ceil(articles.total_articles / 8)}</span>
         </div>}

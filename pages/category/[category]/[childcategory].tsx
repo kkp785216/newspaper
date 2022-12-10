@@ -1,12 +1,12 @@
-import React from 'react'
-import Template1 from '@pagesComps/CategoryPage/Template1/index'
 
-const category = () => {
+
+const ChildCategory = () => {
   return (
     <div>
-      <Template1 />
+      {/* <Template1 /> */}
+      ChildCategory
     </div>
   )
 }
 
-export default category
+export default ChildCategory
