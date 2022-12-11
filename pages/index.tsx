@@ -55,8 +55,8 @@ export default function Home({ recentcomments }) {
   )
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async (context) => {
-// export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+// export const getStaticProps = wrapper.getStaticProps((store) => async (context) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
 
   // Dispatch TRENDING

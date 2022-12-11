@@ -17,7 +17,7 @@ export const Category = ({ articlesData, category }: Props) => {
     const router = useRouter();
 
     const setPage = (page: number) => {
-        router.push(`/category/${category}/page/${page}`, undefined, { scroll: false })
+        router.push(page === 1 ? `/category/${category}` : `/category/${category}/page/${page}`, undefined, { scroll: false })
     }
 
     return (

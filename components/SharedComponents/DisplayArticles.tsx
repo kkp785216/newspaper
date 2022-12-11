@@ -8,7 +8,7 @@ interface Props {
   page: number,
   setPage: React.Dispatch<React.SetStateAction<number>>,
   heading?: String,
-  baseurl?:String,
+  baseurl?: String,
 }
 
 const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) => {
@@ -36,7 +36,7 @@ const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) =
   return (
     <div ref={articleRef}>
       <div className="border-b-2 w-full mb-6 border-black">
-        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{heading? heading: 'Latest Articles'}</span>
+        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{heading ? heading : 'Latest Articles'}</span>
       </div>
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
@@ -66,7 +66,7 @@ const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) =
             nextLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M184 112l144 144-144 144" /></svg>}
             renderOnZeroPageCount={null}
             hrefBuilder={(page, pageCount, selected) =>
-              page >= 1 && page <= pageCount ? `${baseurl?baseurl:""}/page/${page}` : '#'
+              page >= 1 && page <= pageCount ? page === 1 ? baseurl : `${baseurl ? baseurl : ""}/page/${page}` : '#'
             }
             hrefAllControls
           />
