@@ -9,15 +9,16 @@ import { useRouter } from 'next/router';
 interface Props {
     articlesData: FetchArticleType;
     category: String;
+    baseurl: String;
     page: String | 1;
 }
 
-export const Category = ({ articlesData, category }: Props) => {
+export const Category = ({ articlesData, category, baseurl }: Props) => {
 
     const router = useRouter();
 
-    const setPage = (page: number) => {
-        router.push(page === 1 ? `/category/${category}` : `/category/${category}/page/${page}`, undefined, { scroll: false })
+    const setPage = (page: number, baseurl: String) => {
+        router.push(page === 1 ? `${baseurl}` : `${baseurl}/page/${page}`, undefined, { scroll: false })
     }
 
     return (
@@ -25,7 +26,7 @@ export const Category = ({ articlesData, category }: Props) => {
             <CategoryBanner category={category} />
             <Section>
                 <Main>
-                    <CategoryArticle key={`${category}`} articlesData={articlesData} category={category} setPage={setPage} />
+                    <CategoryArticle key={`${category}`} articlesData={articlesData} category={category} baseurl={baseurl} setPage={setPage} />
                 </Main>
                 <Aside>
                     This is Sidebar
@@ -37,14 +38,37 @@ export const Category = ({ articlesData, category }: Props) => {
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
     const { params, res } = context;
-    const category = params.category.toString().split(",")[0];
-    const allCategory: { url: String, name: String, type: String, parent?: String | null }[] = store.getState().category.filter(e => e.type === 'parent')
-    if (allCategory.find(e => e.url === category) && (params.category.toString().match(/^[a-z0-9-]+(\,page\,[0-9]{1,5})?$/gi))) {
+    const parentCategory = params.category.toString().split(",")[0];
+    const childCategory = params.category.toString().split(",")[1];
+    console.log(params.category)
+    const allParentCategory: { url: String, name: String, type: String, parent?: String | null }[] = store.getState().category.filter(e => e.type === 'parent');
+    const allChildCategory: { url: String, name: String, type: String, parent?: String | null }[] = store.getState().category.filter(e => e.type === 'category');
+    if (allParentCategory.find(e => e.url === parentCategory) && (params.category.toString().match(/^[a-z0-9-]+(\,page\,[0-9]{1,5})?$/gi))) {
         const page = params.category.toString().split(",")[2] ? params.category.toString().split(",")[2] : 1;
-        let articlesData: FetchArticleType = await fetchapi(`getarticles?uses=articlesbycategory&category=${category}&type=parent&sortby=order&order=-1&limit=8&page=${page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+        let articlesData: FetchArticleType = await fetchapi(`getarticles?uses=articlesbycategory&category=${parentCategory}&type=parent&sortby=order&order=-1&limit=8&page=${page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+        const baseurl = `/category/${parentCategory}`;
         if (page <= Math.ceil(articlesData.total_articles / 8) && page > 0) {
             return {
-                props: { articlesData, category }, // will be passed to the page component as props
+                props: { articlesData, category: parentCategory, baseurl }, // will be passed to the page component as props
+            }
+        }
+        else {
+            res.statusCode = 404;
+            return {
+                notFound: true,
+                props: {
+                    error: `couldn't find the thing`,
+                },
+            }
+        }
+    }
+    else if (allChildCategory.find(e => e.url === childCategory) && (params.category.toString().match(/^[a-z0-9-]+\,[a-z0-9-]+(\,page\,[0-9]{1,5})?$/gi))) {
+        const page = params.category.toString().split(",")[3] ? params.category.toString().split(",")[3] : 1;
+        let articlesData: FetchArticleType = await fetchapi(`getarticles?uses=articlesbycategory&category=${childCategory}&type=category&sortby=order&order=-1&limit=8&page=${page}`, `${process.env.NEXT_PUBLIC_HOST}`);
+        const baseurl = `/category/${parentCategory}/${childCategory}`
+        if (page <= Math.ceil(articlesData.total_articles / 8) && page > 0) {
+            return {
+                props: { articlesData, category: childCategory, baseurl }, // will be passed to the page component as props
             }
         }
         else {

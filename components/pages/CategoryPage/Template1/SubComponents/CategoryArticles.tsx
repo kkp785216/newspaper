@@ -5,10 +5,11 @@ import { FetchArticleType } from "@const/apiResultTypes"
 interface Props {
     articlesData: FetchArticleType;
     category: String;
-    setPage: (page: number) => void
+    baseurl?: String;
+    setPage: (page: number, baseurl: String) => void
 }
 
-const LatestArticles = ({ articlesData, category, setPage }: Props) => {
+const LatestArticles = ({ articlesData, category, baseurl, setPage }: Props) => {
 
     const [articles, setArticles] = useState({
         articles: articlesData.articles.map(e => ({ ...e, page: articlesData.page })),
@@ -37,7 +38,7 @@ const LatestArticles = ({ articlesData, category, setPage }: Props) => {
     },[articlesData.page]);
     
     return (
-        <DisplayArticles articles={articles} page={articlesData.page} setPage={setPage} baseurl={`/category/${category}`} heading={category} />
+        <DisplayArticles articles={articles} page={articlesData.page} setPage={setPage} baseurl={baseurl} heading={category} />
     )
 }
 

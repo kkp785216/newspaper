@@ -12,6 +12,7 @@ import fetchapi from "lib/api";
 const AppLayout = ({ children, app, appcontainer }) => {
 
   const router = useRouter();
+  console.log(router.route)
 
   switch (router.route) {
     case '/':
@@ -42,7 +43,7 @@ const AppLayout = ({ children, app, appcontainer }) => {
         <Footer />
       </>)
 
-    case '/category/[category]/[childcategory]':
+    case '/category/[category]/[...childcategory]':
       return (<>
         <Header app={app} appcontainer={appcontainer} />
         {children}

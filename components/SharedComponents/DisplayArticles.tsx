@@ -1,14 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactPaginate from 'react-paginate'
 import Article from '../Article'
 import { DisplayArticlesType } from '@const/apiResultTypes'
 
 interface Props {
-  articles: DisplayArticlesType,
-  page: number,
-  setPage: React.Dispatch<React.SetStateAction<number>>,
-  heading?: String,
-  baseurl?: String,
+  articles: DisplayArticlesType;
+  page: number;
+  setPage: (page: number, baseurl: String) => void
+  heading?: String;
+  baseurl?: String;
 }
 
 const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) => {
@@ -29,14 +29,19 @@ const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) =
   }
 
   const handlePageClick = ({ selected }) => {
-    setPage(selected + 1);
-    scrollToTargetAdjusted();
+    setPage(selected + 1, baseurl);
+    // scrollToTargetAdjusted();
   }
+
+  useEffect(() => {
+    scrollToTargetAdjusted()
+  }, [articles.current_page]);
+
 
   return (
     <div ref={articleRef}>
       <div className="border-b-2 w-full mb-6 border-black">
-        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{heading ? heading : 'Latest Articles'}</span>
+        <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">{heading ? heading.toString().replaceAll('-', ' ') : 'Latest Articles'}</span>
       </div>
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
@@ -56,7 +61,7 @@ const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) =
             nextLinkClassName='border border-[#e3e3e3] hover:bg-[#444] hover:border-[#444] hover:text-white text-[13px] text-gray-500 absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center'
             activeLinkClassName='bg-sky-400 hover:bg-sky-400 border-sky-400 hover:border-sky-400 text-[white_!important] hover:text-white cursor-auto'
             breakClassName='mx-4'
-            forcePage={page - 1}
+            forcePage={articles.current_page - 1}
             breakLabel="..."
             previousLabel={<svg xmlns="http://www.w3.org/2000/svg" className="ionicon w-[13px]" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144" /></svg>}
             onPageChange={handlePageClick}

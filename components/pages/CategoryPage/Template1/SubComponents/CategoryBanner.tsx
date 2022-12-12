@@ -25,7 +25,7 @@ const CategoryBanner = ({category}: Props) => {
             </ul>
           </div>
           <div className='mt-[100px]'>
-            <h1 className='text-4xl uppercase font-bold mb-5'>{category.toString().replace('-', ' ')}</h1>
+            <h1 className='text-4xl uppercase font-bold mb-5'>{category.toString().replaceAll('-', ' ')}</h1>
             <ul className='flex text-xs mb-4'>
               <li className='mr-1 mb-1 group p-px bg-[#f96945]'><Link className='group-hover:bg-[#00000071] transition duration-300 block px-2 py-px' href="/">New Look</Link></li>
               <li className='mr-1 mb-1 group p-px bg-[#f24d4d]'><Link className='group-hover:bg-[#00000071] transition duration-300 block px-2 py-px' href="/">Street Fashion</Link></li>
