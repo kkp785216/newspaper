@@ -47,7 +47,7 @@ const MegaMenuParentCurrent = ({ active_menu, activeState }) => {
             {<div className=' flex -m-3' key={active_menu.current_page}>
                 {active_menu.articles.filter(e => e.page === active_menu.current_page).map((e, i) => (<div className="group w-1/4 p-3" key={i}>
                     <Links to={`/${e.url}`} className="relative block pb-[70%] overflow-hidden">
-                        <Image layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
+                        <Image className='transition-all duration-[.5s]' style={{opacity: 0}} onLoad={(e)=>{setTimeout(()=>{e.target.style.opacity=1}, 30*i)}} layout='fill' sizes='485px' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
                         <Links to={e.parent_category ? `/category/${e.parent_category}/${e.category}`: `/category/${e.category}`} className="absolute bottom-0 left-0 text-mywhite bg-black hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</Links>
                     </Links>
                     <h3 className="text-[15px] font-medium leading-5 mt-2 group-hover:text-sky-400"><Links to={`/${e.url}`}>{e.title}</Links></h3>

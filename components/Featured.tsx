@@ -44,7 +44,7 @@ const Featured = () => {
                         <div className="md:p-[10px] lg:p-5 w-full md:w-1/2" key={e.order} title={e.title}>
                             <div className="group">
                                 <Links to={`/${e.url}`} className="relative block pb-[72%] overflow-hidden">
-                                    <Image objectFit='cover' layout='fill' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title} />
+                                    <Image className='transition-all duration-[.5s]' style={{opacity: 0}} onLoad={(e)=>{setTimeout(()=>{e.target.style.opacity=1}, 30)}} objectFit='cover' layout='fill' src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title} />
                                     <span className="absolute bottom-0 left-0 text-mywhite bg-black group-hover:bg-blue-500 block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</span>
                                 </Links>
                                 <h3 className="text-2xl leading-7 mt-2 group-hover:text-myyellow"><Links to={`/${e.url}`}>{e.title}</Links></h3>
@@ -55,10 +55,10 @@ const Featured = () => {
                     ))}
                     {featured.articles.filter(e => e.page === featured.current_page).length >= 2 &&
                         <div className="-mb-1 md:-mb-0 md:p-[10px] lg:p-5 w-full md:w-1/2">
-                            {featured.articles.filter(e => e.page === featured.current_page).splice(1, 4).map(e => (
+                            {featured.articles.filter(e => e.page === featured.current_page).splice(1, 4).map((e, i) => (
                                 <div className="flex space-x-4 md:space-x-3 lg:space-x-4 group mt-7 md:mt-0 mb-0 md:mb-5" key={e.order} title={e.title}>
                                     <Links className="w-1/3 md:w-2/5 lg:w-1/3 relative" to={`/${e.url}`}>
-                                        <div className="flex"><Image src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} width="218" height="150" /></div>
+                                        <div className="flex"><Image className='transition-all duration-[.5s]' style={{opacity: 0}} onLoad={(e)=>{setTimeout(()=>{e.target.style.opacity=1}, 30*(i+1))}} src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} width="218" height="150" /></div>
                                     </Links>
                                     <div className="w-2/3 md:w-3/5 lg:w-2/3">
                                         <h3 className="text-[15px] md:text-[12.5px] lg:text-sm group-hover:text-myyellow font-medium text-zinc-900"><Links to={`/${e.url}`}>{e.title}</Links></h3>

@@ -40,7 +40,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     const { params, res } = context;
     const parentCategory = params.category.toString().split(",")[0];
     const childCategory = params.category.toString().split(",")[1];
-    console.log(params.category)
     const allParentCategory: { url: String, name: String, type: String, parent?: String | null }[] = store.getState().category.filter(e => e.type === 'parent');
     const allChildCategory: { url: String, name: String, type: String, parent?: String | null }[] = store.getState().category.filter(e => e.type === 'category');
     if (allParentCategory.find(e => e.url === parentCategory) && (params.category.toString().match(/^[a-z0-9-]+(\,page\,[0-9]{1,5})?$/gi))) {

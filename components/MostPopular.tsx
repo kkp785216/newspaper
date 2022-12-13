@@ -39,11 +39,11 @@ const MostPopular = () => {
             <div className="border-b-2 w-full mb-6 border-black">
                 <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">Most Popular</span>
             </div>
-            <div>
+            <div key={page}>
                 {most_popular.articles.filter(e => e.page === most_popular.current_page).map((e, i) => (
                     <div className="flex space-x-4 md:space-x-3 lg:space-x-4 group mb-7 md:mb-4" title={e.title} key={i}>
                         <Links className="w-1/3" to={`/${e.url}`}>
-                            <div className="flex"><Image className='w-full object-cover' src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} width="218" height="150" /></div>
+                            <div className="flex"><Image className='w-full object-cover transition-all duration-[.5s]' style={{opacity: 0}} onLoad={(e)=>{setTimeout(()=>{e.target.style.opacity=1}, 30*i)}} src={e.img_url ? e.img_url : `/img/articles/218x150/${e.img_comp}.jpg`} alt={e.title} width="218" height="150" /></div>
                         </Links>
                         <div className="w-2/3">
                             <h3 className="text-sm md:text-[12.5px] lg:text-sm md:leading-5 group-hover:text-sky-400 font-medium text-zinc-900"><Links to={`/${e.url}`}>{e.title}</Links></h3>

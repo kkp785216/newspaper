@@ -46,7 +46,7 @@ const DisplayArticles = ({ articles, page, setPage, heading, baseurl }: Props) =
       {articles.pages_loaded.includes(articles.current_page) && articles.articles.filter(e => e.page === articles.current_page).length >= 1 &&
         <div className="flex flex-wrap flex-col md:flex-row -mx-5 md:-mx-[10px] lg:-mx-5 -my-4" key={articles.current_page}>
           {articles.articles.filter(e => e.page === articles.current_page).map((e, i) => (
-            <Article key={i} article={e} />
+            <Article key={i} article={e} keyorder={i} />
           ))}
         </div>}
       {Math.ceil(articles.total_articles / 8) >= 2 &&

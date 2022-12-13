@@ -57,11 +57,11 @@ const RelatedPosts = ({ related, route }) => {
                 <span className="w-fit block px-3 pt-1 pb-0.5 uppercase text-sm text-white bg-black">RELATED ARTICLES</span>
             </div>
             <div className='flex flex-wrap -m-3' key={relatedPosts.current_page}>
-                {relatedPosts.articles.filter(e => e.page === relatedPosts.current_page).map(e => (
+                {relatedPosts.articles.filter(e => e.page === relatedPosts.current_page).map((e, i) => (
                     <div className="p-3 w-full md:w-1/3" key={e.order} title={e.title}>
                         <div className="group flex flex-row md:flex-col mb-1 md:mb-0 space-x-4 md:space-x-0">
                             <Links to={`/${e.url}`} className="relative w-1/3 md:w-full block md:pb-[72%] overflow-hidden">
-                                <Image className='md:absolute bottom-0 left-0 top-0 right-0 object-cover' width={485} height={360} src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
+                                <Image className='md:absolute bottom-0 left-0 top-0 right-0 object-cover transition-all duration-[.5s]' style={{opacity: 0}} onLoad={(e)=>{setTimeout(()=>{e.target.style.opacity=1}, 30*i)}} width={485} height={360} src={e.img_url ? e.img_url : `/img/articles/485x360/${e.img_comp}.jpg`} alt={e.title}></Image>
                                 <Links to={e.parent_category ? `/category/${e.parent_category}/${e.category}` : `/category/${e.category}`} className="absolute bottom-0 left-0 text-mywhite bg-black hover:bg-blue-500 hidden md:block w-fit px-1.5 py-0.5 text-10px capitalize">{e.category.replace('-', ' ')}</Links>
                             </Links>
                             <div className="w-2/3 md:w-full">
