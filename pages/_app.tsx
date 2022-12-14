@@ -12,7 +12,6 @@ import fetchapi from "lib/api";
 const AppLayout = ({ children, app, appcontainer }) => {
 
   const router = useRouter();
-  console.log(router.route)
 
   switch (router.route) {
     case '/':
