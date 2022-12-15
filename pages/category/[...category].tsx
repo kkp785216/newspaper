@@ -11,9 +11,10 @@ interface Props {
     category: String;
     baseurl: String;
     page: String | 1;
+    breadcrumbCategory: { url: String, name: String, type: String, parent: String | null }[];
 }
 
-export const Category = ({ articlesData, category, baseurl }: Props) => {
+export const Category = ({ articlesData, category, baseurl, breadcrumbCategory }: Props) => {
 
     const router = useRouter();
 
@@ -23,7 +24,7 @@ export const Category = ({ articlesData, category, baseurl }: Props) => {
 
     return (
         <div>
-            <CategoryBanner category={category} />
+            <CategoryBanner category={category} breadcrumbCategory={breadcrumbCategory} baseurl={baseurl}/>
             <Section>
                 <Main>
                     <CategoryArticle key={`${category}`} articlesData={articlesData} category={category} baseurl={baseurl} setPage={setPage} />
@@ -46,9 +47,10 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
         const page = params.category.toString().split(",")[2] ? params.category.toString().split(",")[2] : 1;
         let articlesData: FetchArticleType = await fetchapi(`getarticles?uses=articlesbycategory&category=${parentCategory}&type=parent&sortby=order&order=-1&limit=8&page=${page}`, `${process.env.NEXT_PUBLIC_HOST}`);
         const baseurl = `/category/${parentCategory}`;
+        const breadcrumbCategory = store.getState().category.filter(e => e.parent === parentCategory);
         if (page <= Math.ceil(articlesData.total_articles / 8) && page > 0) {
             return {
-                props: { articlesData, category: parentCategory, baseurl }, // will be passed to the page component as props
+                props: { articlesData, category: parentCategory, baseurl, breadcrumbCategory }, // will be passed to the page component as props
             }
         }
         else {
