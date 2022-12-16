@@ -38,7 +38,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                         <div className='mt-3.5'>
                             <div className="flex text-[10px] text-white">
                                 {article.parent_category && <span className='py-[3px] px-[6px] bg-[#8224e3] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to={`/category/${article.parent_category}`}>{article.parent_category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>}
-                                <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to={`/category/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>
+                                <span className='py-[3px] px-[6px] bg-[#6850e0] tracking-[0.8px] block mb-[5px] mr-[5px] whitespace-nowrap'><Links to={`/category/${article.parent_category}/${article.category}`}>{article.category.split('-').map(e => e.replace(e.charAt(0), e.charAt(0).toUpperCase())).join(' ')}</Links></span>
                             </div>
                         </div>
                         <div className='mt-3.5'>
@@ -83,7 +83,7 @@ const Post = ({ article, nextprev, route, comments, related, recentcomments }) =
                         <div className='pt-7 pb-6 mt-7 border-t border-b'>
                             <PostShare />
                         </div>
-                        {(nextprev.prev || nextprev.next) && <div className='mt-7 flex'>
+                        {(nextprev.prev || nextprev.next) && <div className='mt-7 flex items-center'>
                             {nextprev.prev && <div className='w-1/2 pr-4'>
                                 <span className='text-xs text-[#747474] justify-start flex-1'>Previous article</span>
                                 <Links className='block text-[14px] font-medium hover:text-sky-400 transition-colors' to={`/${nextprev.prev.url}`}>{nextprev.prev.title}</Links>

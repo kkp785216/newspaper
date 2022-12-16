@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useRef } from "react";
 import '../styles/globals.css';
 import { useRouter } from 'next/router';

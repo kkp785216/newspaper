@@ -46,7 +46,7 @@ const RelatedPosts = ({ related, route }) => {
         }
     }
 
-    const formatDate = (input) => {
+    const formatDate = (input: string | number | Date) => {
         const date = new Date(input);
         return `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()]} ${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}, ${date.getFullYear()}`
     }
