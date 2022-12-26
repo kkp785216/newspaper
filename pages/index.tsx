@@ -9,6 +9,8 @@ import LatestArticles from '../components/pages/Homepage/LatestArticles';
 import MostPopular from '../components/MostPopular';
 import RecentComments from '../components/RecentComments';
 import fetchapi from '../lib/api';
+import { wrapper } from '../redux/store';
+import action from '../redux/action';
 
 
 export default function Home({ recentcomments }) {
@@ -54,9 +56,17 @@ export default function Home({ recentcomments }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
-  return {
-    props: { recentcomments }, // will be passed to the page component as props
-  }
-}
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+    let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
+    store.dispatch(action({
+      type: 'TRENDING',
+      page: 1
+    }));
+    store.dispatch(action({
+      type: 'FEATURED',
+      page: 1
+    }));
+    return {
+      props: { recentcomments }, // will be passed to the page component as props
+    }
+  });

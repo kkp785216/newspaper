@@ -1,20 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import '../styles/globals.css';
 import { useRouter } from 'next/router';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
+import { wrapper } from '../redux/store';
 import Header from "../components/Header";
-import { useDispatch } from "react-redux";
-import { preload } from "../redux/preload";
 import Footer from "../components/Footer";
+import action from '../redux/action';
 
-const Layout = ({ children, app }) => {
+const AppLayout = ({ children, app }) => {
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    preload(dispatch);
-    // eslint-disable-next-line
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   preload(dispatch);
+  //   // eslint-disable-next-line
+  // }, []);
 
   const router = useRouter();
 
@@ -63,13 +61,39 @@ function MyApp({ Component, pageProps }) {
   const app = useRef();
   return (
     <div ref={app} className="App [&.active]:scale-[.9] origin-[50%_200px_0] transition-all duration-700 [&.active]:shadow-[0_0_46px_#000]">
-      <Provider store={store}>
-        <Layout app={app}>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+      <AppLayout app={app}>
+        <Layout Component={Component} pageProps={pageProps} />
+      </AppLayout>
     </div>
   )
 }
 
-export default MyApp
+const Layout = ({ Component, pageProps }) => {
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />);
+  } else {
+    return <Component {...pageProps} />;
+  }
+};
+
+MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
+  // let recentcomments = await fetchapi(`getcomments?uses=recentcomment&limit=4&page=1`, `${process.env.NEXT_PUBLIC_HOST}`);
+  // console.log(recentcomments)
+  store.dispatch(action({
+    type: 'CATEGORY',
+  }));
+  store.dispatch(action({
+    type: 'CONFIG',
+  }));
+  store.dispatch(action({
+    type: 'FOOTER_EDITOR_CHOICE',
+  }));
+  store.dispatch(action({
+    type: 'FOOTER_MOST_POPULAR',
+  }));
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+});
+
+export default wrapper.withRedux(MyApp);

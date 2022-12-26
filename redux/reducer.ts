@@ -91,7 +91,7 @@ export const reducer = (state , action) => {
             return {
                 ...state,
                 trending: {
-                    articles: [...state.trending.articles, ...payload.articles],
+                    articles: payload.articles,
                     total_articles: payload.total_articles,
                     pages_loaded: Array.from(new Set(state.trending.pages_loaded).add(payload.page)),
                     current_page: payload.page,
