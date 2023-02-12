@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Professional GYM Web App using React
 
-## Getting Started
+<h3><a href="https://newspaper-kkp785216.vercel.app/">View Demo</a></h3>
 
-First, run the development server:
+### Made a NewsPaper with react, firebase and node js
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<img src="https://i.imgur.com/hdDempr.png" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Things used in this Project
+<p>1). React</p>
+<p>3). Firebase</p>
+<p>4). Bootstrap</p>
+<p>5). Pagination with React Router (Homepage and Serach Page)
+<p>6). Mega Menu</p>
+<p>7). Fetching Articles serving NodeJs and MongoDB Database</p>
+<p>8). Comments, user rating saved in MongoDB</p>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<p align="left">
+    <a href="https://getbootstrap.com" target="_blank" rel="noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" alt="bootstrap" width="40" height="40"/> 
+    </a>
+    <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> 
+    </a>
+    <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">
+    <img src="https://www.pngall.com/wp-content/uploads/13/Mongodb-Transparent.png" alt="firebase" width="40" height="40"/>
+  </a>
+    <a href="https://swiperjs.com/" target="_blank" rel="noreferrer">
+    <img src="https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png" alt="swiper js" width="40" height="40"/>
+  </a>
+    <a href="https://swiperjs.com/" target="_blank" rel="noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png" alt="swiper js" width="40" height="40"/>
+  </a>
+</p>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<p>
+    <ol style="padding-left: 16px">
+        <li>
+            <h3>Introduction:</h3>
+            <p>
+            I developed a complex website project using Node.js, MongoDB, Next.js, and SSR to showcase my full-stack development skills. This project served as an opportunity for me to learn and implement various technologies and techniques to produce a high-quality and functional application.
+            </p>
+        </li>
+        <li>
+            <h3>Front-end Features:</h3>
+            <p>
+            The front-end of the project includes various features such as server-side rendering, pagination with react-router-dom, a dynamic mega menu, persist layout across multiple components, and a responsive design achieved through Tailwind CSS.
+            </p>
+        </li>
+        <li>
+            <h3>Back-end Features:</h3>
+            <p>
+            The back-end of the project features the ability to fetch articles based on queries such as page, size, and limit, error handling, and the storage of comments and inputs in the database.
+            </p>
+        </li>
+        <li>
+            <h3>Summary:</h3>
+            <p>
+            This project serves as a real-life example of my full-stack development skills, showcasing my ability to work with multiple technologies and implement various features to produce a high-quality and functional application. Check out the code and demo on GitHub to see my work in action.
+            </p>
+        </li>
+    </ol>
+</p>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Contact Me
+<p>Email: <a href="mailto:kkp785216@gmail.com">kkp785216@gmail.com</a></p>
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
